@@ -1,0 +1,72 @@
+{#
+    Allows to list all available skins. It allows to add/edit/delete skin.
+    Required :
+    - skinList : list of all skins available (as Skin).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des skins</h1>
+
+    <div class="sep-15"></div>
+
+    {% if(skinList|length > 0) %}
+        <div class="field-set">
+            {# Form to set default skin to use #}
+            <form action="{{ path('jc_skin_bo_default') }}" method="post">
+                <label for="skin-id" class="label-inline">Skin à utiliser sur le Front Office : </label>
+                <select id="skin-id" name="skin-id" class="field-M">
+                    <option value="">-- Aucun --</option>
+                    {% for skin in skinList %}
+                        <option value="{{ skin.id }}" {{ skin.activ ? 'selected="selected"' : '' }}>{{ skin.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="sep-5"></div>
+                <span class="comment">Permet de définir le skin qui sera appliqué sur toutes les pages du front-office.</span>
+                <input type="submit" value="Enregistrer" class="button right" />
+                <div class="clear"></div>
+            </form>
+        </div>
+        <div class="sep-15"></div>
+    {% endif %}
+
+    <a class="button" href="{{ path('jc_skin_bo_edit') }}">Ajouter un skin</a>
+
+    <div class="sep-15"></div>
+
+    {# Display all skin found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-id">ID</th>
+                <th class="bo-table-label">Nom</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for skin in skinList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-id">{{ skin.id }}</td>
+                <td class="bo-table-label">{{ skin.name }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_skin_bo_edit', { 'id': skin.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_skin_bo_delete', { 'id': skin.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}
