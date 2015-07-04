@@ -1,0 +1,7 @@
+parameters:
+    jc_tool.pagination: 5
+
+services:
+    jc_tool.pagination:
+        class: 'jc\ToolBundle\Service\PaginationService'
+        arguments: [ '@doctrine.orm.entity_manager', '%jc_tool.pagination%' ]
