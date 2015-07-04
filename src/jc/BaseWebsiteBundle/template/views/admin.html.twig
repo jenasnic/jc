@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8" />
+    <title>{% block title %}Back-office{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('resources/images/favicon.ico') }}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/jquery-ui-1.10.4.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/common.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/admin.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery-1.11.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery-ui-1.10.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/global.js') }}"></script>
+
+    {% block header %}{% endblock %}
+
+    </head>
+
+<body>
+
+    <div id="page">
+
+        {% include 'layout/menu.html.twig' %}
+
+        <div class="clear"></div>
+        <div class="sep-20"></div>
+
+        {% if(app.session.flashbag.has('bo-error-message')) %}
+            <div class="bo-error-message">
+            {% for message in app.session.flashbag.get('bo-error-message') %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% if(app.session.flashbag.has('bo-warning-message')) %}
+            <div class="bo-warning-message">
+            {% for message in app.session.flashbag.get('bo-warning-message') %}
+                {{ message }}<br/>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% if(app.session.flashbag.has('bo-log-message')) %}
+            <div class="bo-log-message">
+            {% for message in app.session.flashbag.get('bo-log-message') %}
+                {{ message }}<br/>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+
+        <div class="clear"></div>
+        <div class="sep-20"></div>
+
+    </div>
+
+</body>
+
+</html>

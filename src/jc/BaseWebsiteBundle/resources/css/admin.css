@@ -1,0 +1,256 @@
+
+*{margin:0;padding:0;}
+
+body {background: url("images/admin/backgroundBody.jpg") 0 0 repeat;}
+
+body,td,th,div,input {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 12px;
+}
+
+img {border:none;}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+
+
+/*********************/
+/* CSS for structure */
+/*********************/
+
+#page {
+    margin: 0 auto;
+    min-height: 200px;
+    width: 960px;
+}
+
+h1 {
+    color: #333;
+    font-size: 20px;
+    font-weight: normal;
+    padding: 20px 0;
+}
+
+
+
+/************************/
+/* CSS for table (list) */
+/************************/
+
+.bo-table {border-collapse: collapse; width: 100%;}
+.bo-table thead tr {background: #484848; color:#ccc;}
+.bo-table th {padding: 5px;}
+.bo-table tbody tr {background-color: #ddd;}
+.bo-table tbody tr.odd {background-color: #ccc;}
+.bo-table th, .bo-table td {border: 1px solid #333;}
+.bo-table td.bo-table-id, .bo-table td.bo-table-action, .bo-table td.bo-table-date, .bo-table td.bo-table-field {text-align: center;}
+.bo-table td.bo-table-label {padding: 4px 10px;}
+.bo-table td.bo-table-hidden {display:none;}
+
+.bo-table tfoot tr {
+    background-color: #999;
+    font-weight: bold;
+    height: 30px;
+    vertical-align: bottom;
+}
+
+.bo-table tfoot tr td {padding: 5px;}
+
+.bo-table td.bo-table-field input {margin: 2px;}
+
+/* Specific CSS for sortable table */
+
+.bo-sortable-table th, .bo-sortable-table td {border: none;}
+.bo-sortable-table tr {border: 1px dotted #333;}
+.bo-sortable-table tbody tr {background-color: #ddd; cursor: move;}
+
+.bo-sortable-table tbody .sortable-header-row {
+    text-align: center;
+    height: 30px;
+    font-weight: bold;
+    background-color: #ababab;
+}
+
+/* Specific CSS for other lines */
+
+.bo-table tbody tr.obsolete {
+    background-color:#ecb1b1;
+    font-style: italic;
+}
+
+.bo-table tbody td.disabled {
+    background: url("images/admin/disabled.png") no-repeat scroll right center transparent;
+    font-style: italic;
+    color: #980202;
+}
+
+
+
+/*********************/
+/* CSS for field-set */
+/*********************/
+
+div.field-set {
+    background: url("images/admin/backgroundContent.png") 0 0 repeat;
+    border: 1px solid #86BC49;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+}
+
+span.field-set-title {
+    background-color: #ddd;
+    border: 1px solid #86BC49;
+    border-radius: 5px;
+    display: block;
+    font-weight: bold;
+    left: 20px;
+    padding: 5px 10px;
+    position: absolute;
+    top: -15px;
+}
+
+.field-set-separator {
+    height: 1px;
+    background-color: #86BC49;
+    width: 100%;
+    margin: 15px 0;
+}
+
+
+
+/****************/
+/* CSS for form */
+/****************/
+
+label {
+    display: block;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+label.label-inline {display: inline-block;}
+
+input[type="radio"] {margin-left:10px;}
+
+input[type="checkbox"] + label, input[type="radio"] + label {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+input[type="text"], input[type="password"], textarea, select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px;
+}
+
+textarea {
+    height: 100px;
+    max-width: 905px;
+    min-width: 905px;
+    width: 905px;
+}
+
+input[type="file"] {
+    background-color: #bbb;
+    border-radius: 5px;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    width: 400px;
+}
+
+input[readonly] {background-color: #BBBBBB;}
+
+.field-XS {
+    text-align: right;
+    width: 35px;
+}
+
+.field-S {width: 100px;}
+.field-M {width: 200px;}
+.field-L {width: 350px;}
+.field-XL {width: 730px;}
+
+.button {
+    background-color: #ADD081;
+    border: none;
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #333;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 18px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    background-color: #86bc49;
+    color: #eee;
+}
+
+/* Override style for date picker */
+.ui-datepicker-trigger {
+    background: none;
+    border-radius: none;
+    padding: 0;
+}
+
+
+
+/*************/
+/* Other CSS */
+/*************/
+
+span.error {
+    color: #980202;
+    display: block;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+span.comment {
+    display: block;
+    color: #555;
+    font-style: italic;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.bo-log-message, .bo-warning-message, .bo-error-message {
+    border-radius: 10px;
+    font-style: italic;
+    font-size: 15px;
+    margin:10px 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.bo-log-message {
+    background-color: #9ED17B;
+    border: 1px solid #394C29;
+    color: #394C29;
+}
+
+.bo-warning-message {
+    background-color: #F9E487;
+    border:1px solid #A0720D;
+    color: #A0720D;
+}
+
+.bo-error-message {
+    background-color: #ECB1B1;
+    border: 1px solid #980202;
+    color: #980202;
+}

@@ -1,0 +1,17 @@
+
+{% set menuList = [
+    {label : 'menu_1', path : 'path_1', start : 'jc_home_'},
+    {label : 'menu_2', path : 'path_2', start : 'jc_user_'},
+    {label : 'menu_3', path : 'path_3', start : 'jc_news_bo_'},
+] %}
+
+{% set activMenuPicture = 'menu_1' %}
+
+<ul id="menu">
+
+    {% for menu in menuList %}
+        {% set isActivMenu = (app.request.attributes.get('_route') == menu.path) %}
+        <li><a href="{{ path(menu.path) }}" class="menu-item {{ isActivMenu ? 'activ' : '' }}">{{ menu.label }}</a></li>
+    {% endfor %}
+
+</ul>
