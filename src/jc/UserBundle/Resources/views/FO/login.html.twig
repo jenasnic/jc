@@ -1,0 +1,28 @@
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>Identification</h1>
+
+<form action="{{ path('login_check') }}" method="post">
+
+    <label for="username">Login :</label>
+    <input type="text" id="username" name="_username" value="{{last_username }}" /><br/>
+
+    <div class="sep-5"></div>
+
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="_password" /><br/>
+
+    <div class="sep-5"></div>
+
+    <input type="submit" class="button" value="Connexion" />
+
+    <div class="sep-5"></div>
+
+    <a href="{{ path('jc_user_password') }}">Mot de passe oublié</a>
+
+</form>
+
+{% endblock %}

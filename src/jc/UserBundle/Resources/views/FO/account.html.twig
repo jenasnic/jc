@@ -1,0 +1,57 @@
+{#
+    Allows to customize personnal informations (for logged user).
+    Required :
+    - accountInfo : Form element based on AccountInfoType object (i.e. logged user to edit).
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>Mon compte</h1>
+
+Bonjour <strong>{{ app.user.firstname }} {{ app.user.lastname }}</strong>,
+<p>Vous pouvez mettre à jour vos informations personnelles.</p>
+
+<form action="{{ path('jc_user_account') }}" method="post" {{ form_enctype(accountInfo) }}>
+
+    {{ form_label(accountInfo.lastname, "Nom") }}
+    {{ form_widget(accountInfo.lastname, { 'max_length' : '255' }) }}
+    {{ form_errors(accountInfo.lastname) }}
+
+    <div class="sep-5"></div>
+
+    {{ form_label(accountInfo.firstname, "Prénom") }}
+    {{ form_widget(accountInfo.firstname, { 'max_length' : '255' }) }}
+    {{ form_errors(accountInfo.firstname) }}
+
+    <div class="sep-5"></div>
+
+    {{ form_label(accountInfo.mail, "Mail") }}
+    {{ form_widget(accountInfo.mail, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+    {{ form_errors(accountInfo.mail) }}
+
+    <div class="sep-20"></div>
+
+    <p>Si vous ne souhaitez pas modifier votre mot de passe, laissez les champs ci-dessous vides.</p>
+    <span class="f-i11"><strong>NOTE :</strong> Le mot de passe doit contenir au moins 6 caractères et 2 types de caractères différents (minuscule, majuscule, chiffre)</span>
+
+    {{ form_label(accountInfo.password, "Mot de passe", {'label_attr': {'class': 'password'}}) }}
+    {{ form_widget(accountInfo.password, { 'max_length' : '255' }) }}
+    {{ form_errors(accountInfo.password) }}
+
+    <div class="sep-5"></div>
+
+    {{ form_label(accountInfo.confirmPassword, "Confirmation", {'label_attr': {'class': 'password'}}) }}
+    {{ form_widget(accountInfo.confirmPassword, { 'max_length' : '255' }) }}
+    {{ form_errors(accountInfo.confirmPassword) }}
+
+    <div class="sep-20"></div>
+
+    {{ form_rest(accountInfo) }}
+
+    <input type="submit" value="Enregistrer" />
+
+</form>
+
+{% endblock %}

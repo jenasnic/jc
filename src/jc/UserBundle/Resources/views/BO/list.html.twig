@@ -1,0 +1,59 @@
+{#
+    Allows to list all users. It allows to add/edit/delete user.
+    Required :
+    - userList : list of all user available (as User).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des utilisateurs</h1>
+
+    <a class="button" href="{{ path('jc_user_edit') }}">Ajouter un utilisateur</a>
+
+    <div class="sep-15"></div>
+
+    {# Display all users found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-id">ID</th>
+                <th class="bo-table-label">Login</th>
+                <th class="bo-table-label">Nom complet</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for user in userList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-id">{{ user.id }}</td>
+                <td class="bo-table-label">{{ user.username }}</td>
+                <td class="bo-table-label">{{ user.firstname }} {{ user.lastname }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_user_edit', { 'id': user.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_user_delete', { 'id': user.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+    <div class="right"><strong>Total :</strong> {{ userList|length }} utilisateur(s)</div>
+    <div class="clear"></div>
+
+    <div class="sep-20"></div>
+
+{% endblock %}

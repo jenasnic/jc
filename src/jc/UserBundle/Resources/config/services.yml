@@ -1,0 +1,11 @@
+parameters:
+#    jc_user.example.class: jc\UserBundle\Example
+
+services:
+    jc_user.account_mail:
+        class: 'jc\UserBundle\Service\AccountMailService'
+        arguments: [ '%prefix_mail%', '%from_mail%', '%from_name%' ]
+        calls:
+            - [setEntityManager, ['@doctrine.orm.entity_manager']]
+            - [setMailer, ['@mailer']]
+            - [setTemplating, ['@templating']]

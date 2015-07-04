@@ -1,0 +1,67 @@
+{#
+    Allows to edit user.
+    Required :
+    - userToEdit : Form element based on UserType object (i.e. user to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    {% form_theme userToEdit ':forms:custom_errors.html.twig' %}
+
+    {% if (userToEdit.vars.value.id) %}
+    <h1>Modification de l'utilisateur</h1>
+    {% else %}
+    <h1>Ajout d'un utilisateur</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_user_edit', { 'id': userToEdit.vars.value.id }) }}" method="post" {{ form_enctype(userToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(userToEdit.lastname, "Nom") }}
+            {{ form_widget(userToEdit.lastname, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(userToEdit.lastname) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(userToEdit.firstname, "Prénom") }}
+            {{ form_widget(userToEdit.firstname, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(userToEdit.firstname) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(userToEdit.mail, "Mail") }}
+            {{ form_widget(userToEdit.mail, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(userToEdit.mail) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(userToEdit.username, "Login") }}
+            {{ form_widget(userToEdit.username, { 'attr': {'class': 'field-L'}, 'max_length' : '55' }) }}
+            {{ form_errors(userToEdit.username) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(userToEdit.internalRoles, "Profil") }}
+            {{ form_widget(userToEdit.internalRoles, { 'attr': {'class': 'field-L'} }) }}
+            {{ form_errors(userToEdit.internalRoles) }}
+
+            <div class="field-set-separator"></div>
+
+            <input id="send-account" name="send-account" type="checkbox"><label for="send-account">Envoyer le compte à l'utilisateur</label>
+            <span class="comment"><strong>ATTENTION :</strong> Si vous cochez cette option, un nouveau mot de passe sera généré pour cet utilisateur 
+            et un mail lui sera envoyé avec ses informations de connexion.</span>
+
+            {{ form_rest(userToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="button" value="Enregistrer" />
+
+    </form>
+
+{% endblock %}

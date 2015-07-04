@@ -1,0 +1,51 @@
+jc\UserBundle\Entity\User:
+    properties:
+        firstname:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        lastname:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        mail:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+            - Email:
+                message: "L'adresse mail saisie n'est pas valide"
+        username:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 55
+                maxMessage: "Ce champ est limité à 55 caractères"
+
+jc\UserBundle\Model\AccountInfo:
+    properties:
+        firstname:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        lastname:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        mail:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+            - Email:
+                message: "L'adresse mail saisie n'est pas valide"
