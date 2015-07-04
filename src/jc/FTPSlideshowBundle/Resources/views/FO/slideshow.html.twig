@@ -1,0 +1,17 @@
+
+<h2>{{ slideshow.title }}</h2>
+
+{% if (slideshow.description|length > 0) %}
+    <p>{{ slideshow.description }}</p>
+{% endif %}
+
+<ul>
+{% for picture in pictureList %}
+    <li data-name="{{ picture.name }}">
+        <img src="{{ asset('userfiles/' ~ slideshow.name ~ '/' ~ picture.name) }}" alt="{{ picture.name }}" />
+        {% if (picture.description|length > 0) %}
+            <p>{{ picture.description }}</p>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>

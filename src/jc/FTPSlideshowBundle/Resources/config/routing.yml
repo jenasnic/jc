@@ -1,0 +1,20 @@
+
+jc_ftp_slideshow_fo_index:
+    path: /ftpSlideshow
+    defaults: { _controller: "jcFTPSlideshowBundle:FTPSlideshowFO:index" }
+
+jc_ftp_slideshow_fo_slideshow:
+    path: /ajax/ftpSlideshow/{folder}
+    defaults: { _controller: "jcFTPSlideshowBundle:FTPSlideshowFO:display" }
+
+jc_ftp_slideshow_bo_index:
+    path: /admin/ftpSlideshow/list
+    defaults: { _controller: "jcFTPSlideshowBundle:FTPSlideshowBO:index" }
+
+jc_ftp_slideshow_bo_slideshow:
+    path:  /admin/ftpSlideshow/folder/{name}
+    defaults: { _controller: "jcFTPSlideshowBundle:FTPSlideshowBO:processFolder" }
+
+jc_ftp_slideshow_bo_picture:
+    path:  /admin/ftpSlideshow/picture/{folderName}/{name}
+    defaults: { _controller: "jcFTPSlideshowBundle:FTPSlideshowBO:processPicture" }

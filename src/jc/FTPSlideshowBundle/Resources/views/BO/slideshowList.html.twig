@@ -1,0 +1,34 @@
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des diaporamas</h1>
+
+    {# Display all slideshow found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-label">Nom</th>
+                <th class="bo-table-action">Modifier</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for folder in folderList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label">{{ folder.filename }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_ftp_slideshow_bo_slideshow', { 'name': folder.filename }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+{% endblock %}

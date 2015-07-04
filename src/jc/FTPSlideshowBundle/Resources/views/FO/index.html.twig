@@ -1,0 +1,21 @@
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+    <script type="text/javascript" src="{{ asset('resources/scripts/ftpSlideshow.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    {% if slideshowList is defined %}
+        <ul id="ftp-slideshow-list">
+        {% for slideshow in slideshowList %}
+            <li data-folder="{{ slideshow.name }}">{{ slideshow.title }}</li>
+        {% endfor %}
+        </ul>
+        <div id="ftp-slideshow-content"></div>
+        {% else %}
+        <p>Aucun diaporama à afficher</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des photos</h1>
+
+    <form action="{{ path('jc_ftp_slideshow_bo_slideshow', { 'name': slideshowToEdit.vars.value.name }) }}" method="post" {{ form_enctype(slideshowToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(slideshowToEdit.title, "Nom du diaporama") }}
+            {{ form_widget(slideshowToEdit.title, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(slideshowToEdit.title) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(slideshowToEdit.description, "Description") }}
+            {{ form_widget(slideshowToEdit.description) }}
+            {{ form_errors(slideshowToEdit.description) }}
+
+            {{ form_rest(slideshowToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="button" value="Enregistrer" />
+
+    </form>
+
+    <div class="sep-20"></div>
+
+    {# Display all slideshow found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-label">Nom</th>
+                <th class="bo-table-action">Modifier</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for file in fileList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label">{{ file.filename }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_ftp_slideshow_bo_picture', { 'folderName': slideshowToEdit.vars.value.name, 'name': file.filename }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+{% endblock %}

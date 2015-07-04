@@ -1,0 +1,31 @@
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Mise à jour infos photos</h1>
+
+    <form action="{{ path('jc_ftp_slideshow_bo_picture', { 'folderName': pictureToEdit.vars.value.folderName, 'name': pictureToEdit.vars.value.name }) }}" method="post" {{ form_enctype(pictureToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(pictureToEdit.title, "Nom de l'image") }}
+            {{ form_widget(pictureToEdit.title, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+            {{ form_errors(pictureToEdit.title) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(pictureToEdit.description, "Description") }}
+            {{ form_widget(pictureToEdit.description) }}
+            {{ form_errors(pictureToEdit.description) }}
+
+            {{ form_rest(pictureToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="button" value="Enregistrer" />
+
+    </form>
+
+{% endblock %}
