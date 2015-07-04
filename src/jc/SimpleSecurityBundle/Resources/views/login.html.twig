@@ -1,0 +1,29 @@
+{#
+    Display login form => authentication for BO access
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1 class="title-picture"><img src="{{ asset('resources/images/icon/titleAccount.png') }}" />Identification</h1>
+
+<div class="sep-20"></div>
+
+<form action="{{ path('login_check') }}" method="post">
+
+    <div id="login-form">
+        <label for="username">Login :</label>
+        <input type="text" id="username" name="_username" /><br/>
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="_password" /><br/>
+    </div>
+
+    <div class="sep-20"></div>
+    <div class="center">
+        <input type="submit" class="button" value="Se connecter" />
+    </div>
+
+</form>
+
+{% endblock %}
