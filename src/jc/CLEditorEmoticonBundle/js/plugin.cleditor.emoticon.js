@@ -4,7 +4,7 @@
     // Define the hello button
     $.cleditor.buttons.emoticon = {
         name: "emoticon",
-        css: {"background": "url('/resources/css/images/icons/smiley.png') no-repeat 5px 4px"},
+        css: {"background": "url('/resources/css/images/smiley.png') no-repeat 5px 4px"},
         title: "Smiley",
         command: "inserthtml",
         popupName: "Smiley",
