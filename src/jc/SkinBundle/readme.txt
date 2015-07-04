@@ -1,6 +1,6 @@
 Allows to define skin for website.
 
-This bundle require database 'skin' (see SQL in 'Resources/public/database' directory).
+This bundle requires database 'skin' (see SQL in 'Resources/public/database' directory).
 
 All skins are defined with one CSS file in back-office.
 
