@@ -1,0 +1,4 @@
+
+jc_test_index:
+    path: /test
+    defaults: { _controller: "jcTestBundle:Test:test" }

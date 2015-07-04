@@ -1,0 +1,4 @@
+
+jc_test:
+    resource: "@jcTestBundle/Resources/config/routing.yml"
+    prefix:   /
