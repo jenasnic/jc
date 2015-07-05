@@ -1,0 +1,43 @@
+{#
+    Debug JSP to display resolved sudoku with authorized value...
+    Required parameters :
+    - debug : sudoku (as SudokuGrid) with authorized values => used to debug.
+#}
+
+<table class="sudoku debug">
+{% for x in 0..8 %}
+
+    {% set xCssClass = '' %}
+
+    {% if (x % 3 == 0) %}
+        {% set xCssClass = 'b-top' %}
+    {% elseif (x % 3 == 2) %}
+        {% set xCssClass = 'b-bottom' %}
+    {% endif %}
+
+    <tr>
+    {% for y in 0..8 %}
+
+        {% set yCssClass = xCssClass %}
+
+        {% if (y % 3 == 0) %}
+            {% set yCssClass = yCssClass ~ ' b-left' %}
+        {% elseif (y % 3 == 2) %}
+            {% set yCssClass = yCssClass ~ ' b-right' %}
+        {% endif %}
+
+        <td class="{{ yCssClass }} {{ debug.sudokuGrid[x][y].value > 0 ? 'resolved-value' : 'authorized-value' }}">
+            {% if (debug.sudokuGrid[x][y].value > 0) %}
+                {{ debug.sudokuGrid[x][y].value }}</c:if>
+            {% else %}
+                {% for authorizedValue in debug.sudokuGrid[x][y].authorizedValue %}
+                    {{ authorizedValue }}
+                {% endfor %}
+            {% endif %}
+        </td>
+
+    {% endfor %}
+    </tr>
+
+{% endfor %}
+</table>

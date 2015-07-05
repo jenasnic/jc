@@ -1,0 +1,75 @@
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/sudoku.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.alphanum.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/sudoku.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="left padding-20">
+
+    <form action="{{ path('jc_sudoku_index') }}" method="post" {{ form_enctype(sudoku) }}>
+
+        {{ form_widget(sudoku.blockSize) }}
+
+        <table class="sudoku">
+        {% for x in 0..8 %}
+
+            {% set xCssClass = '' %}
+
+            {% if (x % 3 == 0) %}
+                {% set xCssClass = 'b-top' %}
+            {% elseif (x % 3 == 2) %}
+                {% set xCssClass = 'b-bottom' %}
+            {% endif %}
+
+            <tr>
+            {% for y in 0..8 %}
+
+                {% set yCssClass = xCssClass %}
+
+                {% if (y % 3 == 0) %}
+                    {% set yCssClass = yCssClass ~ ' b-left' %}
+                {% elseif (y % 3 == 2) %}
+                    {% set yCssClass = yCssClass ~ ' b-right' %}
+                {% endif %}
+
+                {% set inputCssClass = 'type-' ~ (sudoku.vars.value.lineList[x].cellList[y].status) %}
+                <td class="{{ yCssClass }} {{ inputCssClass }}">
+                    {{ form_widget(sudoku.lineList[x].cellList[y].status) }}
+                    {{ form_widget(sudoku.lineList[x].cellList[y].value) }}
+                </td>
+
+            {% endfor %}
+            </tr>
+
+        {% endfor %}
+        </table>
+
+        <div class="sep-20"></div>
+
+        <input id="help" name="help" type="submit" value="Aide" />
+        <input id="debug" name="debug" type="submit" value="Debug" />
+
+    </form>
+
+</div>
+
+{% if (debugGridList|length > 0) %}
+    <div id="sudoku-helper">
+    {% for debugGrid in debugGridList %}
+        <div class="padding-vert-20">
+            <h2>Debug {{ loop.index }}</h2>
+            {% include 'jcSudokuBundle::debug.html.twig' with {'debug': debugGrid} %}
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}

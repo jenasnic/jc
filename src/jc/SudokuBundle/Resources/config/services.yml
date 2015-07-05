@@ -1,0 +1,5 @@
+services:
+    jc_sudoku.generator:
+        class: 'jc\SudokuBundle\Service\SudokuGeneratorService'
+    jc_sudoku.resolver:
+        class: 'jc\SudokuBundle\Service\SudokuResolverService'
