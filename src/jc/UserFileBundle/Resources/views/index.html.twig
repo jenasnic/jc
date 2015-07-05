@@ -8,8 +8,12 @@
 {% extends "::admin.html.twig" %}
 
 {% block header %}
-    <script type="text/javascript" src="{{ asset('resources/scripts/admin/userFileExplorer.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('resources/scripts/admin/userFile.js') }}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/userfile.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/userFileExplorer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/userFile.js') }}"></script>
+
 {% endblock %}
 
 {% block body %}
