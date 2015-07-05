@@ -10,4 +10,4 @@ Components used from Jquery.UI (V1.10.4) :
 - Tooltip
 - Effects (all)
 
-Theme used : Cupertino
+Theme used : South Street
