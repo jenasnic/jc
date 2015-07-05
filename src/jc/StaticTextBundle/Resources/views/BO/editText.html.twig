@@ -1,0 +1,60 @@
+{#
+    Allows to edit static text for website.
+    Required :
+    - textToEdit : Form element based on StaticTextType object (i.e. text to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block header %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/jquery.cleditor.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.cleditor.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#jc_statictextbundle_statictext_content").cleditor(global.cleditorConfig);
+        });
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% if (textToEdit.vars.value.id) %}
+    <h1>Modification du texte</h1>
+    {% else %}
+    <h1>Ajout d'un texte</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_static_text_bo_edit', { 'id': textToEdit.vars.value.id }) }}" method="post" {{ form_enctype(textToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(textToEdit.title, "Titre") }}
+            {{ form_widget(textToEdit.title, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(textToEdit.title) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(textToEdit.content, "Contenu") }}
+            {{ form_widget(textToEdit.content) }}
+            {{ form_errors(textToEdit.content) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(textToEdit.code, "Code") }}
+            {{ form_widget(textToEdit.code, { 'attr': {'class': 'field-L'} }) }}
+            {{ form_errors(textToEdit.code) }}
+
+            {{ form_rest(textToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="button" value="Enregistrer" />
+
+    </form>
+
+{% endblock %}

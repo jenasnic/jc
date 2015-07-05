@@ -1,0 +1,50 @@
+{#
+    Allows to list all news static text available for website. It allows to add/edit/delete text.
+    Required :
+    - textList : list of all text available (as StaticText).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des textes statiques</h1>
+
+    <a class="button" href="{{ path('jc_static_text_bo_edit') }}">Ajouter un texte</a>
+
+    <div class="sep-20"></div>
+
+    {# Display all text found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-id">ID</th>
+                <th class="bo-table-label">Titre</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for text in textList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-id">{{ text.id }}</td>
+                <td class="bo-table-label">{{ text.title }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_static_text_bo_edit', { 'id': text.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_static_text_bo_delete', { 'id': text.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}

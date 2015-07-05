@@ -1,0 +1,14 @@
+jc\StaticTextBundle\Entity\StaticText:
+    properties:
+        title:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        content:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"
+        code:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"
