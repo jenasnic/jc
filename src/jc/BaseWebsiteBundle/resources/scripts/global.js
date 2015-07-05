@@ -8,7 +8,7 @@ var global = {
 
     cleditorConfig : {
         controls: "bold italic underline strikethrough | font size color | removeformat | bullets numbering | "
-                + "outdent indent | alignleft center alignright justify | link unlink userfile | source",
+                + "outdent indent | alignleft center alignright justify | link unlink | source",
         height: '250',
         colors: 'FFF 999 606C6C 383E3E 000 2696D5 002554 F7FF11 FB9407 F00 24FF19 FF09C2',
     },
