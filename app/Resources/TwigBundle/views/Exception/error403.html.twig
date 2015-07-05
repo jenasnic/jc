@@ -1,0 +1,14 @@
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>Accès refusé</h1>
+
+<div class="sep-50"></div>
+
+<span class="c-orange f-b14">Vous ne disposez pas de droits suffisants pour accéder à cette page.</span>
+<div class="sep-20"></div>
+<a class="c-white" href="{{ path('login') }}">Changer de compte</a>
+
+{% endblock %}

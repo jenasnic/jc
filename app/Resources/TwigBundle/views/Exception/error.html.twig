@@ -1,0 +1,14 @@
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>Erreur</h1>
+
+<div class="sep-50"></div>
+
+<span class="c-orange f-b14">Une erreur est survenue. Veuillez contacter l'administrateur du site pour plus d'informations.</span>
+<div class="sep-20"></div>
+<a class="c-white" href="{{ path('jc_home_index') }}">Retour à l'accueil</a>
+
+{% endblock %}

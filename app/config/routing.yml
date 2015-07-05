@@ -1,4 +1,53 @@
 
+jc_ftp_slideshow:
+    resource: "@jcFTPSlideshowBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_home:
+    resource: "@jcHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_menu:
+    resource: "@jcMenuBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_news:
+    resource: "@jcNewsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_skin:
+    resource: "@jcSkinBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_skyrim:
+    resource: "@jcSkyrimBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_slideshow:
+    resource: "@jcSlideshowBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_static_text:
+    resource: "@jcStaticTextBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_sudoku:
+    resource: "@jcSudokuBundle/Resources/config/routing.yml"
+    prefix:   /
+
 jc_test:
     resource: "@jcTestBundle/Resources/config/routing.yml"
     prefix:   /
+
+jc_tool:
+    resource: "@jcToolBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_user:
+    resource: "@jcUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jc_user_file:
+    resource: "@jcUserFileBundle/Resources/config/routing.yml"
+    prefix:   /
+    

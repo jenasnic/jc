@@ -1,0 +1,22 @@
+
+{% set menuList = [
+    {label : 'Actualités', path : 'jc_news_bo_list', start : 'jc_news_bo_'},
+    {label : 'Diaporamas FTP', path : 'jc_ftp_slideshow_bo_index', start : 'jc_ftp_slideshow_bo_'},
+    {label : 'Diaporamas', path : 'jc_slideshow_bo_list', start : 'jc_slideshow_bo_'},
+    {label : 'Médiathèque', path : 'jc_user_file_bo_index', start : 'jc_user_file_bo_'},
+    {label : 'Menus', path : 'jc_menu_bo_list', start : 'jc_menu_bo_'},
+    {label : 'Skins', path : 'jc_skin_bo_list', start : 'jc_skin_bo_'},
+    {label : 'Textes statiques', path : 'jc_static_text_bo_list', start : 'jc_static_text_bo_'},
+    {label : 'Utilisateurs', path : 'jc_user_bo_list', start : 'jc_user_bo_'},
+] %}
+
+{% set activMenuPicture = 'menu_1' %}
+
+<ul id="menu">
+
+    {% for menu in menuList %}
+        {% set isActivMenu = (app.request.attributes.get('_route') == menu.path) %}
+        <li><a href="{{ path(menu.path) }}" class="menu-item {{ isActivMenu ? 'activ' : '' }}">{{ menu.label }}</a></li>
+    {% endfor %}
+
+</ul>

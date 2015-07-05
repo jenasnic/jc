@@ -1,0 +1,54 @@
+
+/******************/
+/* CSS for sudoku */
+/******************/
+
+table.sudoku {
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+table.sudoku input {
+    border: none;
+    width: 10px;
+}
+
+table.sudoku td {
+    border: 1px solid #ccc;
+    height: 40px;
+    text-align: center;
+    width: 30px;
+}
+
+table.sudoku td.b-top {border-top: 2px solid #000;}
+table.sudoku td.b-right {border-right: 2px solid #000;}
+table.sudoku td.b-bottom {border-bottom: 2px solid #000;}
+table.sudoku td.b-left {border-left: 2px solid #000;}
+
+table.sudoku td.type-0 input {color: #000;}
+table.sudoku td.type-1 input {font-weight: bold; color: #888; font-size: 15px;}
+table.sudoku td.type-2 input {color: #000;}
+table.sudoku td.type-3 input {color: #991A22;}
+
+table.debug td {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 32px;
+    padding: 3px;
+    text-align: center;
+    vertical-align: middle;
+    width: 32px;
+}
+
+table.debug td.resolved-value {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#sudoku-helper {
+    background-color: #ddd;
+    border-radius: 20px;
+    float: right;
+    max-height: 430px;
+    overflow-y: scroll;
+    padding: 20px;
+}

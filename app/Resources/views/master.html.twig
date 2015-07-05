@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8" />
+    <title>{% block title %}Front office{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('resources/images/favicon.ico') }}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/common.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/style.css') }}" />
+    {{ render(controller("jcSkinBundle:SkinFO:display")) }}
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery-1.11.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/global.js') }}"></script>
+
+    {% block header %}{% endblock %}
+
+</head>
+
+<body>
+
+    {% include 'layout/header.html.twig' %}
+
+    {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+    {{ render(controller("jcMenuBundle:MenuFO:display", {rootCurrentPath: currentPath, rootUri : app.request.uri})) }}
+
+    <div class="clear"></div>
+    <div class="sep-20"></div>
+
+    <div id="page">
+        {% block body %}{% endblock %}
+    </div>
+
+    <div class="clear"></div>
+    <div class="sep-20"></div>
+
+    {% include 'layout/footer.html.twig' %}
+
+</body>
+
+</html>

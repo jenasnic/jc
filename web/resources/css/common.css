@@ -1,0 +1,96 @@
+
+/****************************/
+/* Define separator classes */
+/****************************/
+
+.sep-5 { display: block; height: 5px; clear: both; }
+.sep-10 { display: block; height: 10px; clear: both; }
+.sep-15 { display: block; height: 15px; clear: both; }
+.sep-20 { display: block; height: 20px; clear: both; }
+.sep-40 { display: block; height: 40px; clear: both; }
+.sep-50 { display: block; height: 50px; clear: both; }
+
+
+
+/***********************/
+/* Define font classes */
+/***********************/
+
+.f-n10 { font-weight: normal; font-size: 10px; }
+.f-n11 { font-weight: normal; font-size: 11px; }
+.f-n12 { font-weight: normal; font-size: 12px; }
+.f-n13 { font-weight: normal; font-size: 13px; }
+.f-n14 { font-weight: normal; font-size: 14px; }
+.f-n15 { font-weight: normal; font-size: 15px; }
+.f-n16 { font-weight: normal; font-size: 16px; }
+.f-n18 { font-weight: normal; font-size: 18px; }
+.f-n20 { font-weight: normal; font-size: 20px; }
+.f-n24 { font-weight: normal; font-size: 24px; }
+.f-n30 { font-weight: normal; font-size: 30px; }
+
+.f-b10 { font-weight: bold; font-size: 10px; }
+.f-b11 { font-weight: bold; font-size: 11px; }
+.f-b12 { font-weight: bold; font-size: 12px; }
+.f-b13 { font-weight: bold; font-size: 13px; }
+.f-b14 { font-weight: bold; font-size: 14px; }
+.f-b15 { font-weight: bold; font-size: 15px; }
+.f-b16 { font-weight: bold; font-size: 16px; }
+.f-b18 { font-weight: bold; font-size: 18px; }
+.f-b20 { font-weight: bold; font-size: 20px; }
+.f-b24 { font-weight: bold; font-size: 24px; }
+.f-b30 { font-weight: bold; font-size: 30px; }
+
+.f-i10 { font-weight: italic; font-size: 10px; }
+.f-i11 { font-weight: italic; font-size: 11px; }
+.f-i12 { font-weight: italic; font-size: 12px; }
+.f-i13 { font-weight: italic; font-size: 13px; }
+.f-i14 { font-weight: italic; font-size: 14px; }
+.f-i15 { font-weight: italic; font-size: 15px; }
+.f-i16 { font-weight: italic; font-size: 16px; }
+.f-i18 { font-weight: italic; font-size: 18px; }
+.f-i20 { font-weight: italic; font-size: 20px; }
+.f-i24 { font-weight: italic; font-size: 24px; }
+.f-i30 { font-weight: italic; font-size: 30px; }
+
+.f-left {text-align: left;}
+.f-center {text-align: center;}
+.f-right {text-align: right;}
+
+
+
+/****************************/
+/* Define structure classes */
+/****************************/
+
+.center { text-align: center; margin: 0 auto; }
+.relative { position: relative; }
+
+.left { float: left; }
+.right { float: right }
+.clear { clear: both; display: block; }
+.hide { display: none; }
+
+.margin-10 {margin: 10px;}
+.margin-15 {margin: 15px;}
+.margin-20 {margin: 20px;}
+.margin-vert-10 {margin: 10px 0;}
+.margin-vert-15 {margin: 15px 0;}
+.margin-vert-20 {margin: 20px 0;}
+.margin-hor-10 {margin: 0 10px;}
+.margin-hor-15 {margin: 0 15px;}
+.margin-hor-20 {margin: 0 20px;}
+
+.padding-10 {padding: 10px;}
+.padding-15 {padding: 15px;}
+.padding-20 {padding: 20px;}
+.padding-vert-10 {padding: 10px 0;}
+.padding-vert-15 {padding: 15px 0;}
+.padding-vert-20 {padding: 20px 0;}
+.padding-hor-10 {padding: 0 10px;}
+.padding-hor-15 {padding: 0 15px;}
+.padding-hor-20 {padding: 0 20px;}
+
+.b-rad5 { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.b-rad10 { -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+.b-rad15 { -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; }
+.b-rad20 { -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; }
