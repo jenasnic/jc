@@ -1,0 +1,27 @@
+{#
+    Display all news for front-office
+    Required :
+    - newsList : array of news (as News)
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>Actualités</h1>
+
+{% for news in newsList %}
+<a href="{{ path('jc_news_fo_index', { 'id': news.id }) }}">
+    <div>
+        <h2>{{ news.title }}</h2>
+        <span>{{ news.date|date('d/m/Y') }}</span>
+        {% if (news.pictureUrl is not empty) %}
+            <img src="{{ news.pictureUrl }}" alt="-" />
+        {% endif %}
+        {{ news.content|raw }}
+    </div>
+</a>
+<div class="sep-10"></div>
+{% endfor %}
+
+{% endblock %}

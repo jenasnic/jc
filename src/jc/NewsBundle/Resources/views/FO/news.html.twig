@@ -1,0 +1,29 @@
+{#
+    Display specific news for front-office
+    Required :
+    - news : news to display (as News)
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>{{ news.title }}</h1>
+
+<span>{{ news.date|date('d/m/Y') }}</span>
+
+{% if (news.pictureUrl is not empty) %}
+    {% if (news.link) %}
+        <a href="{{ news.link }}" target="_blank" ><img src="{{ news.pictureUrl }}" alt="-" /></a>
+    {% else %}
+        <img src="{{ news.pictureUrl }}" alt="-" />
+    {% endif %}
+{% endif %}
+
+<p>{{ news.content|raw }}</p>
+
+{% if (news.videoIntegration is not empty) %}
+    <div>{{ news.videoIntegration|raw }}</div>
+{% endif %}
+
+{% endblock %}
