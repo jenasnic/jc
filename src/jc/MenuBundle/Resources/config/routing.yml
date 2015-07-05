@@ -1,0 +1,17 @@
+jc_menu_fo:
+    path:  /layout/menu
+    defaults: { _controller: "jcMenuBundle:MenuFO:display" }
+
+jc_menu_bo_list:
+    path:  /admin/menu/list
+    defaults: { _controller: "jcMenuBundle:MenuBO:listMenu" }
+
+jc_menu_bo_edit:
+    path:  /admin/menu/edit/{id}
+    defaults: { _controller: "jcMenuBundle:MenuBO:editMenu", id: 0 }
+
+jc_menu_bo_delete:
+    path:  /admin/menu/delete/{id}
+    defaults: { _controller: "jcMenuBundle:MenuBO:deleteMenu" }
+    requirements:
+        id: \d+
