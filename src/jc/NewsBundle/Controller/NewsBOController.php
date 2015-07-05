@@ -140,7 +140,7 @@ class NewsBOController extends Controller {
         // If picture is defined => process upload
         if (null !== $news->getPictureFile()) {
 
-            $relativeFolderPath = $rootPath = $this->container->getParameter('jc_news.root_path');
+            $relativeFolderPath = $this->container->getParameter('jc_news.root_path');
             $absoluteFolderPath = $this->container->getParameter('kernel.root_dir') . '/../web' . $relativeFolderPath;
 
             // Remove old picture if exist
