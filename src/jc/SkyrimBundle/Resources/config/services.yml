@@ -1,0 +1,5 @@
+services:
+    jc_skyrim.twig.effect:
+        class: jc\SkyrimBundle\Twig\SkyrimExtension
+        tags:
+            - { name: twig.extension }

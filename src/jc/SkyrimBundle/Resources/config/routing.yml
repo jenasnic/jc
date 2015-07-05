@@ -1,0 +1,16 @@
+
+jc_skyrim_index:
+    path:     /skyrim/alchemy
+    defaults: { _controller: "jcSkyrimBundle:Alchemy:alchemy" }
+
+jc_skyrim_ingredient:
+    path:     /ajax/skyrim/alchemy/ingredient/{id}
+    defaults: { _controller: "jcSkyrimBundle:Alchemy:ingredient" }
+    requirements:
+        id: \d+
+
+jc_skyrim_effect:
+    path:     /ajax/skyrim/alchemy/effect/{id}
+    defaults: { _controller: "jcSkyrimBundle:Alchemy:effect" }
+    requirements:
+        id: \d+

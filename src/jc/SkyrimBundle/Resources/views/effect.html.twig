@@ -1,0 +1,31 @@
+{#
+    Allows to display all ingredients with specified effect.
+    Required :
+    - effect : effect we want to display matching ingredients (as Effect).
+    - ingredientList : list of ingredients with previous effect (as Ingredient).
+#}
+
+<span class="label">Ingrédients associés pour : <strong>{{ effect.name }}</strong></span>
+
+<table class="alchemy-result">
+    <thead>
+        <tr><th>Ingrédient</th><th>Effets</th></tr>
+    </thead>
+    <tbody>
+    {% for ingredient in ingredientList %}
+        <tr>
+            <td>{{ ingredient.name }}</td>
+            <td>
+                <ul>
+                {% for effect in ingredient.effectList %}
+                    <li>{{ effect.name }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr><td colspan="2">Total : {{ ingredientList|length }} ingrédients</td></tr>
+    </tfoot>
+</table>

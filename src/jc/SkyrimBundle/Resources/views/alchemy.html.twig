@@ -1,0 +1,47 @@
+{#
+    Allows to display home page for alchemy.
+    Required :
+    - ingredientList : list of all ingredients (as Ingredient).
+    - effectList : list of all effects (as Effect).
+#}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/skyrim.css') }}" />
+    <script type="text/javascript" src="{{ asset('resources/scripts/skyrim.js') }}"></script>
+{% endblock %}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+    <h1>Alchimie</h1>
+
+    <div class="left padding-20">
+        <span class="label">Choisissez un ingrédient</span>
+        <ul id="alchemy-ingredient" class="alchemy-list">
+        {% for ingredient in ingredientList %}
+            <li data-id="{{ ingredient.id }}">{{ ingredient.name }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="left padding-20 margin-vert-100"><span class="c-grey-3 f-n40 margin-vert-20">OU</span></div>
+
+    <div class="left padding-20">
+        <span class="label">Choisissez un effet</span>
+        <ul id="alchemy-effect" class="alchemy-list">
+        {% for effect in effectList %}
+            <li data-id="{{ effect.id }}">{{ effect.name }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="sep-20"></div>
+    <div class="sep-grey-1"></div>
+    <div class="sep-20"></div>
+
+    <div id="alchemy-result">
+    </div>
+ 
+
+{% endblock %}

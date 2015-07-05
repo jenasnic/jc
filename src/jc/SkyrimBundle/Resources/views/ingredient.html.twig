@@ -1,0 +1,41 @@
+{#
+    Allows to display ingredients effects and all ingredients with common effects.
+    Required :
+    - ingredient : ingredient we want to display properties (as Ingredient).
+    - ingredientList : list of ingredients reacting with previous ingredient (as Ingredient).
+#}
+
+<span class="label">Effets connus pour : <strong>{{ ingredient.name }}</strong></span>
+<ul class="padding-hor-20">
+{% for effect in ingredient.effectList %}
+    <li>{{ effect.name }}</li>
+{% endfor %}
+</ul>
+
+<div class="sep-20"></div>
+
+<span class="label">Ingrédients compatbiles pour : <strong>{{ ingredient.name }}</strong></span>
+<table class="alchemy-result">
+    <thead>
+        <tr><th>Ingrédient</th><th>Effets</th></tr>
+    </thead>
+    <tbody>
+    {% for otherIngredient in ingredientList %}
+        {% if (otherIngredient != ingredient) %}
+        <tr>
+            <td>{{ otherIngredient.name }}</td>
+            <td>
+                <ul>
+                {% for effect in otherIngredient.effectList %}
+                    <li {% if (containsEffect(ingredient, effect)) %}class="common-effect"{% endif %}>{{ effect.name }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr><td colspan="2">Total : {{ ingredientList|length }} ingrédients</td></tr>
+    </tfoot>
+</table>
