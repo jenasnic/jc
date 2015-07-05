@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new jc\SudokuBundle\jcSudokuBundle(),
             new jc\TestBundle\jcTestBundle(),
             new jc\ToolBundle\jcToolBundle(),
+            new jc\TrainingSessionBundle\jcTrainingSessionBundle(),
             new jc\UserBundle\jcUserBundle(),
             new jc\UserFileBundle\jcUserFileBundle(),
         );

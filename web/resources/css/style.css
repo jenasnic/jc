@@ -16,3 +16,36 @@ a {
     text-decoration: none;
 }
 
+
+
+/**********************/
+/* CSS for pagination */
+/**********************/
+
+.pagination span, .pagination a {
+    background-color: #3D3D3D;
+    color: #8A9899;
+    display: block;
+    float:left;
+    font-size: 14px;
+    padding: 2px 10px;
+    margin: 2px 4px;
+    width: 10px;
+}
+
+.pagination span {
+    background-color: #ed7f10;
+    border-bottom: 1px solid #7a5753;
+    border-left: 1px solid #c1a7a4;
+    color: #3D3D3D;
+}
+
+.pagination a {
+    border-bottom: 1px solid #333;
+    border-left: 1px solid #666;
+}
+
+.pagination a:hover {
+    background-color: #5b5b5b;
+    color: #fff;
+}

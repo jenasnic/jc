@@ -1,0 +1,17 @@
+{#
+    Display comment for training session (for front-office).
+    NOTE : This view is call using ajax and doesn't inherit template.
+    Required :
+    - comment : comment to display (as Comment)
+#}
+
+<div class="training-session-comment">
+    {% if (app.user and app.user.admin) %}
+        <span class="delete-comment-button" comment-id="{{ comment.id }}"><img src="{{ asset('resources/images/admin/icon/delete.png') }}" alt="Supprimer" /></span>
+    {% endif %}
+    <h3>
+        {{ comment.author.firstname }} {{ comment.author.lastname }}
+        le {{ comment.date|date('d/m/Y \\à H:i') }}
+    </h3>
+    <p>{{ comment.text|raw }}</p>
+</div>

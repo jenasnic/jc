@@ -1,0 +1,41 @@
+{#
+    Allows to display all existing training session. It allows to add/edit/delete training session.
+    Required :
+    - paginationInformation : pagination information (as PaginationInformation) containing all data we need to display list of training session using pagination.
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>Les stages proposés</h1>
+
+<span>{{ paginationInformation.totalCount }} stage(s)</span>
+
+<ul>
+{% for trainingSession in paginationInformation.itemList %}
+<li>
+    <a href="{{ path('jc_training_session_fo_index', { 'id': trainingSession.id }) }}">
+        <h2>{{ trainingSession.title }}</h2>
+        Stage prévu le {{ trainingSession.date|date('d/m/Y') }}
+        de {{ '%02d'|format(trainingSession.timeHourStart) }}H{{ '%02d'|format(trainingSession.timeMinuteStart) }}
+        à {{ '%02d'|format(trainingSession.timeHourEnd) }}H{{ '%02d'|format(trainingSession.timeMinuteEnd) }}
+    </a>
+</li>
+{% endfor %}
+</ul>
+
+{% if (paginationInformation.pageCount > 0) %}
+    <div>
+    {% for index in 1..paginationInformation.pageCount %}
+        {% if (index == paginationInformation.page) %}
+            <span>{{ index }}</span>
+        {% else %}
+            <a href="{{ path('jc_training_session_fo_index') }}?page={{ index }}">{{ index }}</a>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}
+    

@@ -1,0 +1,97 @@
+{#
+    Allows to edit location.
+    Required :
+    - locationToEdit : Form element based on LocationType object (i.e. location to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block header %}
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&langage=en"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.numeric.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/admin/trainingSessionLocation.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% form_theme locationToEdit ':forms:custom_errors.html.twig' %}
+
+    {% if (locationToEdit.vars.value.id) %}
+    <h1>Modification de la localisation</h1>
+    {% else %}
+    <h1>Ajout d'une localisation</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_training_session_bo_location_edit', { 'id': locationToEdit.vars.value.id }) }}" method="post" {{ form_enctype(locationToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(locationToEdit.name, "Lieu") }}
+            {{ form_widget(locationToEdit.name, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(locationToEdit.name) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(locationToEdit.address, "Adresse") }}
+            {{ form_widget(locationToEdit.address) }}
+            {{ form_errors(locationToEdit.address) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(locationToEdit.city, "Ville") }}
+            {{ form_widget(locationToEdit.city, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(locationToEdit.city) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(locationToEdit.zipCode, "Code postal") }}
+            {{ form_widget(locationToEdit.zipCode, { 'attr': {'class': 'field-S'} }) }}
+            {{ form_errors(locationToEdit.zipCode) }}
+
+            <div class="field-set-separator"></div>
+
+            <div class="left">
+
+                {{ form_widget(locationToEdit.showMap) }}
+                {{ form_label(locationToEdit.showMap, "Afficher la carte") }}
+                {{ form_errors(locationToEdit.showMap) }}
+
+                {{ form_label(locationToEdit.latitude, "Latitude") }}
+                {{ form_widget(locationToEdit.latitude, { 'attr': {'class': 'field-M'} }) }}
+                {{ form_errors(locationToEdit.latitude) }}
+
+                {{ form_label(locationToEdit.longitude, "Longitude") }}
+                {{ form_widget(locationToEdit.longitude, { 'attr': {'class': 'field-M'} }) }}
+                {{ form_errors(locationToEdit.longitude) }}
+
+                {{ form_label(locationToEdit.zoom, "Zoom") }}
+                {{ form_widget(locationToEdit.zoom) }}
+                {{ form_errors(locationToEdit.zoom) }}
+
+            </div>
+
+            <div id="location-map">
+                <div id="help-map">
+                    <div id="help-map-content"></div>
+                    <div class="vertical-bar"></div>
+                    <div class="horizontal-bar"></div>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+            {{ form_rest(locationToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="small-button" value="Enregistrer" />
+
+    </form>
+
+    <div class="sep-20"></div>
+
+{% endblock %}

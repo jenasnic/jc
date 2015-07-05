@@ -1,0 +1,108 @@
+jc\TrainingSessionBundle\Entity\Contact:
+    properties:
+        civility:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+        firstname:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        lastname:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        phone:
+            - Length:
+                max: 55
+                maxMessage: "Ce champ est limité à 55 caractères"
+            - Regex:
+                pattern: "/^\\d$/"
+                match:   true
+                message: "Le numéro de téléphone saisie n'est pas valide"
+        mobile:
+            - Length:
+                max: 55
+                maxMessage: "Ce champ est limité à 55 caractères"
+            - Regex:
+                pattern: "/^\\d$/"
+                match:   true
+                message: "Le numéro de téléphone saisie n'est pas valide"
+        mail:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+            - Email:
+                message: "L'adresse mail saisie n'est pas valide"
+
+jc\TrainingSessionBundle\Entity\Location:
+    properties:
+        name:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        city:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 55
+                maxMessage: "Ce champ est limité à 55 caractères"
+        latitude:
+            - Regex:
+                pattern: "/^[0-9]+(\\.)?[0-9]*$/"
+                match:   true
+                message: "La latitude saisie n'est pas valide"
+        longitude:
+            - Regex:
+                pattern: "/^[0-9]+(\\.)?[0-9]*$/"
+                match:   true
+                message: "La longitude saisie n'est pas valide"
+
+jc\TrainingSessionBundle\Entity\TrainingSession:
+    properties:
+        title:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        date:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Datetime:
+                message: "La date saisie n'est pas valide"
+        timeHourStart:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Regex:
+                pattern: "/^\\d$/"
+                match:   true
+                message: "L'heure de début saisie n'est pas valide"
+        timeMinuteStart:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Regex:
+                pattern: "/^\\d$/"
+                match:   true
+                message: "L'heure de début saisie n'est pas valide"
+        timeHourEnd:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Regex:
+                pattern: "/^\\d$/"
+                match:   true
+                message: "L'heure de fin saisie n'est pas valide"
+        timeMinuteEnd:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Regex:
+                pattern: "/^\\d$/"
+                match:   true
+                message: "L'heure de fin saisie n'est pas valide"

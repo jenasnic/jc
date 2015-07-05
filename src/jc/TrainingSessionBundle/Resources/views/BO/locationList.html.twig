@@ -1,0 +1,56 @@
+{#
+    Allows to list all existing location for training session. It allows to add/edit/delete location.
+    Required :
+    - locationList : list of all location available (as Location).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des localisations</h1>
+
+    <a class="large-button" href="{{ path('jc_training_session_bo_location_edit') }}">
+        <img width="16" height="16" border="0" title="Ajouter une localisation" alt="Ajouter" src="{{ asset('resources/images/admin/icon/add.png') }}" />
+        <span>Créer une localisation</span>
+    </a>
+
+    <div class="sep-15"></div>
+
+    {# Display all locations found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-id">ID</th>
+                <th class="bo-table-label">Lieu</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for location in locationList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-id">{{ location.id }}</td>
+                <td class="bo-table-label">{{ location.name }} ({{ location.zipCode }} - {{ location.city }})</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_training_session_bo_location_edit', { 'id': location.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icon/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_training_session_bo_location_delete', { 'id': location.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icon/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+{% endblock %}
+    

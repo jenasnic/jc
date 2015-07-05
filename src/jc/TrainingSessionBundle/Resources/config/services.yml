@@ -1,0 +1,5 @@
+parameters:
+    jc_training_session.root_path: /userfiles/news
+    jc_training_session.location.default_latitude: 49.243098447918456
+    jc_training_session.location.default_longitude: 2.510610956268353
+    jc_training_session.location.default_zoom: 15

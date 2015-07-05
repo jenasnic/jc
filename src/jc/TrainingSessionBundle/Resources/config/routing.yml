@@ -1,0 +1,41 @@
+
+jc_training_session_fo_index:
+    path:     /trainingSession/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:TrainingSessionFO:display", id: 0 }
+
+jc_training_session_fo_comment_edit:
+    path:     /user/ajax/trainingSession/comment/edit/{trainingSessionId}
+    defaults: { _controller: "jcTrainingSessionBundle:TrainingSessionFO:editComment" }
+jc_training_session_fo_comment_delete:
+    path:     /user/ajax/trainingSession/comment/delete/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:TrainingSessionFO:deleteComment" }
+
+jc_training_session_bo_contact_list:
+    path:     /admin/trainingSession/contact/list
+    defaults: { _controller: "jcTrainingSessionBundle:ContactBO:list" }
+jc_training_session_bo_contact_edit:
+    path:     /admin/trainingSession/contact/edit/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:ContactBO:edit", id: 0 }
+jc_training_session_bo_contact_delete:
+    path:     /admin/trainingSession/contact/delete/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:ContactBO:delete" }
+
+jc_training_session_bo_location_list:
+    path:     /admin/trainingSession/location/list
+    defaults: { _controller: "jcTrainingSessionBundle:LocationBO:list" }
+jc_training_session_bo_location_edit:
+    path:     /admin/trainingSession/location/edit/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:LocationBO:edit", id: 0 }
+jc_training_session_bo_location_delete:
+    path:     /admin/trainingSession/location/delete/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:LocationBO:delete" }
+
+jc_training_session_bo_session_list:
+    path:     /admin/trainingSession/session/list
+    defaults: { _controller: "jcTrainingSessionBundle:TrainingSessionBO:list" }
+jc_training_session_bo_session_edit:
+    path:     /admin/trainingSession/session/edit/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:TrainingSessionBO:edit", id: 0 }
+jc_training_session_bo_session_delete:
+    path:     /admin/trainingSession/session/delete/{id}
+    defaults: { _controller: "jcTrainingSessionBundle:TrainingSessionBO:delete" }

@@ -1,0 +1,108 @@
+{#
+    Allows to display a training session.
+    Required :
+    - trainingSession : training session (as TrainingSession) to display.
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/jquery.cleditor.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.cleditor.min.js') }}"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&langage=en"></script>
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/trainingSession.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+{% if (trainingSession.contact) %}
+    <div>
+        <span>Contact :</span>
+        {{ trainingSession.contact.civility }} {{ trainingSession.contact.firstname }} {{ trainingSession.contact.lastname }}<br/>
+        {% if (trainingSession.contact.phone is not empty) %}<span>Fixe : </span>{{ trainingSession.contact.phone }}<br/>{% endif %}
+        {% if (trainingSession.contact.mobile is not empty) %}<span>Mobile : </span>{{ trainingSession.contact.mobile }}<br/>{% endif %}
+        {% if (trainingSession.contact.mail is not empty) %}
+            <span>Mail : </span><a href="mailto:{{ trainingSession.contact.mail }}?Subject=Demande%20d%27informations" target="_top">{{ trainingSession.contact.mail }}</a><br/>
+        {% endif %}
+    </div>
+{% endif %}
+
+<h1>{{ trainingSession.title }}</h1>
+
+<span>
+    Stage prévu le {{ trainingSession.date|date('d/m/Y') }}
+    de {{ '%02d'|format(trainingSession.timeHourStart) }}H{{ '%02d'|format(trainingSession.timeMinuteStart) }}
+    à {{ '%02d'|format(trainingSession.timeHourEnd) }}H{{ '%02d'|format(trainingSession.timeMinuteEnd) }}
+</span>
+
+<p>{{ trainingSession.description }}</p>
+
+{% if (trainingSession.pictureUrl is not empty) %}
+    <img src="{{ asset(trainingSession.pictureUrl) }}" alt="" />
+{% endif %}
+
+<a href="{{ path('jc_training_session_fo_index') }}">Retour aux stages</a>
+
+<span class="training-session-tab" tab-id="tab-location">Lieu</span>
+<span class="training-session-tab" tab-id="tab-comments">Commentaires</span>
+<div class="sep-grey-2"></div>
+
+{# ############ #}
+{# Add location #}
+{# ############ #}
+
+<div>
+
+    <h2>Lieu</h2>
+
+    {% if (trainingSession.location.showMap) %}
+        <div id="training-session-map"></div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var centerPoint = new google.maps.LatLng({{ trainingSession.location.latitude }}, {{ trainingSession.location.longitude }});
+                var mapOptions = {zoom:{{ trainingSession.location.zoom }}, center: centerPoint, mapTypeId: google.maps.MapTypeId.ROADMAP};
+                var locationMap = new google.maps.Map($('#training-session-map')[0], mapOptions);
+                new google.maps.Marker({
+                    position: new google.maps.LatLng({{ trainingSession.location.latitude }}, {{ trainingSession.location.longitude }}),
+                    map: locationMap,
+                    title:"{{ trainingSession.location.name }}",
+                    icon: new google.maps.MarkerImage("{{ asset('resources/images/icon/pinBig.png') }}")});
+            });
+        </script>
+    {% endif %}
+
+    {{ trainingSession.location.name}}<br/>
+    {{ trainingSession.location.address }}<br/>
+    {{ trainingSession.location.zipCode }} {{ trainingSession.location.city }}<br/>
+
+</div>
+
+{# ######## #}
+{# comments #}
+{# ######## #}
+
+<div>
+
+    <h2>Commentaires</h2>
+
+    {# Only logged user can add comment #}
+    {% if (app.user) %}
+        <span id="add-comment-button">Ajouter un commentaire</span>
+        <div id="add-comment-form" class="hide">
+            <input type="hidden" value="{{ trainingSession.id }}" />
+            <textarea></textarea>
+            <input type="button" class="button" value="Ajouter" />
+        </div>
+    {% endif %}
+
+    {% for comment in trainingSession.commentList %}
+        {% include 'jcTrainingSessionBundle:FO:comment.html.twig' %}
+    {% endfor %}
+
+</div>
+
+{% endblock %}

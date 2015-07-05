@@ -47,6 +47,10 @@ jc_tool:
     resource: "@jcToolBundle/Resources/config/routing.yml"
     prefix:   /
 
+jc_training_session:
+    resource: "@jcTrainingSessionBundle/Resources/config/routing.yml"
+    prefix:   /
+
 jc_user:
     resource: "@jcUserBundle/Resources/config/routing.yml"
     prefix:   /

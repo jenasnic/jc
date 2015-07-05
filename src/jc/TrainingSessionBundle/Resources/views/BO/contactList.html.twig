@@ -1,0 +1,56 @@
+{#
+    Allows to list all existing contact for training session. It allows to add/edit/delete contact.
+    Required :
+    - contactList : list of all contact available (as Contact).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des contacts</h1>
+
+    <a class="large-button" href="{{ path('jc_training_session_bo_contact_edit') }}">
+        <img width="16" height="16" border="0" title="Ajouter un contact" alt="Ajouter" src="{{ asset('resources/images/admin/icon/add.png') }}" />
+        <span>Créer un contact</span>
+    </a>
+
+    <div class="sep-15"></div>
+
+    {# Display all contacts found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-id">ID</th>
+                <th class="bo-table-label">Nom</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for contact in contactList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-id">{{ contact.id }}</td>
+                <td class="bo-table-label">{{ contact.lastname }} {{ contact.firstname }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_training_session_bo_contact_edit', { 'id': contact.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icon/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_training_session_bo_contact_delete', { 'id': contact.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icon/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+{% endblock %}
+    

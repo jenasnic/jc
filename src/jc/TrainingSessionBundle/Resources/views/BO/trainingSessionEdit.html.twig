@@ -1,0 +1,98 @@
+{#
+    Allows to edit training session.
+    Required :
+    - trainingSessionToEdit : Form element based on NewsType object (i.e. news to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block header %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/jquery.cleditor.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.cleditor.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.alphanum.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#bodu_newsbundle_news_date').datepicker({ dateFormat: 'dd/mm/yy' });
+            $('#bodu_newsbundle_news_content').cleditor({height: 170});
+            $('.time.hour').numeric({maxDigits:2, allowMinus:false, allowDecSep:false, max:23});
+            $('.time.minute').numeric({maxDigits:2, allowMinus:false, allowDecSep:false, max:59});
+        });
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% form_theme trainingSessionToEdit ':forms:custom_errors.html.twig' %}
+
+    {% if (trainingSessionToEdit.vars.value.id) %}
+    <h1>Modification du stage</h1>
+    {% else %}
+    <h1>Ajout d'un stage</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_training_session_bo_session_edit', { 'id': trainingSessionToEdit.vars.value.id }) }}" method="post" {{ form_enctype(trainingSessionToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(trainingSessionToEdit.title, "Libellé") }}
+            {{ form_widget(trainingSessionToEdit.title, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(trainingSessionToEdit.title) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(trainingSessionToEdit.description, "Description") }}
+            {{ form_widget(trainingSessionToEdit.description) }}
+            {{ form_errors(trainingSessionToEdit.description) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(trainingSessionToEdit.date, "Date") }}
+            {{ form_widget(trainingSessionToEdit.date, { 'attr': {'class': 'datepicker'} }) }}
+            {{ form_errors(trainingSessionToEdit.date) }}
+
+            <div class="field-set-separator"></div>
+
+            <label>Horaire</label>
+            De {{ form_widget(trainingSessionToEdit.timeHourStart, { 'attr': {'class': 'field-XS'} }) }}h
+            {{ form_widget(trainingSessionToEdit.timeMinuteStart, { 'attr': {'class': 'field-XS'} }) }}mn<br/>
+            à {{ form_widget(trainingSessionToEdit.timeHourEnd, { 'attr': {'class': 'field-XS'} }) }}h
+            {{ form_widget(trainingSessionToEdit.timeMinuteEnd, { 'attr': {'class': 'field-XS'} }) }}mn
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(trainingSessionToEdit.pictureFile, "Image") }}
+            {% if (trainingSessionToEdit.vars.value.pictureUrl) %}
+                <span class="comment">L'image actuellement chargée est : {{ trainingSessionToEdit.vars.value.pictureUrl }}</span>
+            {% endif %}
+            {{ form_widget(trainingSessionToEdit.pictureFile) }}
+            {{ form_errors(trainingSessionToEdit.pictureFile) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(trainingSessionToEdit.contact, "Contact") }}
+            {{ form_widget(trainingSessionToEdit.contact, { 'attr': {'class': 'field-M'} }) }}
+            {{ form_errors(trainingSessionToEdit.contact) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(trainingSessionToEdit.location, "Localisation") }}
+            {{ form_widget(trainingSessionToEdit.location, { 'attr': {'class': 'field-M'} }) }}
+            {{ form_errors(trainingSessionToEdit.location) }}
+
+            {{ form_rest(trainingSessionToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="small-button" value="Enregistrer" />
+
+    </form>
+
+    <div class="sep-20"></div>
+
+{% endblock %}
