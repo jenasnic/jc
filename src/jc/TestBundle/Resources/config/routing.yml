@@ -2,3 +2,20 @@
 jc_test_index:
     path: /test
     defaults: { _controller: "jcTestBundle:Test:test" }
+
+path_1:
+    path: /path_1
+    defaults: { _controller: "jcTestBundle:Test:path1" }
+
+path_2:
+    path: /path_2
+    defaults: { _controller: "jcTestBundle:Test:path2" }
+
+path_3:
+    path: /path_3
+    defaults: { _controller: "jcTestBundle:Test:path3" }
+
+bo:
+    path: /bo
+    defaults: { _controller: "jcTestBundle:Test:bo" }
+    

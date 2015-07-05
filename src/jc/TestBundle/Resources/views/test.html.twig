@@ -1,10 +1,13 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Page de test</title>
-</head>
-<body>
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
     <h1>Test</h1>
     <p>Module de test Symonfy</p>
-</body>
+
+    {% if (message) %}
+    <p>{{ message }}</p>
+    {% endif %}
+
+{% endblock %}
