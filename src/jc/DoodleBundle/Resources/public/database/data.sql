@@ -1,0 +1,53 @@
+
+TRUNCATE TABLE `doodle`;
+TRUNCATE TABLE `doodleReply`;
+
+INSERT INTO doodle (id, title, comment, eventDate, replyDate, sent, closed) VALUES 
+('1', 'Evénement Doodle Alpha du 29/07/2014', 'dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos', '2014-07-29 00:00:00', '2014-07-29 00:00:00', '0', '0'),
+('2', 'Evénement Doodle Bravo du 03/08/2014', 'takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed', '2014-08-03 00:00:00', '2014-08-03 00:00:00', '0', '0'),
+('3', 'Evénement Doodle Charlie du 08/08/2014', 'et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem', '2014-08-08 00:00:00', '2014-08-08 00:00:00', '0', '0'),
+('4', 'Evénement Doodle Delta du 13/08/2014', 'At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit', '2014-08-13 00:00:00', '2014-08-13 00:00:00', '1', '0'),
+('5', 'Evénement Doodle Echo du 18/08/2014', 'ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero', '2014-08-18 00:00:00', '2014-08-18 00:00:00', '0', '0'),
+('6', 'Evénement Doodle Fox-trot du 23/08/2014', 'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata', '2014-08-23 00:00:00', '2014-08-23 00:00:00', '0', '0'),
+('7', 'Evénement Doodle Golf du 28/08/2014', 'vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,', '2014-08-28 00:00:00', '2014-08-28 00:00:00', '0', '0'),
+('8', 'Evénement Doodle Hotel du 02/09/2014', 'dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos', '2014-09-02 00:00:00', '2014-09-02 00:00:00', '1', '0'),
+('9', 'Evénement Doodle India du 07/09/2014', 'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea', '2014-09-07 00:00:00', '2014-09-07 00:00:00', '0', '0'),
+('10', 'Evénement Doodle Juliet du 12/09/2014', 'no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam', '2014-09-12 00:00:00', '2014-09-12 00:00:00', '0', '0'),
+('11', 'Evénement Doodle Kilo du 17/09/2014', 'ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus', '2014-09-17 00:00:00', '2014-09-17 00:00:00', '0', '0'),
+('12', 'Evénement Doodle Lima du 22/09/2014', 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At', '2014-09-22 00:00:00', '2014-09-22 00:00:00', '1', '0'),
+('13', 'Evénement Doodle Mike du 27/09/2014', 'magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor', '2014-09-27 00:00:00', '2014-09-27 00:00:00', '0', '0'),
+('14', 'Evénement Doodle Novembre du 02/10/2014', 'duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy', '2014-10-02 00:00:00', '2014-10-02 00:00:00', '0', '0'),
+('15', 'Evénement Doodle Oscar du 07/10/2014', 'takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed', '2014-10-07 00:00:00', '2014-10-07 00:00:00', '1', '0'),
+('16', 'Evénement Doodle Papa du 12/10/2014', 'clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et', '2014-10-12 00:00:00', '2014-10-12 00:00:00', '1', '0'),
+('17', 'Evénement Doodle Quebec du 17/10/2014', 'diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd', '2014-10-17 00:00:00', '2014-10-17 00:00:00', '1', '0'),
+('18', 'Evénement Doodle Romeo du 22/10/2014', 'amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et', '2014-10-22 00:00:00', '2014-10-22 00:00:00', '1', '0'),
+('19', 'Evénement Doodle Sierra du 27/10/2014', 'nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,', '2014-10-27 00:00:00', '2014-10-27 00:00:00', '1', '0'),
+('20', 'Evénement Doodle Tango du 01/11/2014', 'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata', '2014-11-01 00:00:00', '2014-11-01 00:00:00', '1', '0');
+
+INSERT INTO doodleReply (doodleId, userId, response, comment) VALUES 
+('4', '6', '1', 'ut labore et dolore magna'),
+('4', '7', '1', 'eirmod tempor invidunt ut labore'),
+('8', '3', '1', 'Stet clita kasd gubergren, no'),
+('8', '4', '0', 'amet, consetetur sadipscing elitr, sed'),
+('8', '5', '1', 'dolores et ea rebum. Stet'),
+('8', '6', '0', 'clita kasd gubergren, no sea'),
+('12', '4', '0', 'amet. Lorem ipsum dolor sit'),
+('12', '5', '1', 'tempor invidunt ut labore et'),
+('12', '6', '0', 'sadipscing elitr, sed diam nonumy'),
+('15', '6', '0', 'dolore magna aliquyam erat, sed'),
+('15', '7', '1', 'erat, sed diam voluptua. At'),
+('16', '5', '0', 'ipsum dolor sit amet. Lorem'),
+('16', '6', '0', 'invidunt ut labore et dolore'),
+('16', '7', '0', 'amet, consetetur sadipscing elitr, sed'),
+('17', '4', '1', 'elitr, sed diam nonumy eirmod'),
+('17', '6', '1', 'est Lorem ipsum dolor sit'),
+('17', '7', '0', 'clita kasd gubergren, no sea'),
+('18', '3', '0', 'clita kasd gubergren, no sea'),
+('18', '4', '1', 'est Lorem ipsum dolor sit'),
+('18', '5', '0', 'Lorem ipsum dolor sit amet.'),
+('19', '3', '0', 'ea rebum. Stet clita kasd'),
+('19', '5', '0', 'gubergren, no sea takimata sanctus'),
+('19', '7', '1', 'Lorem ipsum dolor sit amet,'),
+('20', '3', '1', 'ipsum dolor sit amet. Lorem'),
+('20', '4', '0', 'Lorem ipsum dolor sit amet,'),
+('20', '7', '1', 'voluptua. At vero eos et');

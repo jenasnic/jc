@@ -1,0 +1,78 @@
+{#
+    Allows logged user to reply to doodle.
+    Required :
+    - doodle : Doodle we want to reply (as Doodle) for current user, i.e. logged user.
+    - doodleReply : Form element based on DoodleReplyType object (i.e. doodle reply to send/update).
+      WARNING : doodle doesn't define user nor doodle
+    - hasReply : TRUE if user has already reply to doodle, FALSE either.
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/jquery.cleditor.css') }}" />
+
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.cleditor.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#jc_doodlebundle_doodlereply_comment").cleditor({
+                height: 170,
+                controls: "bold italic underline strikethrough | font size color "});
+        });
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+<h1>Doodle</h1>
+
+<h2>{{ doodle.title }}</h2>
+
+{% if (hasReply) %}
+    <p>Vous avez déjà répondu à ce Doodle.</p>
+{% else %}
+    <form action="{{ path('jc_doodle_fo_reply', { 'id': doodle.id }) }}" method="post" {{ form_enctype(doodleReply) }}>
+
+        {{ form_label(doodleReply.response, 'Votre réponse', {'label_attr': {'class': 'doodle-response'}}) }}
+        {{ form_widget(doodleReply.response, {'attr': {'class': 'doodle-response'}}) }}
+        {{ form_errors(doodleReply.response) }}
+        <br/>
+        {{ form_label(doodleReply.comment, "Commentaire", {'label_attr': {'class': 'doodle-comment'}}) }}
+        {{ form_widget(doodleReply.comment, {'attr': {'class': 'doodle-comment'}}) }}
+        {{ form_errors(doodleReply.comment) }}
+        <br/>
+        {{ form_rest(doodleReply) }}
+
+        <input type="submit" class="button" value="Enregistrer" />
+
+    </form>
+{% endif %}
+
+<h2>Réponses des autres membres</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Réponse</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for userReply in doodle.replyList %}
+        <tr{% if loop.index is even %} class="odd"{% endif %}>
+            <td>{{ userReply.user.firstname }} {{ userReply.user.lastname }}</td>
+            <td>
+            {% if (userReply.response) %}
+                OUI
+            {% else %}
+                NON
+            {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

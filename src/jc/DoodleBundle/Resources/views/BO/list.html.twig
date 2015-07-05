@@ -1,0 +1,66 @@
+{#
+    Allows to list all doodle. It allows to add/edit/delete doodle.
+    Required :
+    - doodleList : list of all doodle available (as Doodle).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des Doodle</h1>
+
+    <a class="button" href="{{ path('jc_doodle_bo_edit') }}">Ajouter un doodle</a>
+
+    <div class="sep-20"></div>
+
+    {# Display all doodle found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-id">ID</th>
+                <th class="bo-table-label">Date</th>
+                <th class="bo-table-label">Evènement</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+                <th class="bo-table-action">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for doodle in doodleList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-id">{{ doodle.id }}</td>
+                <td class="bo-table-label">{{ doodle.eventDate|date('d/m/Y') }}</td>
+                <td class="bo-table-label">{{ doodle.title }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_doodle_bo_edit', { 'id': doodle.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_doodle_bo_delete', { 'id': doodle.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    {% if (doodle.sent) %}
+                        <a href="{{ path('jc_doodle_bo_reply', { 'id': doodle.id }) }}">
+                            <img src="{{ asset('resources/images/admin/icons/reply.png') }}" width="16" height="16" border="0" alt="Réponses" title="Voir les réponses" />
+                        </a>
+                    {% else %}
+                        <a href="{{ path('jc_doodle_bo_mail_send', { 'id': doodle.id }) }}" onclick="return confirm('Confirmer l\'envoi ?');">
+                            <img src="{{ asset('resources/images/admin/icons/sendNo.png') }}" width="16" height="16" border="0" alt="Envoyer" title="Envoyer" />
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+{% endblock %}

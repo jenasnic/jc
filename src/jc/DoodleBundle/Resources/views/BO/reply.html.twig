@@ -1,0 +1,90 @@
+{#
+    Allows to show all reply related to a doodle => useful to know which user has reply or not.
+    Required :
+    - doodle : doodle we want to display reply (as Doodle).
+    - userList : list of user which have no reply to doodle (as User)
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Réponses au Doodle</h1>
+
+    <div class="field-set">
+        <span class="f-b12 right">{{ doodle.eventDate|date('d/m/Y') }}</span>
+        <span class="f-b12">{{ doodle.title }}</span>
+        {% if (doodle.comment|length > 0) %}
+            <div class="field-set-separator"></div>
+            <span class="f-i11">{{ doodle.comment }}</span>
+        {% endif %}
+        
+    </div>
+
+    <div class="sep-20"></div>
+
+    <div class="field-set">
+
+        <h2>Utilisateurs ayant répondu au doodle</h2>
+        <div class="sep-10"></div>
+
+        {% if (doodle.replyList|length > 0) %}
+            {# Display all user who have reply to doodle #}
+            <table class="bo-table">
+                <thead>
+                    <tr>
+                        <th class="bo-table-id">Nom, prénom</th>
+                        <th class="bo-table-label">Réponse</th>
+                        <th class="bo-table-label">Commentaire</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for doodleReply in doodle.replyList %}
+                    <tr{% if loop.index is even %} class="odd"{% endif %}>
+                        <td class="bo-table-label">{{ doodleReply.user.firstname}} {{ doodleReply.user.lastname }}</td>
+                        <td class="bo-table-id">
+                            {% if (doodleReply.response) %}
+                                <img src="{{ asset('resources/images/admin/icon/submit.png') }}" width="16" height="16" border="0" alt="Oui" title="Oui" />
+                            {% else %}
+                                <img src="{{ asset('resources/images/admin/icon/delete.png') }}" width="16" height="16" border="0" alt="Non" title="Non" />
+                            {% endif %}
+                        </td>
+                        <td class="bo-table-label">{{ doodleReply.comment }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <span class="f-i12">Aucun utilisateur n'a encore répondu à ce Doodle</span>
+        {% endif %}
+
+    </div>
+
+    <div class="sep-20"></div>
+
+    <div class="field-set">
+
+        <h2>Utilisateurs n'ayant pas répondu au doodle</h2>
+        <div class="sep-10"></div>
+
+        {% if (userList|length > 0) %}
+            <ul>
+            {% for user in userList %}
+                <li>{{ user.firstname }} {{ user.lastname }}</li>
+            {% endfor %}
+            </ul>
+            <div class="right">
+                <a href="{{ path('jc_doodle_bo_mail_send', { 'id': doodle.id }) }}" class="button" onclick="return confirm('Confirmer l\'envoi ?');">
+                    Relancer <img width="16" height="16" border="0" title="Envoyer" alt="Envoyer" src="{{ asset('resources/images/admin/icons/send.png') }}" />
+                </a>
+            </div>
+            <div class="clear"></div>
+        {% else %}
+            <span class="f-i12">Tous les utilisateurs ont répondu à ce Doodle</span>
+        {% endif %}
+
+    </div>
+
+    <div class="sep-20"></div>
+
+{% endblock %}

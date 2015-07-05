@@ -1,0 +1,87 @@
+{#
+    Allows to list all doodle logged user hasn't reply yet.
+    Required :
+    - doodleReplyList : list of doodle reply (as DoodleReply) relative to logged user.
+    - unreplyDoodleList : list of all doodle (as Doodle) logged user hasn't reply yet.
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+<h1>Doodle</h1>
+
+{% if (unreplyDoodleList|length > 0) %}
+
+    <h2>Doodle à traiter</h2>
+
+    <p>Vous êtes invité à répondre aux doodle listés ci-dessous.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Evènement</th>
+                <th>Date</th>
+                <th>Répondre</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for doodle in unreplyDoodleList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td>{{ doodle.title }}</td>
+                <td>{{ doodle.eventDate|date('d/m/Y') }}</td>
+                <td><a href="{{ path('jc_doodle_fo_reply', {'id' : doodle.id}) }}">Répondre</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+    <p>Vous avez répondu à tous les Doodle en cours.</p>
+{% endif %}
+
+<div class="sep-30"></div>
+
+{% if (doodleReplyList|length > 0) %}
+
+    <h2>Réponses</h2>
+
+    <p>Vous trouverez ci-dessous la liste des doodle auxquels vous avez déjà répondu.
+    Vous pouvez consulter ces doodles pour voir la liste des membres ayant répondu.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Evènement</th>
+                <th>Date</th>
+                <th>Réponse</th>
+                <th>Voir</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for doodleReply in doodleReplyList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td>{{ doodleReply.doodle.title }}</td>
+                <td>{{ doodleReply.doodle.eventDate|date('d/m/Y') }}</td>
+                <td>
+                {% if (doodleReply.response) %}
+                    OUI
+                {% else %}
+                    NON
+                {% endif %}
+                </td>
+                <td><a href="{{ path('jc_doodle_fo_reply', {'id' : doodleReply.doodle.id}) }}">Répondre</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+
+    <p>Vous n'avez pas encore répondu à un Doodle.</p>
+
+{% endif %}
+
+<div class="sep-20"></div>
+
+{% endblock %}

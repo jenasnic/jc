@@ -1,0 +1,18 @@
+jc\DoodleBundle\Entity\Doodle:
+    properties:
+        title:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+        eventDate:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"
+            - Date: 
+                message: "La date saisie n'est pas valide"
+        replyDate:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"
+            - Date: 
+                message: "La date saisie n'est pas valide"

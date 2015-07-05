@@ -1,0 +1,85 @@
+{#
+    Allows to edit doodle.
+    Required :
+    - doodleToEdit : Form element based on DoodleType object (i.e. doodle to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block header %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+        });
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% form_theme doodleToEdit ':forms:custom_errors.html.twig' %}
+
+    {% if (doodleToEdit.vars.value.id) %}
+    <h1>Modification du Doodle</h1>
+    {% else %}
+    <h1>Ajout d'un Doodle</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_doodle_bo_edit', { 'id': doodleToEdit.vars.value.id }) }}" method="post" {{ form_enctype(doodleToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(doodleToEdit.title, "Titre") }}
+            {{ form_widget(doodleToEdit.title, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(doodleToEdit.title) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(doodleToEdit.comment, "Commentaire") }}
+            {{ form_widget(doodleToEdit.comment) }}
+            {{ form_errors(doodleToEdit.comment) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(doodleToEdit.eventDate, "Date de l'événement") }}
+            {{ form_widget(doodleToEdit.eventDate, { 'attr': {'class': 'datepicker'} }) }}
+            {{ form_errors(doodleToEdit.eventDate) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(doodleToEdit.replyDate, "Date limite de réponse") }}
+            {{ form_widget(doodleToEdit.replyDate, { 'attr': {'class': 'datepicker'} }) }}
+            {{ form_errors(doodleToEdit.replyDate) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(doodleToEdit.closed, "Doodle clôturé") }}
+            {{ form_widget(doodleToEdit.closed) }}
+            {{ form_errors(doodleToEdit.closed) }}
+
+            {{ form_rest(doodleToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="button" value="Enregistrer" />
+
+    </form>
+
+    <div class="sep-20"></div>
+
+    {# In case of edition => allows to send doodle by mail if not already sent #}
+    {% if (doodleToEdit.vars.value.id and (not doodleToEdit.vars.value.sent)) %}
+        <div class="field-set">
+            Ce doodle n'a pas encore été envoyé.
+            <a href="{{ path('jc_doodle_bo_mail_send', { 'id': doodleToEdit.vars.value.id }) }}" class="button right" onclick="return confirm('Confirmer l\'envoi ?');">
+                Envoyer <img width="16" height="16" border="0" title="Envoyer" alt="Envoyer" src="{{ asset('resources/images/admin/icons/send.png') }}" />
+            </a>
+            <div class="clear"></div>
+        </div>
+        <div class="sep-20"></div>
+    {% endif %}
+
+{% endblock %}

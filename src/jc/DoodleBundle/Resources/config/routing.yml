@@ -1,0 +1,24 @@
+
+jc_doodle_bo_list:
+    path:     /admin/doodle/list
+    defaults: { _controller: "jcDoodleBundle:DoodleBO:list" }
+jc_doodle_bo_edit:
+    path:     /admin/doodle/edit/{id}
+    defaults: { _controller: "jcDoodleBundle:DoodleBO:edit", id: 0 }
+jc_doodle_bo_delete:
+    path:     /admin/doodle/delete/{id}
+    defaults: { _controller: "jcDoodleBundle:DoodleBO:delete" }
+jc_doodle_bo_reply:
+    path:     /admin/doodle/reply/{id}
+    defaults: { _controller: "jcDoodleBundle:DoodleBO:reply" }
+
+jc_doodle_bo_mail_send:
+    path:     /admin/doodle/send/{id}
+    defaults: { _controller: "jcDoodleBundle:DoodleMail:send" }
+
+jc_doodle_fo_index:
+    path:     /user/doodle/list
+    defaults: { _controller: "jcDoodleBundle:DoodleFO:list" }
+jc_doodle_fo_reply:
+    path:     /user/doodle/reply/{id}
+    defaults: { _controller: "jcDoodleBundle:DoodleFO:reply" }

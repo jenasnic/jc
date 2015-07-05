@@ -1,4 +1,8 @@
 
+jc_doodle:
+    resource: "@jcDoodleBundle/Resources/config/routing.yml"
+    prefix:   /
+
 jc_ftp_slideshow:
     resource: "@jcFTPSlideshowBundle/Resources/config/routing.yml"
     prefix:   /
