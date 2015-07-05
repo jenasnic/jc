@@ -1,0 +1,30 @@
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+    <h1>Complex Form</h1>
+
+    <h2>{{ message }}</h2>
+
+    <form action="{{ path('jc_test_form_complex') }}" method="post" {{ form_enctype(myForm) }}>
+
+        {{ form_label(myForm.title, "Titre") }}
+        {{ form_widget(myForm.title) }}
+        {{ form_errors(myForm.title) }}
+
+        <div class="sep-20"></div>
+
+        {{ form_label(myForm.element, "Element simple") }}
+        {{ form_widget(myForm.element) }}
+        {{ form_errors(myForm.element) }}
+
+        {{ form_rest(myForm) }}
+
+        <div class="sep-20"></div>
+
+        <input type="submit" value="Enregistrer" />
+
+    </form>
+
+{% endblock %}

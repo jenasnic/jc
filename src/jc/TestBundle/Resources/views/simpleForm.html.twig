@@ -1,0 +1,38 @@
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+    <h1>Simple Form</h1>
+
+    <h2>{{ message }}</h2>
+
+    {% form_theme myForm 'jcTestBundle:form:custom.html.twig' %}
+
+    <form action="{{ path('jc_test_form_simple') }}" method="post" {{ form_enctype(myForm) }}>
+
+        {{ form_label(myForm.code, "Code") }}
+        {{ form_widget(myForm.code) }}
+        {{ form_errors(myForm.code) }}
+
+        <div class="sep-20"></div>
+
+        {{ form_label(myForm.label, "Label") }}
+        {{ form_widget(myForm.label) }}
+        {{ form_errors(myForm.label) }}
+
+        <div class="sep-20"></div>
+
+        {{ form_label(myForm.value, "Value") }}
+        {{ form_widget(myForm.value) }}
+        {{ form_errors(myForm.value) }}
+
+        {{ form_rest(myForm) }}
+
+        <div class="sep-20"></div>
+
+        <input type="submit" value="Enregistrer" />
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+
+{% use 'form_div_layout.html.twig' with textarea_widget as base_textarea_widget %}
+
+{% block text_widget %}
+    <div class="my-text">
+        <input {{ block('widget_attributes') }} type="text" {% if value is not empty %}value="{{ value }}" {% endif %} />
+    </div>
+{% endblock %}
+
+{% block textarea_widget %}
+    <div class="my-textarea">
+        {{ block('base_textarea_widget') }}
+    </div>
+{% endblock %}
