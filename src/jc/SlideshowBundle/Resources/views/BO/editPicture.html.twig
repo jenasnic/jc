@@ -1,0 +1,53 @@
+{#
+    Allows to edit picture.
+    Required :
+    - pictureToEdit : FormView element based on PictureType object (i.e. picture to edit).
+    - slideshow : slideshow we want to add picture as Slideshow object.
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    {% if (pictureToEdit.vars.value.id) %}
+    <h1>Modification de l'image</h1>
+    {% else %}
+    <h1>Ajout d'une image</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_slideshow_bo_picture_edit', { 'slideshowId': slideshow.id, 'pictureId' : pictureToEdit.vars.value.id }) }}" method="post" {{ form_enctype(pictureToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(pictureToEdit.name, "Nom de l'image") }}
+            {{ form_widget(pictureToEdit.name, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+            {{ form_errors(pictureToEdit.name) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(pictureToEdit.description, "Description") }}
+            {{ form_widget(pictureToEdit.description) }}
+            {{ form_errors(pictureToEdit.description) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(pictureToEdit.pictureFile, "Image principale") }}
+            {% if (pictureToEdit.vars.value.pictureUrl) %}
+                <span class="comment">L'image actuellement chargée est : {{ pictureToEdit.vars.value.pictureUrl }}</span>
+            {% endif %}
+            {{ form_widget(pictureToEdit.pictureFile) }}
+            {{ form_errors(pictureToEdit.pictureFile) }}
+
+            {{ form_rest(pictureToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" class="small-button" value="Enregistrer" />
+
+    </form>
+
+    <div class="sep-20"></div>
+
+{% endblock %}

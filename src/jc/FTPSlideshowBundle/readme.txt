@@ -7,4 +7,4 @@ WARNING : Only one directory level is managed (sub directories are not taken int
 
 NOTE 1 : Base path to store folder and pictures on FTP can be set in config file 'Resources/config/services.yml' (default value is '/userfiles/ftpSlideshow').
 
-NOTE 2 : Add scripts (in 'Resources/public/js' directory) in website's resources ('/web/resources/js') and include this script to load slideshow using ajax.
+NOTE 2 : Add script 'Resources/public/js/ftpSlideshow.js' in website's resources ('/web/resources/js') and include this script to load slideshow using ajax.
