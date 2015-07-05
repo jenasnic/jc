@@ -16,7 +16,7 @@ class StaticTextFOController extends Controller {
         $textFound = $this->getDoctrine()->getManager()->getRepository('jcStaticTextBundle:StaticText')->findBy(array('code' => $code));
 
         if (count($textFound) > 0)
-            return $this->render('jcStaticTextBundle:FO:displayText.html.twig', array('text' => $textFound[0]));
+            return $this->render('jcStaticTextBundle:FO:staticText.html.twig', array('text' => $textFound[0]));
         else
             return new Response('<!-- No text found -->');
     }
