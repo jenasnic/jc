@@ -1,0 +1,8 @@
+
+jc_home_index:
+    path: /
+    defaults: { _controller: "jcHomeBundle:HomeFO:home" }
+
+jc_home_admin:
+    path: /admin
+    defaults: { _controller: "jcHomeBundle:HomeBO:admin" }
