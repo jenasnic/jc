@@ -1,11 +1,11 @@
 
-jc_user_list:
+jc_user_bo_list:
     path:     /admin/user/list
     defaults: { _controller: "jcUserBundle:User:list" }
-jc_user_edit:
+jc_user_bo_edit:
     path:     /admin/user/edit/{id}
     defaults: { _controller: "jcUserBundle:User:edit", id: 0 }
-jc_user_delete:
+jc_user_bo_delete:
     path:     /admin/user/delete/{id}
     defaults: { _controller: "jcUserBundle:User:delete" }
 

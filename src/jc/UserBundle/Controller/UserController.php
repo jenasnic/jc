@@ -70,7 +70,7 @@ class UserController extends Controller {
                                 $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de l\'envoi du mail');
                         }
 
-                        return $this->redirect($this->generateUrl('jc_user_list'));
+                        return $this->redirect($this->generateUrl('jc_user_bo_list'));
                     }
                 }
                 else
@@ -115,6 +115,6 @@ class UserController extends Controller {
         }
 
         // Return to user list
-        return $this->redirect($this->generateUrl('jc_user_list'));
+        return $this->redirect($this->generateUrl('jc_user_bo_list'));
     }
 }

@@ -16,7 +16,7 @@
     <h1>Ajout d'un utilisateur</h1>
     {% endif %}
 
-    <form action="{{ path('jc_user_edit', { 'id': userToEdit.vars.value.id }) }}" method="post" {{ form_enctype(userToEdit) }}>
+    <form action="{{ path('jc_user_bo_edit', { 'id': userToEdit.vars.value.id }) }}" method="post" {{ form_enctype(userToEdit) }}>
 
         <div class="field-set">
 

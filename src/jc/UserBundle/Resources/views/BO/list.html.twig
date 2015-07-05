@@ -10,7 +10,7 @@
 
     <h1>Gestion des utilisateurs</h1>
 
-    <a class="button" href="{{ path('jc_user_edit') }}">Ajouter un utilisateur</a>
+    <a class="button" href="{{ path('jc_user_bo_edit') }}">Ajouter un utilisateur</a>
 
     <div class="sep-20"></div>
 
@@ -34,12 +34,12 @@
                 <td class="bo-table-label">{{ user.username }}</td>
                 <td class="bo-table-label">{{ user.firstname }} {{ user.lastname }}</td>
                 <td class="bo-table-action">
-                    <a href="{{ path('jc_user_edit', { 'id': user.id }) }}" >
+                    <a href="{{ path('jc_user_bo_edit', { 'id': user.id }) }}" >
                         <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
                     </a>
                 </td>
                 <td class="bo-table-action">
-                    <a href="{{ path('jc_user_delete', { 'id': user.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                    <a href="{{ path('jc_user_bo_delete', { 'id': user.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
                         <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
                     </a>
                 </td>
