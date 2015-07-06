@@ -1,7 +1,7 @@
-jc_slideshow_index:
+jc_slideshow_fo_index:
     path:  /slideshow
     defaults: { _controller: "jcSlideshowBundle:SlideshowFO:index" }
-jc_slideshow_display:
+jc_slideshow_fo_display:
     path:  /ajax/slideshow/{id}
     defaults: { _controller: "jcSlideshowBundle:SlideshowFO:display" }
     requirements:
