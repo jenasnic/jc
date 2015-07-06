@@ -1,14 +1,22 @@
 
+var wysiwygInitialized = false;
+
 $(document).ready(function() {
 
     // Define action when user add comment => display form
     $('#add-comment-button').on('click', function() {
 
         $('#add-comment-form').show();
-        $('#add-comment-form textarea').cleditor({
-            controls: "bold italic underline strikethrough | font size color",
-            height: '120'
-        });
+
+        // If  not yet initialized => initialize WYSIWYG
+        if (!wysiwygInitialized) {
+
+            $('#add-comment-form textarea').cleditor({
+                controls: "bold italic underline strikethrough | font size color",
+                height: '120'
+            });
+        }
+
         $('#add-comment-button').hide();
     });
 
@@ -43,7 +51,9 @@ function postComment() {
 
             $('#add-comment-form').after(msg);
 
-            // TODO : Clear comment content in textarea
+            // Clear comment content in textarea
+            $('#add-comment-form textarea').val('');
+            $('#add-comment-form textarea').blur();
 
             // Init suppression event on new comment
             $('#add-comment-form').next().children('.delete-comment-button').on('click', function() {
