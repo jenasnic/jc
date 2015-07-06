@@ -234,7 +234,7 @@ class User implements UserInterface
      */
     public function removeRole(Role $role)
     {
-        $this->pictures->removeElement($picture);
+        $this->internalRoles->removeElement($picture);
     }
 
     /**
