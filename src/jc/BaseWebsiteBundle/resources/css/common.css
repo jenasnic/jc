@@ -40,17 +40,17 @@
 .f-b24 { font-weight: bold; font-size: 24px; }
 .f-b30 { font-weight: bold; font-size: 30px; }
 
-.f-i10 { font-weight: italic; font-size: 10px; }
-.f-i11 { font-weight: italic; font-size: 11px; }
-.f-i12 { font-weight: italic; font-size: 12px; }
-.f-i13 { font-weight: italic; font-size: 13px; }
-.f-i14 { font-weight: italic; font-size: 14px; }
-.f-i15 { font-weight: italic; font-size: 15px; }
-.f-i16 { font-weight: italic; font-size: 16px; }
-.f-i18 { font-weight: italic; font-size: 18px; }
-.f-i20 { font-weight: italic; font-size: 20px; }
-.f-i24 { font-weight: italic; font-size: 24px; }
-.f-i30 { font-weight: italic; font-size: 30px; }
+.f-i10 { font-style: italic; font-size: 10px; }
+.f-i11 { font-style: italic; font-size: 11px; }
+.f-i12 { font-style: italic; font-size: 12px; }
+.f-i13 { font-style: italic; font-size: 13px; }
+.f-i14 { font-style: italic; font-size: 14px; }
+.f-i15 { font-style: italic; font-size: 15px; }
+.f-i16 { font-style: italic; font-size: 16px; }
+.f-i18 { font-style: italic; font-size: 18px; }
+.f-i20 { font-style: italic; font-size: 20px; }
+.f-i24 { font-style: italic; font-size: 24px; }
+.f-i30 { font-style: italic; font-size: 30px; }
 
 .f-left {text-align: left;}
 .f-center {text-align: center;}
