@@ -5,6 +5,20 @@ namespace jc\ToolBundle\Util;
 class TextUtil {
 
     /**
+     * Allows to remove all HTML from specified text (tags with its attributes...).
+     * @param text Text we want to remove HTML code.
+     * @return Specified text without HTML tags, i.e. without HTML structure.
+     */
+    public static function removeAllHTMLTag($text) {
+
+        // Remove all HTML tag => text between < and >
+        if (!empty($text))
+            return preg_replace('/(<[^>]*>)/', '', $text);
+
+        return null;
+    }
+
+    /**
      * Allows to truncate specified text with specified length.<br/>
      * NOTE : We do not truncate in the middle of a word but before => final size might be smaller than specified size.<br/>
      * WARNING : If text contains HTML code, text might be truncated on HTHML => causes errors.<br/>
