@@ -7,7 +7,7 @@
 
 <div class="training-session-comment">
     {% if (app.user and app.user.admin) %}
-        <span class="delete-comment-button" comment-id="{{ comment.id }}"><img src="{{ asset('resources/images/admin/icon/delete.png') }}" alt="Supprimer" /></span>
+        <span class="delete-comment-button" comment-id="{{ comment.id }}"><img src="{{ asset('resources/images/admin/icons/delete.png') }}" alt="Supprimer" /></span>
     {% endif %}
     <h3>
         {{ comment.author.firstname }} {{ comment.author.lastname }}

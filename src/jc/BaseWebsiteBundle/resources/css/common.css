@@ -3,12 +3,13 @@
 /* Define separator classes */
 /****************************/
 
-.sep-5 { display: block; height: 5px; clear: both; }
-.sep-10 { display: block; height: 10px; clear: both; }
-.sep-15 { display: block; height: 15px; clear: both; }
-.sep-20 { display: block; height: 20px; clear: both; }
-.sep-40 { display: block; height: 40px; clear: both; }
-.sep-50 { display: block; height: 50px; clear: both; }
+.sep-5 { display: block; height: 5px; }
+.sep-10 { display: block; height: 10px; }
+.sep-15 { display: block; height: 15px; }
+.sep-20 { display: block; height: 20px; }
+.sep-30 { display: block; height: 30px; }
+.sep-40 { display: block; height: 40px; }
+.sep-50 { display: block; height: 50px; }
 
 
 

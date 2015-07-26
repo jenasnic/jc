@@ -10,12 +10,9 @@
 
     <h1>Gestion des contacts</h1>
 
-    <a class="large-button" href="{{ path('jc_training_session_bo_contact_edit') }}">
-        <img width="16" height="16" border="0" title="Ajouter un contact" alt="Ajouter" src="{{ asset('resources/images/admin/icon/add.png') }}" />
-        <span>Créer un contact</span>
-    </a>
+    <a class="button" href="{{ path('jc_training_session_bo_contact_edit') }}">Ajouter un contact</a>
 
-    <div class="sep-15"></div>
+    <div class="sep-20"></div>
 
     {# Display all contacts found #}
     <table class="bo-table">
@@ -36,12 +33,12 @@
                 <td class="bo-table-label">{{ contact.lastname }} {{ contact.firstname }}</td>
                 <td class="bo-table-action">
                     <a href="{{ path('jc_training_session_bo_contact_edit', { 'id': contact.id }) }}" >
-                        <img src="{{ asset('resources/images/admin/icon/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
                     </a>
                 </td>
                 <td class="bo-table-action">
                     <a href="{{ path('jc_training_session_bo_contact_delete', { 'id': contact.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
-                        <img src="{{ asset('resources/images/admin/icon/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
                     </a>
                 </td>
             </tr>

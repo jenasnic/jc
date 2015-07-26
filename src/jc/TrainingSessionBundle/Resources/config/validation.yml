@@ -76,7 +76,7 @@ jc\TrainingSessionBundle\Entity\TrainingSession:
         date:
             - NotBlank: 
                 message: "Ce champ est obligatoire"
-            - Datetime:
+            - Date:
                 message: "La date saisie n'est pas valide"
         timeHourStart:
             - NotBlank: 

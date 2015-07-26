@@ -11,25 +11,16 @@
     <h1>Gestion des stages</h1>
 
     <div class="right">
-        <a href="{{ path('jc_training_session_bo_location_list') }}" class="menu-item-small">
-            Localisation
-            <img src="{{ asset('resources/images/admin/menu/menuLocationSmall.png') }}" alt="" />
-        </a>
-        <a href="{{ path('jc_training_session_bo_contact_list') }}" class="menu-item-small">
-            Contact
-            <img src="{{ asset('resources/images/admin/menu/menuContactSmall.png') }}" alt="" />
-        </a>
+        <a href="{{ path('jc_training_session_bo_location_list') }}" class="button">Localisation</a>
+        <a href="{{ path('jc_training_session_bo_contact_list') }}" class="button">Contact</a>
     </div>
 
     <div class="left">
-        <a class="large-button" href="{{ path('jc_training_session_bo_session_edit') }}">
-            <img width="16" height="16" border="0" title="Ajouter un contact" alt="Ajouter" src="{{ asset('resources/images/admin/icon/add.png') }}" />
-            <span>Ajouter un stage</span>
-        </a>
+        <a class="button" href="{{ path('jc_training_session_bo_session_edit') }}">Ajouter un stage</a>
     </div>
 
     <div class="clear"></div>
-    <div class="sep-15"></div>
+    <div class="sep-20"></div>
 
     {# Display all training session found #}
     <table class="bo-table">
@@ -52,12 +43,12 @@
                 <td class="bo-table-label">{{ trainingSession.date|date('d/m/Y') }}</td>
                 <td class="bo-table-action">
                     <a href="{{ path('jc_training_session_bo_session_edit', { 'id': trainingSession.id }) }}" >
-                        <img src="{{ asset('resources/images/admin/icon/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
                     </a>
                 </td>
                 <td class="bo-table-action">
                     <a href="{{ path('jc_training_session_bo_session_delete', { 'id': trainingSession.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
-                        <img src="{{ asset('resources/images/admin/icon/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
                     </a>
                 </td>
             </tr>
