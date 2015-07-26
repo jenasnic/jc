@@ -24,9 +24,10 @@ class PaginationService {
      * @param String $orderField Optional field to sort result items.
      * @param String $orderValue Optional field to define sort order to use (if result items are sorted).
      * @param array $filters Optional filters as array (field name as key, filter value as value).
+     * @param int $paginationCount Optional pagination to use (if 0 => use pagination defined in services.yml).
      * @return PaginationInformation matching specified parameters.
      */
-    public function getPaginationInformation($page, $entityName, $orderField = null, $orderValue = null, $filters = null) {
+    public function getPaginationInformation($page, $entityName, $orderField = null, $orderValue = null, $filters = null, $paginationCount = 0) {
 
         try {
 
@@ -47,14 +48,16 @@ class PaginationService {
             // Add filters
             $this->addConditionToQueryBuilder($queryBuilder, $filters);
 
+            $paginationToUse = ($paginationCount > 0) ? $paginationCount : $this->paginationCount;
+
             // Add pagination parameter
-            $startIndex = ($page - 1) * $this->paginationCount;
-            $queryBuilder->setFirstResult($startIndex)->setMaxResults($this->paginationCount);
+            $startIndex = ($page - 1) * $paginationToUse;
+            $queryBuilder->setFirstResult($startIndex)->setMaxResults($paginationToUse);
 
             $itemList = $queryBuilder->getQuery()->getResult();
 
-            $pageCount = (int)($totalCount / $this->paginationCount);
-            if ($totalCount % $this->paginationCount > 0)
+            $pageCount = (int)($totalCount / $paginationToUse);
+            if ($totalCount % $paginationToUse > 0)
                 $pageCount ++;
 
             return new PaginationInformation($page, $pageCount, $totalCount, $itemList);
