@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `trainingSession`;
 CREATE TABLE `trainingSession` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `date` datetime NOT NULL,
   `timeHourStart` int(11) DEFAULT NULL,
   `timeMinuteStart` int(11) DEFAULT NULL,

@@ -64,10 +64,18 @@ class ContactBOController extends Controller {
                 // If contact found => delete it
                 if ($contactToDelete != null) {
 
-                    $entityManager->remove($contactToDelete);
-                    $entityManager->flush();
+                    // Check if contact is not used by any training session
+                    $isUsed = $entityManager->getRepository('jcTrainingSessionBundle:TrainingSession')->isTrainingSessionWithContact($contactToDelete);
 
-                    $this->getRequest()->getSession()->getFlashBag()->add('bo-log-message', 'Suppression du contact OK');
+                    if ($isUsed)
+                        $this->getRequest()->getSession()->getFlashBag()->add('bo-warning-message', 'Contact utilisé par des stages : suppression impossible');
+                    else {
+
+                        $entityManager->remove($contactToDelete);
+                        $entityManager->flush();
+
+                        $this->getRequest()->getSession()->getFlashBag()->add('bo-log-message', 'Suppression du contact OK');
+                    }
                 }
             }
             catch (Exception $e) {

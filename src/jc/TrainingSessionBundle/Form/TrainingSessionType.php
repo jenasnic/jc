@@ -30,8 +30,7 @@ class TrainingSessionType extends AbstractType
             ->add('pictureUrl', 'hidden', array('required' => false))
             ->add('pictureFile', 'file', array('required' => false))
             ->add('contact', 'entity', array(
-                    'required' => false,
-                    'empty_value' => '-',
+                    'required' => true,
                     'class' => 'jcTrainingSessionBundle:Contact',
                     'property' => 'fullname'
             ))

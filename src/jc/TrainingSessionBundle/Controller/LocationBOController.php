@@ -73,10 +73,18 @@ class LocationBOController extends Controller {
                 // If location found => delete it
                 if ($locationToDelete != null) {
 
-                    $entityManager->remove($locationToDelete);
-                    $entityManager->flush();
+                    // Check if contact is not used by any training session
+                    $isUsed = $entityManager->getRepository('jcTrainingSessionBundle:TrainingSession')->isTrainingSessionWithLocation($locationToDelete);
 
-                    $this->getRequest()->getSession()->getFlashBag()->add('bo-log-message', 'Suppression de la localisation OK');
+                    if ($isUsed)
+                        $this->getRequest()->getSession()->getFlashBag()->add('bo-warning-message', 'Localisation utilisée par des stages : suppression impossible');
+                    else {
+
+                        $entityManager->remove($locationToDelete);
+                        $entityManager->flush();
+
+                        $this->getRequest()->getSession()->getFlashBag()->add('bo-log-message', 'Suppression de la localisation OK');
+                    }
                 }
             }
             catch (Exception $e) {

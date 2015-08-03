@@ -19,18 +19,10 @@ jc\TrainingSessionBundle\Entity\Contact:
             - Length:
                 max: 55
                 maxMessage: "Ce champ est limité à 55 caractères"
-            - Regex:
-                pattern: "/^\\d$/"
-                match:   true
-                message: "Le numéro de téléphone saisie n'est pas valide"
         mobile:
             - Length:
                 max: 55
                 maxMessage: "Ce champ est limité à 55 caractères"
-            - Regex:
-                pattern: "/^\\d$/"
-                match:   true
-                message: "Le numéro de téléphone saisie n'est pas valide"
         mail:
             - NotBlank: 
                 message: "Ce champ est obligatoire"
@@ -76,33 +68,11 @@ jc\TrainingSessionBundle\Entity\TrainingSession:
         date:
             - NotBlank: 
                 message: "Ce champ est obligatoire"
-            - Date:
+            - DateTime:
                 message: "La date saisie n'est pas valide"
-        timeHourStart:
-            - NotBlank: 
+        contact:
+            - NotNull: 
                 message: "Ce champ est obligatoire"
-            - Regex:
-                pattern: "/^\\d$/"
-                match:   true
-                message: "L'heure de début saisie n'est pas valide"
-        timeMinuteStart:
-            - NotBlank: 
+        location:
+            - NotNull: 
                 message: "Ce champ est obligatoire"
-            - Regex:
-                pattern: "/^\\d$/"
-                match:   true
-                message: "L'heure de début saisie n'est pas valide"
-        timeHourEnd:
-            - NotBlank: 
-                message: "Ce champ est obligatoire"
-            - Regex:
-                pattern: "/^\\d$/"
-                match:   true
-                message: "L'heure de fin saisie n'est pas valide"
-        timeMinuteEnd:
-            - NotBlank: 
-                message: "Ce champ est obligatoire"
-            - Regex:
-                pattern: "/^\\d$/"
-                match:   true
-                message: "L'heure de fin saisie n'est pas valide"

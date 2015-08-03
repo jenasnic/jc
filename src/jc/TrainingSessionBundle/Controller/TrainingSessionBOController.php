@@ -20,6 +20,19 @@ class TrainingSessionBOController extends Controller {
         $request = $this->getRequest();
         $entityManager = $this->getDoctrine()->getManager();
 
+        // If no contact => redirect to contact page to create one
+        if ($entityManager->getRepository('jcTrainingSessionBundle:Contact')->countTrainingSessionContact() == 0) {
+
+            $request->getSession()->getFlashBag()->add('bo-warning-message', 'Vous devez définir au moins un contact avant de créer des stages');
+            return $this->redirect($this->generateUrl('jc_training_session_bo_contact_list'));
+        }
+        // If no location => redirect to location page to create one
+        if ($entityManager->getRepository('jcTrainingSessionBundle:Location')->countTrainingSessionLocation() == 0) {
+
+            $request->getSession()->getFlashBag()->add('bo-warning-message', 'Vous devez définir au moins une localisation avant de créer des stages');
+            return $this->redirect($this->generateUrl('jc_training_session_bo_location_list'));
+        }
+
         $trainingSession = ($id > 0) ? $entityManager->getRepository('jcTrainingSessionBundle:TrainingSession')->find($id) : new TrainingSession();
 
         // If user has submit form => save training session
@@ -29,11 +42,6 @@ class TrainingSessionBOController extends Controller {
 
                 $form = $this->createForm(new TrainingSessionType(), $trainingSession);
                 $form->bind($request);
-
-                // If no picture already loaded nor uploaded picture => add error
-                /*
-                 * if ($trainingSession->getPictureUrl() == null && $trainingSession->getPictureFile() == null) $form->get('pictureFile')->addError(new FormError("Aucune image n'a encore été chargée : vous devez charger une image"));
-                 */
 
                 if ($form->isValid()) {
 

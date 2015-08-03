@@ -1,0 +1,35 @@
+
+/***************/
+/* CSS for map */
+/***************/
+
+#location-map {
+    border: 1px solid #78A5BB;
+    border-radius: 5px;
+    float: right;
+    padding: 10px;
+}
+
+#help-map, #help-map-content {
+    height:300px;
+    position: relative;
+    width:300px;
+}
+
+#help-map .vertical-bar {
+    background-color: #000;
+    position: absolute;
+    height: 100px;
+    left: 150px;
+    top: 100px;
+    width: 1px;
+}
+
+#help-map .horizontal-bar {
+    background-color: #000;
+    position: absolute;
+    height: 1px;
+    left: 100px;
+    top: 150px;
+    width: 100px;
+}
