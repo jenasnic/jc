@@ -49,11 +49,11 @@
                     if (margin > 0) {
 
                         if (position == 'left')
-                            style += "margin: 0 10px 10px 0;";
+                            style += "margin: 0 " + margin + "px " + margin + "px 0;";
                         else if (position == 'right')
-                            style += "margin: 0 0 10px 10px;";
+                            style += "margin: 0 0 " + margin + "px " + margin + "px;";
                         else
-                            style += "margin: 0 10px;";
+                            style += "margin: 0 " + margin + "px;";
                     }
 
                     var name = item.children('.file-explore').html();
