@@ -32,11 +32,12 @@ class TextUtil {
         if (!empty($text) && $size > 0 && strlen($text) > $size) {
 
             // Truncate on 'space' (to not cut word)
-            $maxSize = stripos($text, ' ', $size);
-
+            $textToCheck = substr($text, 0, $size + 1);
+            $maxSize = strrpos($textToCheck, ' ');
+            
             if ($maxSize == -1)
                 return substr($text, 0, $size);
-
+            
             return substr($text, 0, $maxSize);
         }
         else
