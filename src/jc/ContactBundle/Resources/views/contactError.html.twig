@@ -1,0 +1,15 @@
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+    <h1>Contact</h1>
+
+    <div class="sep-20"></div>
+
+    Une erreur est survenue lors de l'envoi de votre demande.<br/>
+    Nous vous invitons à réessayer plus tard en cliquant <a href="{{ path('jc_contact_index') }}">ici</a>.<br/><br/>
+    Si le problème persiste, vous pouvez contactez directement l'administrateur du site à l'adresse suivante : <a href="mailto:XXX">XXX</a>,<br/><br/>
+    Sportivement,<br/><br/>
+
+{% endblock %}

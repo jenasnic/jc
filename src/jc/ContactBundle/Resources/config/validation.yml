@@ -1,0 +1,13 @@
+jc\ContactBundle\Model\ContactForm:
+    properties:
+        mail:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
+            - Email:
+                message: "L'adresse mail saisie n'est pas valide"
+        message:
+            - NotBlank: 
+                 message: "Ce champ est obligatoire"

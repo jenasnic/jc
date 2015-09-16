@@ -1,4 +1,8 @@
 
+jc_contact:
+    resource: "@jcContactBundle/Resources/config/routing.yml"
+    prefix:   /
+
 jc_doodle:
     resource: "@jcDoodleBundle/Resources/config/routing.yml"
     prefix:   /

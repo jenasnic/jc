@@ -43,6 +43,11 @@ class TrainingSessionBOController extends Controller {
                 $form = $this->createForm(new TrainingSessionType(), $trainingSession);
                 $form->bind($request);
 
+                // If no picture already loaded nor uploaded picture => add error
+                /*
+                 * if ($trainingSession->getPictureUrl() == null && $trainingSession->getPictureFile() == null) $form->get('pictureFile')->addError(new FormError("Aucune image n'a encore été chargée : vous devez charger une image"));
+                */
+
                 if ($form->isValid()) {
 
                     // Process upload

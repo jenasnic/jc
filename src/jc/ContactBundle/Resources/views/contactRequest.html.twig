@@ -1,0 +1,44 @@
+{#
+    Allows to display contact form.
+    Required :
+    - contactForm : FormView element based on ContactFormType object (i.e. contact form).
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+    <h1>Contact</h1>
+
+    <div class="sep-20"></div>
+
+    <form action="{{ path('jc_contact_index') }}" method="post" {{ form_enctype(contactForm) }}>
+
+        <div id="contact-form">
+
+            -- Texte du formulaire de contact --
+
+            <div class="sep-20"></div>
+
+            {{ form_label(contactForm.mail, "Votre mail") }}
+            {{ form_widget(contactForm.mail, { 'max_length' : '255' }) }}
+            {{ form_errors(contactForm.mail) }}
+
+            <div class="sep-10"></div>
+
+            {{ form_label(contactForm.message, "Votre message") }}
+            {{ form_errors(contactForm.message) }}
+            {{ form_widget(contactForm.message) }}
+
+            {{ form_rest(contactForm) }}
+
+            <div class="sep-10"></div>
+
+            <div class="right"><input type="submit" value="Envoyer" /></div>
+            <div class="clear"></div>
+
+        </div>
+
+    </form>
+
+{% endblock %}
