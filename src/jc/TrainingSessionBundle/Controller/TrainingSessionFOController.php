@@ -3,12 +3,8 @@
 namespace jc\TrainingSessionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormError;
 use jc\TrainingSessionBundle\Entity\TrainingSession;
-use jc\TrainingSessionBundle\Form\TrainingSessionType;
 use jc\TrainingSessionBundle\Entity\Comment;
-use jc\TrainingSessionBundle\Form\CommentType;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class TrainingSessionFOController extends Controller {

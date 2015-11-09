@@ -3,8 +3,6 @@
 namespace jc\SudokuBundle\Model\Helper;
 
 use jc\SudokuBundle\Model\SudokuCell;
-use jc\SudokuBundle\Model\SudokuGrid;
-use jc\SudokuBundle\Model\SudokuStatus;
 
 /**
  * This class contains usefull methods to process SudokuCell array.

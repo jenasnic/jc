@@ -5,7 +5,6 @@ namespace jc\SlideshowBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\FormError;
-use jc\SectionBundle\Entity\Section;
 use jc\SlideshowBundle\Entity\Picture;
 use jc\SlideshowBundle\Entity\Slideshow;
 use jc\SlideshowBundle\Form\SlideshowType;

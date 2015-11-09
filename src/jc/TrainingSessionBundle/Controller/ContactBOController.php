@@ -3,7 +3,6 @@
 namespace jc\TrainingSessionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormError;
 use jc\TrainingSessionBundle\Entity\Contact;
 use jc\TrainingSessionBundle\Form\ContactType;
 

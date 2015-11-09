@@ -4,7 +4,6 @@ namespace jc\ToolBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use jc\ToolBundle\Service\Model\PaginationInformation;
-use Doctrine\ORM\Query\Expr;
 
 class PaginationService {
 

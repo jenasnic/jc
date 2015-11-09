@@ -3,7 +3,6 @@
 namespace jc\UserBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-use jc\ToolBundle\Service\Model\PaginationInformation;
 use jc\ToolBundle\Util\PasswordUtil;
 use Symfony\Component\Templating\EngineInterface;
 

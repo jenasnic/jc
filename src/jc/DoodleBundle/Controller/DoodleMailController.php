@@ -3,9 +3,7 @@
 namespace jc\DoodleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormError;
 use jc\DoodleBundle\Entity\Doodle;
-use jc\DoodleBundle\Form\DoodleType;
 
 class DoodleMailController extends Controller {
 

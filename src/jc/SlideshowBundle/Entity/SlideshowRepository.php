@@ -3,7 +3,6 @@
 namespace jc\SlideshowBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * SlideshowRepository
