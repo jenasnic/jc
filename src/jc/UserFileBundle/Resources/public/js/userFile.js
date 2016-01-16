@@ -6,6 +6,12 @@ $(document).ready(function() {
         filePath: currentPath,
         afterReload: reloadFilePathInfo
     });
+
+    // Configure drop zone for upload
+    Dropzone.options.userfileDropzone = {
+        autoProcessQueue: true,
+        previewTemplate : global.dropzoneTemplate
+    };
 });
 
 /**

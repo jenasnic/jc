@@ -13,6 +13,7 @@
 
     <script type="text/javascript" src="{{ asset('resources/scripts/userFileExplorer.js') }}"></script>
     <script type="text/javascript" src="{{ asset('resources/scripts/userFile.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/dropzone.min.js') }}"></script>
 
 {% endblock %}
 
@@ -23,15 +24,11 @@
     <div class="field-set">
 
         {# Form to upload file #}
-        <form action="{{ path('jc_user_file_bo_upload') }}" method="post" enctype="multipart/form-data">
-
+        Télécharger un fichier dans le dossier courant : <span class="full-path-info">{{ (currentPath|length == 0) ? '/' : currentPath }}</span>
+        <div class="sep-5"></div>
+        <form id="userfile-dropzone" action="{{ path('jc_user_file_bo_upload') }}" method="post" enctype="multipart/form-data" class="dropzone">
+            <div class="dz-message">Déposez les fichiers à uploader...</div>
             <input id="filePath" name="filePath" type="hidden" value="{{ currentPath }}" />
-            Télécharger un fichier dans le dossier courant : <span class="full-path-info">{{ (currentPath|length == 0) ? '/' : currentPath }}</span>
-            <div class="sep-5"></div>
-
-            <input id="file" name="file" type="file" />
-            <input type="submit" class="button" value="Télécharger" />
-
         </form>
 
         <div class="sep-5"></div>

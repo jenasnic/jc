@@ -122,7 +122,7 @@ $.fn.extend({
 
                 if (keepProcessing) {
 
-                    var path = $("input[type='hidden'].file-path").val() + "/" + $(item).children('a').html();
+                    var path = $("input[type='hidden'].file-path").val() + "/" + $(item).children('span').html();
 
                     var ajaxBaseUrl = global.basePath + '/admin/userfile/ajax/delete';
 
