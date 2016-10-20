@@ -9,3 +9,8 @@ services:
         class: jc\ToolBundle\Twig\TruncateExtension
         tags:
             - { name: twig.extension }
+    jc_tool.twig.pictureProperties:
+        class: jc\ToolBundle\Twig\PicturePropertiesExtension
+        arguments: [ '%kernel.root_dir%' ]
+        tags:
+            - { name: twig.extension }

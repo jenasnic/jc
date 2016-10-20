@@ -1,1 +1,3 @@
 Tool bundle with utils for text, password, pagination...
+
+It contains Twig extension to truncate text or to get picture size.
