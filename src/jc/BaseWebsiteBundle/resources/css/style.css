@@ -16,3 +16,36 @@ a {
     text-decoration: none;
 }
 
+#header, #footer {
+    background-color: #585858;
+    font-size: 50px;
+    height: 70px;
+    text-align: center;
+}
+
+#header {border-bottom: 1px solid #333;}
+#footer {border-top: 1px solid #333;}
+
+#menu {
+    background-color: #959595;
+    font-size: 30px;
+    font-style: italic;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    width: 960px;
+}
+
+#page {
+    background-color: #cdcdcd;
+    min-height: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 940px;
+}
+
+
+
+
+
+

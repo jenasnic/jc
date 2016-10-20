@@ -50,6 +50,9 @@ h1 {
 .bo-table td.bo-table-label {padding: 4px 10px;}
 .bo-table td.bo-table-hidden {display:none;}
 
+.bo-table td.bo-table-picture {padding: 3px; text-align: center;}
+.bo-table td.bo-table-picture img {max-width: 30px; max-height: 30px;}
+
 .bo-table tfoot tr {
     background-color: #999;
     font-weight: bold;
@@ -254,102 +257,6 @@ span.comment {
     border: 1px solid #980202;
     color: #980202;
 }
-
-
-
-/*********************/
-/* CSS for drop zone */
-/*********************/
-
-.file-drop-zone {
-    background: url('images/upload.png') no-repeat 195px 50% #eee;
-    border: none;
-    border-bottom: 1px solid #333;
-    border-right: 1px solid #333;
-    cursor: pointer;
-    min-height: 150px;
-    margin: 0 auto;
-    width: 440px;
-}
-
-.file-drop-zone .dz-message {
-    background-color: #ADD081;
-    color: #333;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.file-drop-zone:hover .dz-message {
-    background-color: #86bc49;
-    color: #eee;
-}
-
-.dz-preview {
-    background: url('images/backgroundDZ.png') repeat;
-    display: inline-block;
-    height: 100px;
-    margin: 5px;
-    position: relative;
-    width: 100px;
-}
-
-.dz-preview div {margin: 0;}
-
-.dz-preview .dz-image {
-    height: 100px;
-    left: 0;
-    line-height: 100px;
-    position: absolute;
-    top: 0;
-}
-
-.dz-preview .dz-image img {
-    display: inline-block;
-    max-height: 100px;
-    max-width: 100px;
-    vertical-align: middle;
-}
-
-.dz-preview .dz-details {
-    background: url('images/backgroundDZ.png') repeat;
-    color: #eee;
-    left: 0;
-    padding: 5px;
-    position: absolute;
-    top: 0;
-    width: 90px;
-}
-
-.dz-size, .dz-filename {font-size: 10px;}
-
-.dz-success-mark, .dz-error-mark {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-}
-
-.dz-error-message, .dz-error-mark, .dz-success-mark {display: none;}
-
-.dz-processing .dz-progress {
-    bottom: 0;
-    display: block;
-    height: 10px;
-    left: 0;
-    position: absolute;
-    width: 100px;
-}
-
-.dz-processing .dz-progress .dz-upload {
-    background: #ccc;
-    display: block;
-    height: 10px;
-}
-
-.dz-error .dz-error-mark, .dz-error .dz-image, .dz-success .dz-success-mark {display: block;}
-.dz-complete .dz-progress, .dz-error .dz-image img {display: none;}
 
 
 
