@@ -1,0 +1,123 @@
+{#
+    Allows to edit slideshow.
+    Required :
+    - slideshowToEdit : FormView element based on SlideshowType object (i.e. slideshow to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/dropzone.css') }}" />
+    <script type="text/javascript" src="{{ asset('resources/scripts/slideshowEdit.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/dropzone.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <h1>Modification du diaporama</h1>
+
+    <form id="slideshow-form" action="{{ path('jc_slideshow_bo_edit', { 'id': slideshowToEdit.vars.value.id }) }}" method="post" {{ form_enctype(slideshowToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(slideshowToEdit.name, "Nom du diaporama") }}
+            {{ form_widget(slideshowToEdit.name, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+            {{ form_errors(slideshowToEdit.name) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(slideshowToEdit.description, "Description") }}
+            {{ form_widget(slideshowToEdit.description) }}
+            {{ form_errors(slideshowToEdit.description) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(slideshowToEdit.date, "Date du diaporama") }}
+            {{ form_widget(slideshowToEdit.date, { 'attr': {'class': 'datepicker'} }) }}
+            {{ form_errors(slideshowToEdit.date) }}
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(slideshowToEdit.pictureFile, "Image principale") }}
+            {% if (slideshowToEdit.vars.value.pictureUrl) %}
+                <span class="comment">L'image actuellement chargée est : {{ slideshowToEdit.vars.value.pictureUrl }}</span>
+            {% endif %}
+            {{ form_widget(slideshowToEdit.pictureFile) }}
+            {{ form_errors(slideshowToEdit.pictureFile) }}
+
+            {{ form_rest(slideshowToEdit) }}
+
+            {# additional fields use for pictures (see JS) #}
+            <input type="hidden" id="slideshow-id" name="slideshow-id" value="{{ slideshowToEdit.vars.value.id }}" />
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <div class="field-set">
+
+            <div id="slideshow-dropzone" action="{{ path('jc_slideshow_bo_picture_upload') }}" class="dropzone">
+                <div class="dz-message">Déposez les images du diaporama...</div>
+            </div>
+
+            <div class="sep-20"></div>
+
+            {# Display all pictures linked to slideshow #}
+            <table class="bo-table bo-sortable-table">
+
+                <thead>
+                    <tr>
+                        <th class="bo-table-picture">Image</th>
+                        <th class="bo-table-label">Nom</th>
+                        <th class="bo-table-action"><img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" /></th>
+                    </tr>
+                </thead>
+
+                <tbody id="picture-list">
+                {% for picture in slideshowToEdit.vars.value.pictures %}
+                    <tr id="picture-list-{{ picture.id }}">
+                        <td class="bo-table-picture"><img src="{{ picture.pictureUrl }}" alt="{{ picture.name }}" /></td>
+                        <td class="bo-table-label">
+                            <input type="hidden" id="picture-id-{{ picture.id }}"  name="picture-id-{{ picture.id }}" value="{{ picture.id }}" class="picture-id" />
+                            <input type="hidden" id="picture-rank-{{ picture.id }}"  name="picture-rank-{{ picture.id }}" value="{{ picture.rank }}" class="picture-rank" />
+                            <input type="text" id="picture-name-{{ picture.id }}"  name="picture-name-{{ picture.id }}" value="{{ picture.name }}" class="picture-name field-L" />
+                        </td>
+                        <td class="bo-table-action">
+                            <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0"
+                                    alt="Supprimer" title="Supprimer" class="clickable delete-picture" />
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input id="slideshow-valid-button" type="submit" class="button" value="Enregistrer" />
+
+        <div class="sep-20"></div>
+
+    </form>
+
+    <!-- Define template to create new row (when uploading new pictures using dropzone) -->
+    <table id="row-template" class="hide">
+        <tbody>
+            <tr>
+                <td class="bo-table-picture"><img src="{{ asset('resources/images/empty.png') }}" alt="" /></td>
+                <td class="bo-table-label">
+                    <input type="hidden" value="" class="picture-id" />
+                    <input type="hidden" value="" class="picture-rank" />
+                    <input type="text" value="" class="picture-name field-L" />
+                </td>
+                <td class="bo-table-action">
+                    <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0"
+                            alt="Supprimer" title="Supprimer" class="clickable delete-picture" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

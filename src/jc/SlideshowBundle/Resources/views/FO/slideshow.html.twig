@@ -1,0 +1,30 @@
+{#
+    Display a specific slideshow with all its pictures.
+    Required :
+    - slideshow : slideshow to display (as Slideshow)
+#}
+
+<h2>{{ slideshow.name }}</h2>
+
+{% if (slideshow.pictureUrl|length > 0) %}
+<img src="{{ slideshow.pictureUrl }}" alt="{{ slideshow.name }}" />
+{% endif %}
+{% if (slideshow.description|length > 0) %}
+    <p>{{ slideshow.description|raw }}</p>
+{% endif %}
+
+<ul id="picture-list">
+{% for picture in slideshow.pictures %}
+    <li>
+        <h3>{{ picture.name }}</h3>
+        <div class="container">
+            <img src="{{ picture.pictureUrl }}" alt="{{ picture.name }}" data-width="{{ picture.width }}" data-height="{{ picture.height }}"/>
+            <span class="picture-button">+</span>
+            <span class="picture-number">{{ loop.index }} / {{ loop.length }}</div>
+        </div>
+        {% if (picture.description|length > 0) %}
+            <p>{{ picture.description|raw }}</p>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
