@@ -24,7 +24,6 @@ $(document).ready(function() {
  */
 function addFileToList(file, response) {
 
-    dump(response);
     if (response.success) {
 
         // Create new row for specified file
