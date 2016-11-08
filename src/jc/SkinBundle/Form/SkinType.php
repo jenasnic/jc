@@ -4,7 +4,7 @@ namespace jc\SkinBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SkinType extends AbstractType {
 
@@ -29,23 +29,13 @@ class SkinType extends AbstractType {
     }
 
     /**
-     *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver) {
-
+    public function configureOptions(OptionsResolver $resolver)
+    {
         $resolver->setDefaults(array(
                 'data_class' => 'jc\SkinBundle\Entity\Skin'
         ));
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getName() {
-
-        return 'jc_skinbundle_skin';
     }
 
     /**
@@ -56,11 +46,15 @@ class SkinType extends AbstractType {
     public function getFileList() {
 
         $fileList = scandir(self::SKIN_FOLDER_PATH);
+        $result = array();
 
         foreach ($fileList as $file) {
 
-            if (! is_dir($file))
-                $result[self::SKIN_FOLDER_PATH . '/' . $file] = $file;
+            $filePath = self::SKIN_FOLDER_PATH . '/' . $file;
+            $fileInfo = pathinfo($filePath);
+
+            if (!is_dir($filePath) && array_key_exists('extension', $fileInfo) && strcasecmp('css', $fileInfo['extension']) == 0)
+                $result[$filePath] = $file;
         }
 
         return $result;

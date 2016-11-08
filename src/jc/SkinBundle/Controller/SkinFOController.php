@@ -2,6 +2,7 @@
 
 namespace jc\SkinBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,10 +13,9 @@ class SkinFOController extends Controller {
      * To use activ skin, add following line in template header :
      * {{ render(controller("jcSkinBundle:SkinFO:display")) }}
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/layout/skin", name="jc_skin_fo")
      */
     public function displayAction() {
-
-        $request = $this->getRequest();
 
         $skinToUse = $this->getDoctrine()->getManager()->getRepository('jcSkinBundle:Skin')->findBy(array('activ' => 1));
 
@@ -24,6 +24,7 @@ class SkinFOController extends Controller {
         else {
 
             $skinUrl = $this->container->get('templating.helper.assets')->getUrl($skinToUse[0]->getCssFile());
+            //$skinUrl = $this->get('templating.helper.assets')->getUrl($skinToUse[0]->getCssFile());
             return new Response('<link rel="stylesheet" type="text/css" href="' . $skinUrl . '" />');
         }
     }

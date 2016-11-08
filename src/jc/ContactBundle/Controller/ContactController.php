@@ -2,20 +2,25 @@
 
 namespace jc\ContactBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use jc\ContactBundle\Model\ContactForm;
 use jc\ContactBundle\Model\ContactFormType;
 
 class ContactController extends Controller {
 
-    public function contactAction() {
+    /**
+     * @Route("/contact", name="jc_contact")
+     */
+    public function contactAction(Request $request) {
 
         $contactForm = $this->createForm(new ContactFormType(), new ContactForm());
-        $request = $this->getRequest();
 
         // If user has submit form => send mail
         if ($request->getMethod() == 'POST') {
-            $contactForm->bind($request);
+
+            $contactForm->handleRequest($request);
 
             if ($contactForm->isValid()) {
                 $sendRequestOK = $this->sendRequestMail($contactForm->getViewData());
@@ -44,11 +49,12 @@ class ContactController extends Controller {
             $message = $contactForm->getMessage();
             $body = "Demande de contact [$mail]\r\n\r\n" . $message;
 
-            $fromMail = $this->container->getParameter('website_mail');
-            $webmasterMail = $this->container->getParameter('webmaster_mail');
+            $contactMail = $this->getParameter('jc_contact.mail');
+            $contactName = $this->getParameter('jc_contact.name');
+            $contactSubject = $this->getParameter('jc_contact.subject');
 
             // Create mail and send it
-            $mailMessage = \Swift_Message::newInstance()->setSubject("[Thé'OTrail] Demande de contact")->setFrom($fromMail, "Thé'OTrail")->setTo($webmasterMail)->setContentType('text/plain')->setBody($body);
+            $mailMessage = \Swift_Message::newInstance()->setSubject("$contactSubject")->setFrom($contactMail, $contactName)->setTo($contactMail)->setContentType('text/plain')->setBody($body);
 
             $this->get('mailer')->send($mailMessage);
 
@@ -65,10 +71,13 @@ class ContactController extends Controller {
 
             $mail = $contactForm->getMail();
             $body = $this->get('templating')->render('jcContactBundle:mail:contact.html.twig');
-            $fromMail = $this->container->getParameter('website_mail');
+
+            $contactMail = $this->getParameter('jc_contact.mail');
+            $contactName = $this->getParameter('jc_contact.name');
+            $contactSubject = $this->getParameter('jc_contact.subject');
 
             // Create mail and send it
-            $mailMessage = \Swift_Message::newInstance()->setSubject("[Thé'OTrail] Contact")->setFrom($fromMail, "Thé'OTrail")->setTo($mail)->setContentType('text/html')->setBody($body);
+            $mailMessage = \Swift_Message::newInstance()->setSubject($contactSubject)->setFrom($contactMail, $contactName)->setTo($mail)->setContentType('text/html')->setBody($body);
 
             $this->get('mailer')->send($mailMessage);
 

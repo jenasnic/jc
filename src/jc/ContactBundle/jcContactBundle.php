@@ -4,6 +4,4 @@ namespace jc\ContactBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class jcContactBundle extends Bundle
-{
-}
+class jcContactBundle extends Bundle {}

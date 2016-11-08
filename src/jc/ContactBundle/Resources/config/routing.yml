@@ -1,4 +1,0 @@
-
-jc_contact_index:
-    path: /contact
-    defaults: { _controller: "jcContactBundle:Contact:contact" }

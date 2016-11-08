@@ -1,7 +1,4 @@
 parameters:
-#    jc_contact.example.class: jc\ContactBundle\Example
-
-services:
-#    jc_contact.example:
-#        class: %jc_contact.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    jc_contact.mail: contact@yopmail.com
+    jc_contact.name: Contact
+    jc_contact.subject: Demande de contact

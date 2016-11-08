@@ -2,21 +2,28 @@
 
 namespace jc\SkinBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use jc\SkinBundle\Entity\Skin;
 use jc\SkinBundle\Form\SkinType;
 
 class SkinBOController extends Controller {
 
+    /**
+     * @Route("/admin/skin/list", name="jc_skin_bo_list")
+     */
     public function listSkinAction() {
 
         $orderedSkinList = $this->getDoctrine()->getManager()->getRepository('jcSkinBundle:Skin')->findBy(array(), array('name' => 'asc'));
         return $this->render('jcSkinBundle:BO:list.html.twig', array('skinList' => $orderedSkinList));
     }
 
-    public function defaultSkinAction() {
+    /**
+     * @Route("/admin/skin/default", name="jc_skin_bo_default")
+     */
+    public function defaultSkinAction(Request $request) {
 
-        $request = $this->getRequest();
         $entityManager = $this->getDoctrine()->getManager();
 
         // Disallow all skins per default
@@ -38,9 +45,11 @@ class SkinBOController extends Controller {
         return $this->redirect($this->generateUrl('jc_skin_bo_list'));
     }
 
-    public function editSkinAction($id) {
+    /**
+     * @Route("/admin/skin/edit/{id}", defaults={"id" = 0}, name="jc_skin_bo_edit")
+     */
+    public function editSkinAction(Request $request, $id) {
 
-        $request = $this->getRequest();
         $entityManager = $this->getDoctrine()->getManager();
 
         $skin = ($id > 0) ? $entityManager->getRepository('jcSkinBundle:Skin')->find($id) : new Skin();
@@ -51,7 +60,7 @@ class SkinBOController extends Controller {
             try {
 
                 $form = $this->createForm(new SkinType(), $skin);
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 if ($form->isValid()) {
 
@@ -75,11 +84,12 @@ class SkinBOController extends Controller {
         return $this->render('jcSkinBundle:BO:edit.html.twig', array('skinToEdit' => $form->createView()));
     }
 
-    public function deleteSkinAction($id) {
+    /**
+     * @Route("/admin/skin/delete/{id}", requirements={"id" = "\d+"}, name="jc_skin_bo_delete")
+     */
+    public function deleteSkinAction(Request $request, $id) {
 
         if ($id > 0) {
-
-            $request = $this->getRequest();
 
             try {
 
