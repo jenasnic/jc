@@ -59,7 +59,7 @@ class SkinBOController extends Controller {
 
             try {
 
-                $form = $this->createForm(new SkinType(), $skin);
+                $form = $this->createForm(SkinType::class, $skin);
                 $form->handleRequest($request);
 
                 if ($form->isValid()) {
@@ -79,7 +79,7 @@ class SkinBOController extends Controller {
             }
         }
         else
-            $form = $this->createForm(new SkinType(), $skin);
+            $form = $this->createForm(SkinType::class, $skin);
 
         return $this->render('jcSkinBundle:BO:edit.html.twig', array('skinToEdit' => $form->createView()));
     }

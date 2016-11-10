@@ -1,0 +1,32 @@
+
+/**********************************/
+/* Specific CSS to configure menu */
+/**********************************/
+
+#bo-preview-menu {
+    background-color: #959595;
+    padding: 10px 0 15px 0;
+    width: 960px;
+}
+
+#bo-preview-menu ul li {
+    background-color: #eee;
+    border-bottom: 5px solid #fff;
+    color: #000;
+    cursor: pointer;
+    float: left;
+    font-size: 14px;
+    height: 18px;
+    list-style: none;
+    margin: 0 0 0 15px;
+    padding: 5px 13px;
+}
+
+#bo-preview-menu ul li.activ {
+    font-weight: bold;
+    background-color: #f1d47b;
+}
+
+#bo-preview-menu ul li:hover {border-bottom: 5px solid #add081;}
+
+#bo-preview-menu ul li.resizing {border-bottom: 5px solid #86bc49;}

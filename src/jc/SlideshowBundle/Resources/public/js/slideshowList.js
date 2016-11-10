@@ -1,6 +1,13 @@
 
 $(document).ready(function() {
 
+    $("#slideshow-list").sortable({
+        update: function(event, ui) {
+            $("#ordered-slideshow-list").val($('#slideshow-list').sortable('serialize'));
+        }
+    });
+    $("#slideshow-list").disableSelection();
+
     $('#create-slideshow-button').on('click', function() {
 
         // Clear field + display popup to create slideshow (enter name) and focus field

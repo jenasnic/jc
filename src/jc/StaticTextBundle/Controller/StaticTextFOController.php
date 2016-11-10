@@ -2,6 +2,7 @@
 
 namespace jc\StaticTextBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -10,6 +11,7 @@ class StaticTextFOController extends Controller {
     /**
      * Allows to include static text in code : {{ render(controller("jcStaticTextBundle:StaticTextFO:display", {'code': 'XXX' })) }}
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/staticText/{code}", name="jc_static_text_fo")
      */
     public function displayAction($code) {
 

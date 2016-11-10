@@ -4,7 +4,10 @@ namespace jc\StaticTextBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class StaticTextType extends AbstractType
 {
@@ -15,27 +18,20 @@ class StaticTextType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array('required' => false))
-            ->add('content', 'textarea', array('required' => false))
-            ->add('code', 'text', array('required' => false))
+            ->add('title', TextType::class, array('required' => false))
+            ->add('content', TextareaType::class, array('required' => false))
+            ->add('published', CheckboxType::class, array('required' => false))
+            ->add('code', TextType::class, array('required' => false))
         ;
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'jc\StaticTextBundle\Entity\StaticText'
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'jc_statictextbundle_statictext';
     }
 }

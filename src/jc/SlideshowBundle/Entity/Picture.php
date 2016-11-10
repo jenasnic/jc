@@ -66,7 +66,7 @@ class Picture
     /**
      * @var jc\SlideshowBundle\Entity\Slideshow
      *
-     * @ORM\ManyToOne(targetEntity="jc\SlideshowBundle\Entity\Slideshow")
+     * @ORM\ManyToOne(targetEntity="jc\SlideshowBundle\Entity\Slideshow", inversedBy="pictures")
      * @ORM\JoinColumn(nullable=false)
      */
     private $slideshow;

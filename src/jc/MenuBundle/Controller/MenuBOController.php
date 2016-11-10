@@ -2,18 +2,22 @@
 
 namespace jc\MenuBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use jc\MenuBundle\Entity\Menu;
 use jc\MenuBundle\Form\MenuType;
 
 class MenuBOController extends Controller {
 
-    public function listMenuAction() {
+    /**
+     * @Route("/admin/menu/list", name="jc_menu_bo_list")
+     */
+    public function listMenuAction(Request $request) {
 
-        $request = $this->getRequest();
         $entityManager = $this->getDoctrine()->getManager();
 
-        // If user has submit form => save new menu order (if necessary)
+        // If user has submit form => save new menu order and menu width (if necessary)
         if ($request->getMethod() == 'POST') {
 
             try {
@@ -22,12 +26,14 @@ class MenuBOController extends Controller {
                 $newOrderedList = $request->request->get('ordered-menu-list');
 
                 if ($newOrderedList != null) {
+
                     $newOrderedList = explode('&', str_replace('menu-list[]=', '', $newOrderedList));
 
                     // Browse each menu and update rank if necessary
                     for($i = 0; $i < count($newOrderedList); $i ++) {
 
                         $menuToUpdate = $entityManager->getRepository('jcMenuBundle:Menu')->find($newOrderedList[$i]);
+
                         if ($menuToUpdate->getRank() != ($i + 1)) {
 
                             $menuToUpdate->setRank($i + 1);
@@ -36,10 +42,33 @@ class MenuBOController extends Controller {
                     }
                 }
 
+                // Get field with new width
+                $newWidthList = $request->request->get('width-menu-list');
+
+                if ($newWidthList != null) {
+
+                    $newWidthList = explode(';', $newWidthList);
+
+                    // Browse each menu and update width if necessary
+                    foreach($newWidthList as $newWidthItem) {
+
+                        // NOTE : Each width item are composed as follow : [ID]:[width]
+                        $newWidthItem = explode(':', $newWidthItem);
+
+                        $menuToUpdate = $entityManager->getRepository('jcMenuBundle:Menu')->find($newWidthItem[0]);
+
+                        if ($menuToUpdate->getWidth() != $newWidthItem[1]) {
+
+                            $menuToUpdate->setWidth($newWidthItem[1]);
+                            $entityManager->persist($menuToUpdate);
+                        }
+                    }
+                }
+
                 $entityManager->flush();
-                $request->getSession()->getFlashBag()->add('bo-log-message', 'Classement des menus OK');
+                $request->getSession()->getFlashBag()->add('bo-log-message', 'Classement et redimensionnement des menus OK');
             }
-            catch (Exception $e) {
+            catch(Exception $e) {
                 $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors du classement des menus');
             }
         }
@@ -49,9 +78,11 @@ class MenuBOController extends Controller {
         return $this->render('jcMenuBundle:BO:list.html.twig', array('menuList' => $orderedMenuList));
     }
 
-    public function editMenuAction($id) {
+    /**
+     * @Route("/admin/menu/edit/{id}", defaults={"id" = 0}, name="jc_menu_bo_edit")
+     */
+    public function editMenuAction(Request $request, $id) {
 
-        $request = $this->getRequest();
         $entityManager = $this->getDoctrine()->getManager();
 
         $menu = ($id > 0) ? $entityManager->getRepository('jcMenuBundle:Menu')->find($id) : new Menu();
@@ -62,13 +93,16 @@ class MenuBOController extends Controller {
             try {
 
                 $form = $this->createForm(new MenuType(), $menu);
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 if ($form->isValid()) {
 
-                    // For new menu => set rank
-                    if ($menu->getId() == null || $menu->getId() == 0)
+                    // For new menu => set rank and default width
+                    if ($menu->getId() == null || $menu->getId() == 0) {
+
                         $menu->setRank($entityManager->getRepository('jcMenuBundle:Menu')->getMaxRank() + 1);
+                        $menu->setWidth(110);
+                    }
 
                     $entityManager->persist($menu);
                     $entityManager->flush();
@@ -80,7 +114,7 @@ class MenuBOController extends Controller {
                 else
                     $request->getSession()->getFlashBag()->add('bo-warning-message', 'Certains champs ne sont pas remplis correctement');
             }
-            catch (Exception $e) {
+            catch(Exception $e) {
                 $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la sauvegarde du menu');
             }
         }
@@ -90,7 +124,10 @@ class MenuBOController extends Controller {
         return $this->render('jcMenuBundle:BO:edit.html.twig', array('menuToEdit' => $form->createView()));
     }
 
-    public function deleteMenuAction($id) {
+    /**
+     * @Route("/admin/menu/delete/{id}", requirements={"id" = "\d+"}, name="jc_menu_bo_delete")
+     */
+    public function deleteMenuAction(Request $request, $id) {
 
         if ($id > 0) {
 
@@ -104,11 +141,11 @@ class MenuBOController extends Controller {
 
                     $entityManager->remove($menuToDelete);
                     $entityManager->flush();
-                    $this->getRequest()->getSession()->getFlashBag()->add('bo-log-message', 'Suppression du menu OK');
+                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Suppression du menu OK');
                 }
             }
-            catch (Exception $e) {
-                $this->getRequest()->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression du menu');
+            catch(Exception $e) {
+                $request()->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression du menu');
             }
         }
 

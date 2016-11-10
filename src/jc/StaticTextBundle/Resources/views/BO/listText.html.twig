@@ -6,6 +6,19 @@
 
 {% extends "::admin.html.twig" %}
 
+{% block header %}
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#text-list").sortable({
+            update: function(event, ui) {
+                $("#ordered-text-list").val($('#text-list').sortable('serialize'));
+            }
+        });
+        $("#text-list").disableSelection();
+    });
+    </script>
+{% endblock %}
+
 {% block body %}
 
     <h1>Gestion des textes statiques</h1>
@@ -15,7 +28,7 @@
     <div class="sep-20"></div>
 
     {# Display all text found #}
-    <table class="bo-table">
+    <table class="bo-table bo-sortable-table">
 
         <thead>
             <tr>
@@ -26,11 +39,11 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody id="text-list">
         {% for text in textList %}
-            <tr{% if loop.index is even %} class="odd"{% endif %}>
+            <tr id="text-list-{{ text.id }}">
                 <td class="bo-table-id">{{ text.id }}</td>
-                <td class="bo-table-label">{{ text.title }}</td>
+                <td class="bo-table-label {% if not text.published %}disabled{% endif %}">{{ text.title }}</td>
                 <td class="bo-table-action">
                     <a href="{{ path('jc_static_text_bo_edit', { 'id': text.id }) }}" >
                         <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
@@ -46,5 +59,13 @@
         </tbody>
 
     </table>
+
+    <div class="sep-20"></div>
+
+    {# Form to save slideshow order #}
+    <form action="{{ path('jc_static_text_bo_list') }}" method="post">
+        <input id="ordered-text-list" name="ordered-text-list" type="hidden" value="" />
+        <input type="submit" value="Enregistrer" class="button" />
+    </form>
 
 {% endblock %}

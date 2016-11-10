@@ -25,7 +25,7 @@ class SlideshowBOController extends Controller {
 
             try {
 
-                // Get field with new menu order
+                // Get field with new slideshow order
                 $newOrderedList = $request->request->get('ordered-slideshow-list');
 
                 if ($newOrderedList != null) {
@@ -86,7 +86,7 @@ class SlideshowBOController extends Controller {
     }
 
     /**
-     * @Route("/admin/slideshow/edit/{id}", defaults={"id" = 0}, name="jc_slideshow_bo_edit")
+     * @Route("/admin/slideshow/edit/{id}", requirements={"id" = "\d+"}, name="jc_slideshow_bo_edit")
      */
     public function editSlideshowAction(Request $request, $id) {
 
@@ -99,7 +99,7 @@ class SlideshowBOController extends Controller {
 
             try {
 
-                $form = $this->createForm(new SlideshowType(), $slideshow);
+                $form = $this->createForm(SlideshowType::class, $slideshow);
                 $form->handleRequest($request);
 
                 // If no picture already loaded nor uploaded picture => add error
@@ -129,7 +129,7 @@ class SlideshowBOController extends Controller {
             }
         }
         else
-            $form = $this->createForm(new SlideshowType(), $slideshow);
+            $form = $this->createForm(SlideshowType::class, $slideshow);
 
         return $this->render('jcSlideshowBundle:BO:editSlideshow.html.twig', array('slideshowToEdit' => $form->createView()));
     }

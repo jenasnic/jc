@@ -1,5 +1,12 @@
 Use this bundle for simple connexion without database user.
 
+1/ Add following lines in 'app/config/routing.yml' :
+    login_check:
+        path: /login_check
+    logout:
+        path: /logout
+
+
 1/ Define security in 'app/config/security.yml' (default password is 'admin') :
 
     encoders:

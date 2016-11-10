@@ -1,4 +1,8 @@
 jc\StaticTextBundle\Entity\StaticText:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: code
+            message: "Ce code est déjà utilisé"
     properties:
         title:
             - NotBlank: 

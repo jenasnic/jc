@@ -36,11 +36,25 @@ class StaticText
     private $content;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=55)
+     * @ORM\Column(name="code", type="string", unique=true, length=55)
      */
     private $code;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rank", type="integer")
+     */
+    private $rank;
 
 
     /**
@@ -100,6 +114,29 @@ class StaticText
     }
 
     /**
+     * Set published
+     *
+     * @param boolean $published
+     * @return StaticText
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
      * Set code
      *
      * @param string $code
@@ -120,5 +157,28 @@ class StaticText
     public function getCode()
     {
         return $this->code;
+    }
+
+    /**
+     * Set rank
+     *
+     * @param string $rank
+     * @return StaticText
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+
+        return $this;
+    }
+
+    /**
+     * Get rank
+     *
+     * @return integer
+     */
+    public function getRank()
+    {
+        return $this->rank;
     }
 }

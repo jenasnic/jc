@@ -15,7 +15,7 @@ class ContactController extends Controller {
      */
     public function contactAction(Request $request) {
 
-        $contactForm = $this->createForm(new ContactFormType(), new ContactForm());
+        $contactForm = $this->createForm(ContactFormType::class, new ContactForm());
 
         // If user has submit form => send mail
         if ($request->getMethod() == 'POST') {

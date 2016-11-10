@@ -38,10 +38,16 @@ class Menu
     /**
      * @var integer
      *
+     * @ORM\Column(name="width", type="integer")
+     */
+    private $width;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="rank", type="integer")
      */
     private $rank;
-
 
     /**
      * Set id
@@ -110,6 +116,29 @@ class Menu
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set width
+     *
+     * @param integer $width
+     * @return Menu
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Get width
+     *
+     * @return integer
+     */
+    public function getWidth()
+    {
+        return $this->width;
     }
 
     /**

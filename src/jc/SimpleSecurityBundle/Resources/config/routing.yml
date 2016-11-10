@@ -1,8 +1,0 @@
-
-login:
-    pattern: /login
-    defaults: { _controller: "jcSimpleSecurityBundle:SimpleSecurity:login" }
-login_check:
-    pattern: /login_check
-logout:
-    pattern: /logout

@@ -20,7 +20,7 @@
     <div class="sep-20"></div>
 
     {# Display all slideshow found #}
-    <table class="bo-table">
+    <table class="bo-table bo-sortable-table">
 
         <thead>
             <tr>
@@ -32,9 +32,9 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody id="slideshow-list">
         {% for slideshow in slideshowList %}
-            <tr{% if loop.index is even %} class="odd"{% endif %}>
+            <tr id="slideshow-list-{{ slideshow.id }}">
                 <td class="bo-table-id">{{ slideshow.id }}</td>
                 <td class="bo-table-label">{{ slideshow.name }}</td>
                 <td class="bo-table-label">{{ slideshow.date|date("d/m/Y") }}</td>
@@ -53,6 +53,14 @@
         </tbody>
 
     </table>
+
+    <div class="sep-20"></div>
+
+    {# Form to save slideshow order #}
+    <form action="{{ path('jc_slideshow_bo_list') }}" method="post">
+        <input id="ordered-slideshow-list" name="ordered-slideshow-list" type="hidden" value="" />
+        <input type="submit" value="Enregistrer" class="button" />
+    </form>
 
     <!-- Popup to create new slideshow -->
     <div id="create-slideshow-popup" class="bpopup hide">

@@ -5,6 +5,9 @@ namespace jc\SkinBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class SkinType extends AbstractType {
 
@@ -17,15 +20,12 @@ class SkinType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        $builder->add('name', 'text', array(
-                'required' => false
-        ))->add('cssFile', 'choice', array(
-                'required' => false,
-                'empty_value' => '-- Aucun --',
-                'choices' => $this->getFileList()
-        ))->add('activ', 'checkbox', array(
-                'required' => false
-        ));
+        $builder->add('name', TextType::class, array('required' => false))
+                ->add('cssFile', ChoiceType::class, array(
+                        'required' => false,
+                        'empty_value' => '-- Aucun --',
+                        'choices' => $this->getFileList()))
+                ->add('activ', CheckboxType::class, array('required' => false));
     }
 
     /**

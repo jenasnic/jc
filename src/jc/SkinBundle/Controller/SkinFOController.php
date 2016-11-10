@@ -23,8 +23,7 @@ class SkinFOController extends Controller {
             return new Response('<!-- No skin to use -->');
         else {
 
-            $skinUrl = $this->container->get('templating.helper.assets')->getUrl($skinToUse[0]->getCssFile());
-            //$skinUrl = $this->get('templating.helper.assets')->getUrl($skinToUse[0]->getCssFile());
+            $skinUrl = $this->get('templating.helper.assets')->getUrl($skinToUse[0]->getCssFile());
             return new Response('<link rel="stylesheet" type="text/css" href="' . $skinUrl . '" />');
         }
     }

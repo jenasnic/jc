@@ -7,9 +7,9 @@
     - rootUri : URI path of initial request as String (due to inclusion in TWIG template => sub request...).
 #}
 
-<ul>
+<ul id="menu">
 {% for menu in menuList %}
-    <li class="{{ (menu.url == rootCurrentPath or menu.url == rootUri) ? 'activ' : '' }}">
+    <li class="{{ (menu.url == rootCurrentPath or menu.url == rootUri) ? 'activ' : '' }}" style="width: {{ menu.width }}px;">
         <a href="{{ menu.url }}">{{ menu.name }}</a>
     </li>
 {% endfor %}

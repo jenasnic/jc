@@ -2,6 +2,9 @@
     Allows to edit static text for website.
     Required :
     - textToEdit : Form element based on StaticTextType object (i.e. text to edit).
+      WARNING : textToEdit can be null in case of edition by code (unmatching code) => no form will be displayed...
+    - editByCode : TRUE if user edit text using code (specific display), FALSE either (edition by ID).
+    - textList : list of all text available (as StaticText) => .
 #}
 
 {% extends "::admin.html.twig" %}
@@ -13,7 +16,7 @@
     <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.cleditor.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#jc_statictextbundle_statictext_content").cleditor(global.cleditorConfig);
+            $("#static_text_content").cleditor(global.cleditorConfig);
         });
     </script>
 
@@ -21,40 +24,65 @@
 
 {% block body %}
 
-    {% if (textToEdit.vars.value.id) %}
-    <h1>Modification du texte</h1>
-    {% else %}
-    <h1>Ajout d'un texte</h1>
+    {% if (editByCode) %}
+        <div class="sep-20"></div>
+        <div class="bo-tab-header">
+            {% for text in textList %}
+                {% set isActiv = (textToEdit is not null) and (textToEdit.vars.value.code == text.code) ? 1 : 0 %}
+                <a href="{{ path('jc_static_text_bo_config', { 'code' : text.code }) }}" class="{{ isActiv ? 'activ' : '' }}">{{ text.title }}</a>
+            {% endfor %}
+        </div>
+        <div class="sep-20"></div>
     {% endif %}
 
-    <form action="{{ path('jc_static_text_bo_edit', { 'id': textToEdit.vars.value.id }) }}" method="post" {{ form_enctype(textToEdit) }}>
+    {% if (textToEdit is not null) %}
 
-        <div class="field-set">
+        {% if (textToEdit.vars.value.id) %}
+        <h1>Modification du texte</h1>
+        {% else %}
+        <h1>Ajout d'un texte</h1>
+        {% endif %}
 
-            {{ form_label(textToEdit.title, "Titre") }}
-            {{ form_widget(textToEdit.title, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
-            {{ form_errors(textToEdit.title) }}
+        {% set pathAction = (editByCode) ? path('jc_static_text_bo_config', { 'code': textToEdit.vars.value.code }) : path('jc_static_text_bo_edit', { 'id': textToEdit.vars.value.id }) %}
 
-            <div class="field-set-separator"></div>
+        <form action="{{ pathAction }}" method="post" {{ form_enctype(textToEdit) }}>
 
-            {{ form_label(textToEdit.content, "Contenu") }}
-            {{ form_widget(textToEdit.content) }}
-            {{ form_errors(textToEdit.content) }}
+            <div class="field-set">
 
-            <div class="field-set-separator"></div>
+                <div class="{% if (editByCode) %}hide{% endif %}">
 
-            {{ form_label(textToEdit.code, "Code") }}
-            {{ form_widget(textToEdit.code, { 'attr': {'class': 'field-L'} }) }}
-            {{ form_errors(textToEdit.code) }}
+                    {{ form_label(textToEdit.title, "Titre") }}
+                    {{ form_widget(textToEdit.title, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+                    {{ form_errors(textToEdit.title) }}
+                    <div class="sep-10"></div>
 
-            {{ form_rest(textToEdit) }}
+                    {{ form_label(textToEdit.code, "Code") }}
+                    {{ form_widget(textToEdit.code, { 'attr': {'class': 'field-L'} }) }}
+                    {{ form_errors(textToEdit.code) }}
+                    <div class="sep-10"></div>
 
-        </div>
+                    {{ form_widget(textToEdit.published) }}
+                    {{ form_label(textToEdit.published, "Publication") }}
+                    {{ form_errors(textToEdit.published) }}
 
-        <div class="sep-20"></div>
+                    <div class="field-set-separator"></div>
 
-        <input type="submit" class="button" value="Enregistrer" />
+                </div>
 
-    </form>
+                {{ form_label(textToEdit.content, "Contenu") }}
+                {{ form_widget(textToEdit.content) }}
+                {{ form_errors(textToEdit.content) }}
+
+                {{ form_rest(textToEdit) }}
+
+            </div>
+
+            <div class="sep-20"></div>
+
+            <input type="submit" class="button" value="Enregistrer" />
+
+        </form>
+
+    {% endif %}
 
 {% endblock %}

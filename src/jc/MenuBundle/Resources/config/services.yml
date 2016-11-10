@@ -1,7 +1,0 @@
-parameters:
-#    jc_menu.example.class: jc\MenuBundle\Example
-
-services:
-#    jc_menu.example:
-#        class: %jc_menu.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
