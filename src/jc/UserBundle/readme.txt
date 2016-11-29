@@ -54,3 +54,17 @@ NOTE : Prefix mail is optionnal (can be empty). It is used in mail's subject : '
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_USER }
+
+
+4/ To use several providers :
+
+    providers:
+        chain_provider:
+            chain:
+                providers: [provider_1, provider_2]
+        provider_1:
+            ...
+        provider_2:
+            ...
+
+Use chain provider in firewalls > main > provider
