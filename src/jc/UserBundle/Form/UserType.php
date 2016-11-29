@@ -4,7 +4,11 @@ namespace jc\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use jc\UserBundle\Entity\Role;
 
 class UserType extends AbstractType
 {
@@ -15,34 +19,27 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', 'text', array('required' => false))
-            ->add('lastname', 'text', array('required' => false))
-            ->add('mail', 'text', array('required' => false))
-            ->add('username', 'text', array('required' => false))
-            ->add('password', 'hidden')
-            ->add('internalRoles', 'entity', array(
+            ->add('firstname', TextType::class, array('required' => false))
+            ->add('lastname', TextType::class, array('required' => false))
+            ->add('mail', TextType::class, array('required' => false))
+            ->add('username', TextType::class, array('required' => false))
+            ->add('password', PasswordType::class, array('required' => false))
+            ->add('confirmPassword', PasswordType::class, array('required' => false))
+            ->add('internalRoles', EntityType::class, array(
                 'required' => false,
-                'class' => 'jcUserBundle:Role',
+                'class' => Role::class,
                 'property' => 'name',
                 'multiple' => true)
             );
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'jc\UserBundle\Entity\User'
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'jc_userbundle_user';
     }
 }

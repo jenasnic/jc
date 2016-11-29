@@ -40,14 +40,14 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255)
+     * @ORM\Column(name="mail", type="string", unique=true, length=255)
      */
     private $mail;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=55, unique=true)
+     * @ORM\Column(name="username", type="string", unique=true, length=55)
      */
     private $username;
 
@@ -68,6 +68,11 @@ class User implements UserInterface
      * )
      */
     private $internalRoles;
+
+    /**
+     * @var string
+     */
+    private $confirmPassword;
 
 
     public function __construct()
@@ -258,6 +263,29 @@ class User implements UserInterface
             $result[] = $internalRole->getCode();
 
         return $result;
+    }
+
+    /**
+     * Set confirmation password
+     *
+     * @param string $confirmPassword
+     * @return User
+     */
+    public function setConfirmPassword($confirmPassword)
+    {
+        $this->confirmPassword = $confirmPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get confirmation password
+     *
+     * @return string
+     */
+    public function getConfirmPassword()
+    {
+        return $this->confirmPassword;
     }
 
     /**

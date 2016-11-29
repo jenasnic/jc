@@ -4,14 +4,22 @@ It allows user to manage its own account and to ask new password if needed (forg
 
 WARNING 1 : This bundle depends on ToolBundle.
 
-1/ Define three parameters 'prefix_mail', 'from_mail' and 'from_name' in '/app/config/parameters.yml'
+1/ Add following lines in 'app/config/routing.yml' :
+    login_check:
+        path: /login_check
+    logout:
+        path: /logout
+
+
+2/ Configure mail parameters in 'Resources/config/services.yml'
     prefix_mail: JC
     from_mail: jc@aequum.fr
     from_name: JC
 
-NOTE : Prefix mail is used in mail's subject : '[prefix] - subject'
+NOTE : Prefix mail is optionnal (can be empty). It is used in mail's subject : '[prefix] - subject'
 
-2/ Define security in 'app/config/security.yml' :
+
+3/ Define security in 'app/config/security.yml' :
 
     encoders:
         Symfony\Component\Security\Core\User\User: sha512

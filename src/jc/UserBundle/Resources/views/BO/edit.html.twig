@@ -6,6 +6,24 @@
 
 {% extends "::admin.html.twig" %}
 
+{% block header %}
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#generate-password').on('change', function() {
+            if ($(this).prop('checked')) {
+                $('#password-area').hide();
+                $('#generate-area').show();
+            }
+            else {
+                $('#generate-area').hide();
+                $('#password-area').show();
+            }
+        });
+        $('#generate-password').change();
+    });
+    </script>
+{% endblock %}
+
 {% block body %}
 
     {% form_theme userToEdit ':forms:custom_errors.html.twig' %}
@@ -50,9 +68,30 @@
 
             <div class="field-set-separator"></div>
 
-            <input id="send-account" name="send-account" type="checkbox"><label for="send-account">Envoyer le compte à l'utilisateur</label>
-            <span class="comment"><strong>ATTENTION :</strong> Si vous cochez cette option, un nouveau mot de passe sera généré pour cet utilisateur 
-            et un mail lui sera envoyé avec ses informations de connexion.</span>
+            <input id="generate-password" name="generate-password" type="checkbox"><label for="generate-password">Génération mot de passe</label>
+            <div id="generate-area">
+                <span class="comment"><strong>NOTE :</strong> Si vous cochez cette option, un nouveau mot de passe sera généré automatiquement pour cet utilisateur 
+                et un mail lui sera envoyé avec ses informations de connexion.</span>
+            </div>
+
+            <div id="password-area">
+
+                {% if (userToEdit.vars.value.id) %}
+                <div class="sep-10"></div>
+                Si vous ne souhaitez pas modifier votre mot de passe, laissez les champs ci-dessous vides.
+                <span class="comment"><strong>NOTE :</strong> Le mot de passe doit contenir au moins 6 caractères et 2 types de caractères différents (minuscule, majuscule, chiffre).</span>
+                {% endif %}
+
+                <div class="sep-10"></div>
+                {{ form_label(userToEdit.password, "Mot de passe") }}
+                {{ form_widget(userToEdit.password, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+                {{ form_errors(userToEdit.password) }}
+                <div class="sep-10"></div>
+                {{ form_label(userToEdit.confirmPassword, "Confirmation du mot de passe") }}
+                {{ form_widget(userToEdit.confirmPassword, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+                {{ form_errors(userToEdit.confirmPassword) }}
+
+            </div>
 
             {{ form_rest(userToEdit) }}
 

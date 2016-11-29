@@ -12,7 +12,9 @@ CREATE TABLE `user` (
   `username` varchar(55) NOT NULL,
   `password` varchar(255) NOT NULL,
   `salt` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mail` (`mail`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -25,7 +27,8 @@ CREATE TABLE `role` (
   `code` varchar(55) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `comment` text,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

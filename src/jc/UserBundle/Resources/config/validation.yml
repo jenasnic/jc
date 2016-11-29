@@ -1,4 +1,11 @@
 jc\UserBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: mail
+            message: "Ce mail est déjà utilisé"
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: username
+            message: "Ce login est déjà utilisé"
     properties:
         firstname:
             - NotBlank: 
@@ -26,6 +33,25 @@ jc\UserBundle\Entity\User:
             - Length:
                 max: 55
                 maxMessage: "Ce champ est limité à 55 caractères"
+
+jc\UserBundle\Entity\Role:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: code
+            message: "Ce code est déjà utilisé"
+    properties:
+        code:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 55 caractères"
+        name:
+            - NotBlank: 
+                message: "Ce champ est obligatoire"
+            - Length:
+                max: 255
+                maxMessage: "Ce champ est limité à 255 caractères"
 
 jc\UserBundle\Model\AccountInfo:
     properties:

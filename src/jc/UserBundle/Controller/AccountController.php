@@ -2,19 +2,23 @@
 
 namespace jc\UserBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use jc\UserBundle\Model\AccountInfo;
 use jc\UserBundle\Form\AccountInfoType;
 use jc\ToolBundle\Util\ValidateUtil;
 use jc\ToolBundle\Util\PasswordUtil;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
 
 class AccountController extends Controller {
 
-    public function accountAction() {
+    /**
+     * @Route("/user/account", name="jc_user_account")
+     */
+    public function accountAction(Request $request) {
 
         $loggedUser = $this->getUser();
-        $request = $this->getRequest();
 
         $accountInfo = new AccountInfo();
 
@@ -26,19 +30,19 @@ class AccountController extends Controller {
                 $entityManager = $this->getDoctrine()->getManager();
 
                 $form = $this->createForm(new AccountInfoType(), $accountInfo);
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 // If password changed => check password security + password confirmation
                 if (strlen($accountInfo->getPassword()) > 0) {
 
-                    if (! ValidateUtil::checkPassword($accountInfo->getPassword(), 1))
+                    if (!ValidateUtil::checkPassword($accountInfo->getPassword(), 1))
                         $form->get('password')->addError(new FormError("Le mot de passe n'est pas assez fort"));
                     else if (strcmp($accountInfo->getPassword(), $accountInfo->getConfirmPassword()) != 0)
                         $form->get('confirmPassword')->addError(new FormError("La confirmation du mot de passe n'est pas correcte"));
                 }
 
                 // Check mail unicity
-                if (! $entityManager->getRepository('jcUserBundle:User')->checkMailForUser($accountInfo->getMail(), $loggedUser->getId()))
+                if (!$entityManager->getRepository('jcUserBundle:User')->checkMailForUser($accountInfo->getMail(), $loggedUser->getId()))
                     $form->get('mail')->addError(new FormError("Ce mail est déjà utilisé"));
 
                 if ($form->isValid()) {
@@ -55,7 +59,7 @@ class AccountController extends Controller {
                     if (strlen($accountInfo->getPassword()) > 0)
                         $user->setPassword(PasswordUtil::encodePassword($accountInfo->getPassword()));
 
-                        // Save User object in database
+                    // Save User object in database
                     $entityManager->persist($user);
                     $entityManager->flush();
 
@@ -82,16 +86,17 @@ class AccountController extends Controller {
         ));
     }
 
-    public function passwordAction() {
-
-        $request = $this->getRequest();
+    /**
+     * @Route("/password", name="jc_user_password")
+     */
+    public function passwordAction(Request $request) {
 
         // If user has submit form => send new password by mail...
         if ($request->getMethod() == 'POST') {
 
             $mailAddress = $request->request->get('mail');
 
-            if (! ValidateUtil::checkMail($mailAddress)) {
+            if (!ValidateUtil::checkMail($mailAddress)) {
                 $request->getSession()->getFlashBag()->add('popup-message', 'Le mail indiqué n\'est pas valide');
                 return $this->render('jcUserBundle:FO:password.html.twig');
             }

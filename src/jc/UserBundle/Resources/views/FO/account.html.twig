@@ -10,8 +10,11 @@
 
 <h1>Mon compte</h1>
 
+<div class="sep-20"></div>
 Bonjour <strong>{{ app.user.firstname }} {{ app.user.lastname }}</strong>,
+<div class="sep-5"></div>
 <p>Vous pouvez mettre à jour vos informations personnelles.</p>
+<div class="sep-20"></div>
 
 <form action="{{ path('jc_user_account') }}" method="post" {{ form_enctype(accountInfo) }}>
 
@@ -35,6 +38,8 @@ Bonjour <strong>{{ app.user.firstname }} {{ app.user.lastname }}</strong>,
 
     <p>Si vous ne souhaitez pas modifier votre mot de passe, laissez les champs ci-dessous vides.</p>
     <span class="f-i11"><strong>NOTE :</strong> Le mot de passe doit contenir au moins 6 caractères et 2 types de caractères différents (minuscule, majuscule, chiffre)</span>
+
+    <div class="sep-20"></div>
 
     {{ form_label(accountInfo.password, "Mot de passe", {'label_attr': {'class': 'password'}}) }}
     {{ form_widget(accountInfo.password, { 'max_length' : '255' }) }}
