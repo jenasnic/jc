@@ -15,7 +15,7 @@ class SkinBOController extends Controller {
      */
     public function listSkinAction() {
 
-        $orderedSkinList = $this->getDoctrine()->getManager()->getRepository('jcSkinBundle:Skin')->findBy(array(), array('name' => 'asc'));
+        $orderedSkinList = $this->getDoctrine()->getManager()->getRepository(Skin::class)->findBy(array(), array('name' => 'asc'));
         return $this->render('jcSkinBundle:BO:list.html.twig', array('skinList' => $orderedSkinList));
     }
 
@@ -27,14 +27,14 @@ class SkinBOController extends Controller {
         $entityManager = $this->getDoctrine()->getManager();
 
         // Disallow all skins per default
-        $entityManager->getRepository('jcSkinBundle:Skin')->disallowDefaultSkin();
+        $entityManager->getRepository(Skin::class)->disallowDefaultSkin();
 
         $id = $request->get('skin-id');
 
         // Set default skin if exist
         if ($id > 0) {
 
-            $skin = $entityManager->getRepository('jcSkinBundle:Skin')->find($id);
+            $skin = $entityManager->getRepository(Skin::class)->find($id);
             $skin->setActiv(true);
 
             $entityManager->persist($skin);
@@ -52,7 +52,7 @@ class SkinBOController extends Controller {
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $skin = ($id > 0) ? $entityManager->getRepository('jcSkinBundle:Skin')->find($id) : new Skin();
+        $skin = ($id > 0) ? $entityManager->getRepository(Skin::class)->find($id) : new Skin();
 
         // If user has submit form => save skin
         if ($request->getMethod() == 'POST') {
@@ -94,7 +94,7 @@ class SkinBOController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $skinToDelete = $entityManager->getRepository('jcSkinBundle:Skin')->find($id);
+                $skinToDelete = $entityManager->getRepository(Skin::class)->find($id);
 
                 // If skin found => delete it
                 if ($skinToDelete != null) {

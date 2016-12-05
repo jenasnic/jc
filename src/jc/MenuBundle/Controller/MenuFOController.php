@@ -5,6 +5,7 @@ namespace jc\MenuBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use jc\MenuBundle\Entity\Menu;
 
 class MenuFOController extends Controller {
 
@@ -13,7 +14,7 @@ class MenuFOController extends Controller {
      */
     public function displayAction(Request $request) {
 
-        $orderedMenuList = $this->getDoctrine()->getManager()->getRepository('jcMenuBundle:Menu')->findBy(array(), array('rank' => 'asc'));
+        $orderedMenuList = $this->getDoctrine()->getManager()->getRepository(Menu::class)->findBy(array(), array('rank' => 'asc'));
 
         return $this->render('jcMenuBundle:FO:menu.html.twig', array(
                 'menuList' => $orderedMenuList,

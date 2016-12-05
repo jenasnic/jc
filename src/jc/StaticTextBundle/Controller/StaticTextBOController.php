@@ -31,7 +31,7 @@ class StaticTextBOController extends Controller {
                     // Browse each text and update rank if necessary
                     for($i = 0; $i < count($newOrderedList); $i ++) {
 
-                        $textToUpdate = $entityManager->getRepository('jcStaticTextBundle:StaticText')->find($newOrderedList[$i]);
+                        $textToUpdate = $entityManager->getRepository(StaticText::class)->find($newOrderedList[$i]);
                         if ($textToUpdate->getRank() != ($i + 1)) {
 
                             $textToUpdate->setRank($i + 1);
@@ -48,7 +48,7 @@ class StaticTextBOController extends Controller {
             }
         }
 
-        $textList = $this->getDoctrine()->getManager()->getRepository('jcStaticTextBundle:StaticText')->findBy(array(), array('rank' => 'asc'));
+        $textList = $this->getDoctrine()->getManager()->getRepository(StaticText::class)->findBy(array(), array('rank' => 'asc'));
         return $this->render('jcStaticTextBundle:BO:listText.html.twig', array('textList' => $textList));
     }
 
@@ -61,7 +61,7 @@ class StaticTextBOController extends Controller {
 
         if (strlen($code) > 0) {
 
-            $matchingTextList = $this->getDoctrine()->getManager()->getRepository('jcStaticTextBundle:StaticText')->findBy(array('code' => $code));
+            $matchingTextList = $this->getDoctrine()->getManager()->getRepository(StaticText::class)->findBy(array('code' => $code));
             if (count($matchingTextList) == 1)
                 $staticTextIdToEdit = $matchingTextList[0]->getId();
             else
@@ -81,13 +81,13 @@ class StaticTextBOController extends Controller {
         // In case of edition by code => load static text list
         if ($editByCode) {
 
-            $staticTextList = $entityManager->getRepository('jcStaticTextBundle:StaticText')->findBy(array('published' => true), array('rank' => 'asc'));
-            $staticText = ($id > 0) ? $entityManager->getRepository('jcStaticTextBundle:StaticText')->find($id) : null;
+            $staticTextList = $entityManager->getRepository(StaticText::class)->findBy(array('published' => true), array('rank' => 'asc'));
+            $staticText = ($id > 0) ? $entityManager->getRepository(StaticText::class)->find($id) : null;
         }
         else {
 
             $staticTextList = null;
-            $staticText = ($id > 0) ? $entityManager->getRepository('jcStaticTextBundle:StaticText')->find($id) : new StaticText();
+            $staticText = ($id > 0) ? $entityManager->getRepository(StaticText::class)->find($id) : new StaticText();
         }
 
         // If user has submit form => save text
@@ -102,11 +102,11 @@ class StaticTextBOController extends Controller {
 
                     // For new static text => set rank
                     if ($staticText->getId() == null || $staticText->getId() == 0)
-                        $staticText->setRank($entityManager->getRepository('jcStaticTextBundle:StaticText')->getMaxRank() + 1);
+                        $staticText->setRank($entityManager->getRepository(StaticText::class)->getMaxRank() + 1);
 
                     $entityManager->persist($staticText);
                     $entityManager->flush();
-                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Sauvegarde du texte OK');
+                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Sauvegarde OK');
 
                     // Custom implementation when editing by ID (not by code) => for full admin only ;-)
                     if (!$editByCode)
@@ -116,7 +116,7 @@ class StaticTextBOController extends Controller {
                     $request->getSession()->getFlashBag()->add('bo-warning-message', 'Certains champs ne sont pas remplis correctement');
             }
             catch (Exception $e) {
-                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la sauvegarde du texte');
+                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la sauvegarde');
             }
         }
         else
@@ -140,18 +140,18 @@ class StaticTextBOController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $textToDelete = $entityManager->getRepository('jcStaticTextBundle:StaticText')->find($id);
+                $textToDelete = $entityManager->getRepository(StaticText::class)->find($id);
 
                 // If text found => delete it
                 if ($textToDelete != null) {
 
                     $entityManager->remove($textToDelete);
                     $entityManager->flush();
-                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Suppression du texte OK');
+                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Suppression OK');
                 }
             }
             catch (Exception $e) {
-                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression du texte');
+                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression');
             }
         }
 

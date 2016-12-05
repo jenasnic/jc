@@ -32,7 +32,7 @@ class MenuBOController extends Controller {
                     // Browse each menu and update rank if necessary
                     for($i = 0; $i < count($newOrderedList); $i ++) {
 
-                        $menuToUpdate = $entityManager->getRepository('jcMenuBundle:Menu')->find($newOrderedList[$i]);
+                        $menuToUpdate = $entityManager->getRepository(Menu::class)->find($newOrderedList[$i]);
 
                         if ($menuToUpdate->getRank() != ($i + 1)) {
 
@@ -55,7 +55,7 @@ class MenuBOController extends Controller {
                         // NOTE : Each width item are composed as follow : [ID]:[width]
                         $newWidthItem = explode(':', $newWidthItem);
 
-                        $menuToUpdate = $entityManager->getRepository('jcMenuBundle:Menu')->find($newWidthItem[0]);
+                        $menuToUpdate = $entityManager->getRepository(Menu::class)->find($newWidthItem[0]);
 
                         if ($menuToUpdate->getWidth() != $newWidthItem[1]) {
 
@@ -73,7 +73,7 @@ class MenuBOController extends Controller {
             }
         }
 
-        $orderedMenuList = $entityManager->getRepository('jcMenuBundle:Menu')->findBy(array(), array('rank' => 'asc'));
+        $orderedMenuList = $entityManager->getRepository(Menu::class)->findBy(array(), array('rank' => 'asc'));
 
         return $this->render('jcMenuBundle:BO:list.html.twig', array('menuList' => $orderedMenuList));
     }
@@ -85,7 +85,7 @@ class MenuBOController extends Controller {
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $menu = ($id > 0) ? $entityManager->getRepository('jcMenuBundle:Menu')->find($id) : new Menu();
+        $menu = ($id > 0) ? $entityManager->getRepository(Menu::class)->find($id) : new Menu();
 
         // If user has submit form => save menu
         if ($request->getMethod() == 'POST') {
@@ -100,7 +100,7 @@ class MenuBOController extends Controller {
                     // For new menu => set rank and default width
                     if ($menu->getId() == null || $menu->getId() == 0) {
 
-                        $menu->setRank($entityManager->getRepository('jcMenuBundle:Menu')->getMaxRank() + 1);
+                        $menu->setRank($entityManager->getRepository(Menu::class)->getMaxRank() + 1);
                         $menu->setWidth(110);
                     }
 
@@ -134,7 +134,7 @@ class MenuBOController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $menuToDelete = $entityManager->getRepository('jcMenuBundle:Menu')->find($id);
+                $menuToDelete = $entityManager->getRepository(Menu::class)->find($id);
 
                 // If menu found => delete it
                 if ($menuToDelete != null) {

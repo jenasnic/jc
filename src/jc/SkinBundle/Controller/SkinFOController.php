@@ -5,6 +5,7 @@ namespace jc\SkinBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use jc\SkinBundle\Entity\Skin;
 
 class SkinFOController extends Controller {
 
@@ -17,7 +18,7 @@ class SkinFOController extends Controller {
      */
     public function displayAction() {
 
-        $skinToUse = $this->getDoctrine()->getManager()->getRepository('jcSkinBundle:Skin')->findBy(array('activ' => 1));
+        $skinToUse = $this->getDoctrine()->getManager()->getRepository(Skin::class)->findBy(array('activ' => 1));
 
         if (count($skinToUse) != 1)
             return new Response('<!-- No skin to use -->');

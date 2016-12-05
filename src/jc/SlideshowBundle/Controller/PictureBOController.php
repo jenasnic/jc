@@ -25,9 +25,9 @@ class PictureBOController extends Controller {
 
             // Set slideshow + rank
             $slideshowId = $request->request->get('slideshowId');
-            $slideshow = $entityManager->getRepository('jcSlideshowBundle:Slideshow')->find($slideshowId);
+            $slideshow = $entityManager->getRepository(Slideshow::class)->find($slideshowId);
             $picture->setSlideshow($slideshow);
-            $picture->setRank($entityManager->getRepository('jcSlideshowBundle:Picture')->getMaxRankForSlideshow($slideshow) + 1);
+            $picture->setRank($entityManager->getRepository(Picture::class)->getMaxRankForSlideshow($slideshow) + 1);
 
             // Process file upload
             $file = $request->files->get('file');
@@ -81,7 +81,7 @@ class PictureBOController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $pictureToDelete = $entityManager->getRepository('jcSlideshowBundle:Picture')->find($pictureId);
+                $pictureToDelete = $entityManager->getRepository(Picture::class)->find($pictureId);
 
                 // If picture found => delete it
                 if ($pictureToDelete != null) {

@@ -5,7 +5,6 @@ namespace jc\SlideshowBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Form\FormError;
 use jc\SlideshowBundle\Entity\Slideshow;
 use jc\SlideshowBundle\Form\SlideshowType;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,7 +33,7 @@ class SlideshowBOController extends Controller {
                     // Browse each slideshow and update rank if necessary
                     for($i = 0; $i < count($newOrderedList); $i ++) {
 
-                        $slideshowToUpdate = $entityManager->getRepository('jcSlideshowBundle:Slideshow')->find($newOrderedList[$i]);
+                        $slideshowToUpdate = $entityManager->getRepository(Slideshow::class)->find($newOrderedList[$i]);
                         if ($slideshowToUpdate->getRank() != ($i + 1)) {
 
                             $slideshowToUpdate->setRank($i + 1);
@@ -51,7 +50,7 @@ class SlideshowBOController extends Controller {
             }
         }
 
-        $slideshowList = $this->getDoctrine()->getManager()->getRepository('jcSlideshowBundle:Slideshow')->findBy(array(), array('rank' => 'asc'));
+        $slideshowList = $entityManager->getRepository(Slideshow::class)->findBy(array(), array('rank' => 'asc'));
         return $this->render('jcSlideshowBundle:BO:listSlideshow.html.twig', array('slideshowList' => $slideshowList));
     }
 
@@ -69,7 +68,7 @@ class SlideshowBOController extends Controller {
             $slideshowToCreate = new Slideshow();
             $slideshowToCreate->setName($name);
             $slideshowToCreate->setDate(new \DateTime());
-            $slideshowToCreate->setRank($entityManager->getRepository('jcSlideshowBundle:Slideshow')->getMaxRank() + 1);
+            $slideshowToCreate->setRank($entityManager->getRepository(Slideshow::class)->getMaxRank() + 1);
 
             $entityManager->persist($slideshowToCreate);
             $entityManager->flush();
@@ -92,7 +91,7 @@ class SlideshowBOController extends Controller {
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $slideshow = $entityManager->getRepository('jcSlideshowBundle:Slideshow')->find($id);
+        $slideshow = $entityManager->getRepository(Slideshow::class)->find($id);
 
         // If user has submit form => save slideshow
         if ($request->getMethod() == 'POST') {
@@ -144,7 +143,7 @@ class SlideshowBOController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $slideshowToDelete = $entityManager->getRepository('jcSlideshowBundle:Slideshow')->find($id);
+                $slideshowToDelete = $entityManager->getRepository(Slideshow::class)->find($id);
 
                 // If slideshow found => delete it
                 if ($slideshowToDelete != null) {

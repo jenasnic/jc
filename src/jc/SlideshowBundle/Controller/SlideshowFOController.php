@@ -15,12 +15,12 @@ class SlideshowFOController extends Controller {
 
         if ($id == 0) {
 
-            $slideshowList = $this->getDoctrine()->getManager()->getRepository('jcSlideshowBundle:Slideshow')->findBy(array(), array('rank' => 'asc'));
+            $slideshowList = $this->getDoctrine()->getManager()->getRepository(Slideshow::class)->findBy(array(), array('rank' => 'asc'));
             return $this->render('jcSlideshowBundle:FO:index.html.twig', array('slideshowList' => $slideshowList));
         }
         else {
 
-            $slideshow = $this->getDoctrine()->getManager()->getRepository('jcSlideshowBundle:Slideshow')->find($id);
+            $slideshow = $this->getDoctrine()->getManager()->getRepository(Slideshow::class)->find($id);
             return $this->render('jcSlideshowBundle:FO:slideshow.html.twig', array('slideshow' => $slideshow));
         }
     }
