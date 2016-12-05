@@ -1,0 +1,36 @@
+
+#quizz {position: relative;}
+
+#response-list {
+    display: block;
+    margin: 0 auto;
+    width: 940px;
+    /*height: 340px;*/
+}
+
+#response-list li {
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 20px;
+    width: 235px;
+}
+
+div.quizz-picture {
+    position: absolute;
+    display: none;
+}
+
+div.quizz-picture-size-1 {background: url('images/picture-quizz-1.png') no-repeat; width: 30px; height: 30px;}
+div.quizz-picture-size-2 {background: url('images/picture-quizz-2.png') no-repeat; width: 50px; height: 50px;}
+div.quizz-picture-size-3 {background: url('images/picture-quizz-3.png') no-repeat; width: 100px; height: 100px;}
+div.quizz-picture-size-4 {background: url('images/picture-quizz-4.png') no-repeat; width: 200px; height: 200px;}
+
+#quizz-popup {
+    background-color: #ddd;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 25px;
+}

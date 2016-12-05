@@ -1,0 +1,66 @@
+{#
+    Allows to list all available quizzs. It allows to add/edit/delete quizz.
+    Required :
+    - quizzList : list of all quizzs available (as Quizz).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block header %}
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.bpopup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/quizzList.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <h1>Gestion des quizzs</h1>
+
+    <span id="create-quizz-button" class="button">Ajouter un quizz</span>
+
+    <div class="sep-20"></div>
+
+    {# Display all quizz found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-id">ID</th>
+                <th class="bo-table-label">Nom</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody id="quizz-list">
+        {% for quizz in quizzList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-id">{{ quizz.id }}</td>
+                <td class="bo-table-label">{{ quizz.name }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_quizz_bo_edit', { 'id': quizz.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_quizz_bo_delete', { 'id': quizz.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+    <!-- Popup to create new quizz -->
+    <div id="create-quizz-popup" class="bpopup hide">
+        <label for="quizz-name" class="label-inline">Nom : </label>
+        <input type="text" />
+        <span class="button">Créer</span>
+    </div>
+
+    <div class="sep-20"></div>
+
+{% endblock %}
