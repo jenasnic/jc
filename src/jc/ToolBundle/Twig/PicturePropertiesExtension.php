@@ -9,15 +9,15 @@ class PicturePropertiesExtension extends \Twig_Extension {
     public function __construct($rootDir) {
         $this->rootDir = $rootDir;
     }
-    
+
     public function getName() {
         return 'picture_properties_twig_extension';
     }
 
     public function getFunctions() {
         return array(
-                'pictureWidth' => new \Twig_Function_Method($this, 'getPictureWidth'),
-                'pictureHeight' => new \Twig_Function_Method($this, 'getPictureHeight'));
+                new \Twig_SimpleFunction('pictureWidth', array($this, 'getPictureWidth')),
+                new \Twig_SimpleFunction('pictureHeight', array($this, 'getPictureHeight')));
     }
 
     /**

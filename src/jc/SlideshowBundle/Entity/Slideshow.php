@@ -80,7 +80,7 @@ class Slideshow
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -103,7 +103,7 @@ class Slideshow
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -126,7 +126,7 @@ class Slideshow
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -172,7 +172,7 @@ class Slideshow
     /**
      * Get pictureUrl
      *
-     * @return string 
+     * @return string
      */
     public function getPictureUrl()
     {
@@ -211,6 +211,7 @@ class Slideshow
     public function addPicture(Picture $picture)
     {
         $this->pictures[] = $picture;
+        $picture->setSlideshow($this);
         return $this;
     }
 
@@ -250,7 +251,7 @@ class Slideshow
     /**
      * Get picture file
      *
-     * @return Symfony\Component\HttpFoundation\File\UploadedFile 
+     * @return Symfony\Component\HttpFoundation\File\UploadedFile
      */
     public function getPictureFile()
     {

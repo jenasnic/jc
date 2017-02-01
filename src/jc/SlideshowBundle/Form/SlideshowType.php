@@ -30,7 +30,7 @@ class SlideshowType extends AbstractType
             ))
             ->add('pictureFile', FileType::class, array('required' => false))
             ->add('pictureUrl', HiddenType::class, array('required' => false))
-            ->add('rank', 'hidden')
+            ->add('rank', HiddenType::class)
         ;
     }
 

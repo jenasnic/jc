@@ -10,7 +10,7 @@ class TruncateExtension extends \Twig_Extension {
     }
 
     public function getFunctions() {
-        return array('truncate' => new \Twig_Function_Method($this, 'truncateText'));
+        return array(new \Twig_SimpleFunction('truncate', array($this, 'truncateText')));
     }
 
     /**
