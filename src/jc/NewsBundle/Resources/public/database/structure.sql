@@ -12,7 +12,6 @@ CREATE TABLE `news` (
   `link` longtext DEFAULT NULL,
   `published` tinyint(1) NOT NULL,
   `pictureUrl` longtext DEFAULT NULL,
-  `videoIntegration` text DEFAULT NULL,
   `rank` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

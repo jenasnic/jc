@@ -2,16 +2,20 @@
 
 namespace jc\NewsBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
 use jc\NewsBundle\Entity\News;
 use jc\NewsBundle\Form\NewsType;
 
 class NewsBOController extends Controller {
 
-    public function listNewsAction() {
+    /**
+     * @Route("/admin/news/list", name="jc_news_bo_list")
+     */
+    public function listNewsAction(Request $request) {
 
-        $request = $this->getRequest();
         $entityManager = $this->getDoctrine()->getManager();
 
         // If user has submit form => save new news order (if necessary)
@@ -28,7 +32,7 @@ class NewsBOController extends Controller {
                     // Browse each news and update rank if necessary
                     for($i = 0; $i < count($newOrderedList); $i ++) {
 
-                        $newsToUpdate = $entityManager->getRepository('jcNewsBundle:News')->find($newOrderedList[$i]);
+                        $newsToUpdate = $entityManager->getRepository(News::class)->find($newOrderedList[$i]);
                         if ($newsToUpdate->getRank() != ($i + 1)) {
 
                             $newsToUpdate->setRank($i + 1);
@@ -38,32 +42,34 @@ class NewsBOController extends Controller {
                 }
 
                 $entityManager->flush();
-                $request->getSession()->getFlashBag()->add('bo-log-message', 'Classement des actus OK');
+                $request->getSession()->getFlashBag()->add('bo-log-message', 'Classement OK');
             }
             catch (Exception $e) {
-                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors du classement des actus');
+                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors du classement');
             }
         }
 
-        $orderedNewsList = $entityManager->getRepository('jcNewsBundle:News')->findBy(array(), array('rank' => 'asc'));
+        $orderedNewsList = $entityManager->getRepository(News::class)->findBy(array(), array('rank' => 'asc'));
 
         return $this->render('jcNewsBundle:BO:list.html.twig', array('newsList' => $orderedNewsList));
     }
 
-    public function editNewsAction($id) {
+    /**
+     * @Route("/admin/news/edit/{id}", defaults={"id" = 0}, name="jc_news_bo_edit")
+     */
+    public function editNewsAction(Request $request, $id) {
 
-        $request = $this->getRequest();
         $entityManager = $this->getDoctrine()->getManager();
 
-        $news = ($id > 0) ? $entityManager->getRepository('jcNewsBundle:News')->find($id) : new News();
+        $news = ($id > 0) ? $entityManager->getRepository(News::class)->find($id) : new News();
 
         // If user has submit form => save news
         if ($request->getMethod() == 'POST') {
 
             try {
 
-                $form = $this->createForm(new NewsType(), $news);
-                $form->bind($request);
+                $form = $this->createForm(NewsType::class, $news);
+                $form->handleRequest($request);
 
                 // If no picture already loaded nor uploaded picture => add error
                 if ($news->getPictureUrl() == null && $news->getPictureFile() == null)
@@ -76,12 +82,12 @@ class NewsBOController extends Controller {
 
                     // For new news => set rank
                     if ($news->getId() == null || $news->getId() == 0)
-                        $news->setRank($entityManager->getRepository('jcNewsBundle:News')->getMaxRank() + 1);
+                        $news->setRank($entityManager->getRepository(News::class)->getMaxRank() + 1);
 
                     $entityManager->persist($news);
                     $entityManager->flush();
 
-                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Sauvegarde de l\'actu OK');
+                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Sauvegarde OK');
 
                     return $this->redirect($this->generateUrl('jc_news_bo_list'));
                 }
@@ -89,28 +95,31 @@ class NewsBOController extends Controller {
                     $request->getSession()->getFlashBag()->add('bo-warning-message', 'Certains champs ne sont pas remplis correctement');
             }
             catch (Exception $e) {
-                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la sauvegarde de l\'actu');
+                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la sauvegarde');
             }
         }
         else
-            $form = $this->createForm(new NewsType(), $news);
+            $form = $this->createForm(NewsType::class, $news);
 
         return $this->render('jcNewsBundle:BO:edit.html.twig', array('newsToEdit' => $form->createView()));
     }
 
-    public function deleteNewsAction($id) {
+    /**
+     * @Route("/admin/news/delete/{id}", requirements={"id" = "\d+"}, name="jc_news_bo_delete")
+     */
+    public function deleteNewsAction(Request $request, $id) {
 
         if ($id > 0) {
 
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $newsToDelete = $entityManager->getRepository('jcNewsBundle:News')->find($id);
+                $newsToDelete = $entityManager->getRepository(News::class)->find($id);
 
                 // If news found => delete it
                 if ($newsToDelete != null) {
 
-                    $fileToDelete = $this->container->getParameter('kernel.root_dir') . '/../web' . $newsToDelete->getPictureUrl();
+                    $fileToDelete = $this->getParameter('kernel.root_dir') . '/../web' . $newsToDelete->getPictureUrl();
 
                     $entityManager->remove($newsToDelete);
                     $entityManager->flush();
@@ -119,11 +128,11 @@ class NewsBOController extends Controller {
                     if (file_exists($fileToDelete) && is_file($fileToDelete))
                         unlink($fileToDelete);
 
-                    $this->getRequest()->getSession()->getFlashBag()->add('bo-log-message', 'Suppression de l\'actu OK');
+                    $request->getSession()->getFlashBag()->add('bo-log-message', 'Suppression OK');
                 }
             }
             catch (Exception $e) {
-                $this->getRequest()->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression de l\'actu');
+                $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression');
             }
         }
 
@@ -140,19 +149,34 @@ class NewsBOController extends Controller {
         // If picture is defined => process upload
         if (null !== $news->getPictureFile()) {
 
-            $relativeFolderPath = $this->container->getParameter('jc_news.root_path');
-            $absoluteFolderPath = $this->container->getParameter('kernel.root_dir') . '/../web' . $relativeFolderPath;
+            $relativeFolderPath = $this->getParameter('jc_news.root_path');
+            $absoluteFolderPath = $this->getParameter('kernel.root_dir') . '/../web' . $relativeFolderPath;
 
             // Remove old picture if exist
-            $oldPictureToDelete = $this->container->getParameter('kernel.root_dir') . '/../web' . $news->getPictureUrl();
+            $oldPictureToDelete = $this->getParameter('kernel.root_dir') . '/../web' . $news->getPictureUrl();
             if (file_exists($oldPictureToDelete) && is_file($oldPictureToDelete))
                 unlink($oldPictureToDelete);
 
-            $pictureName = $news->getPictureFile()->getClientOriginalName();
+            // For picture's file => use unique name
+            $originalName = $news->getPictureFile()->getClientOriginalName();
+            $dotIndex = strrpos($originalName, '.');
+            $extension = substr($originalName, $dotIndex + 1);
+            $uniqueFileName = $this->getUniqueFileNameForPicture($absoluteFolderPath, $extension);
 
             // Move file in userfiles folder + save new URL
-            $news->getPictureFile()->move($absoluteFolderPath, $pictureName);
-            $news->setPictureUrl($relativeFolderPath . '/' . $pictureName);
+            $news->getPictureFile()->move($absoluteFolderPath, $uniqueFileName);
+            $news->setPictureUrl($relativeFolderPath . '/' . $uniqueFileName);
         }
+    }
+
+    private function getUniqueFileNameForPicture($newsPath, $extension) {
+
+        $i = 1;
+        do {
+            $fileName = 'news_' . sprintf("%'.03d", $i++) . '.' . $extension;
+        }
+        while (file_exists($newsPath . '/' . $fileName));
+
+        return $fileName;
     }
 }

@@ -64,13 +64,6 @@ class News
     private $pictureUrl;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="videoIntegration", type="text", nullable=true)
-     */
-    private $videoIntegration;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="rank", type="integer")
@@ -98,14 +91,14 @@ class News
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -128,7 +121,7 @@ class News
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -151,7 +144,7 @@ class News
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -174,7 +167,7 @@ class News
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -220,7 +213,7 @@ class News
     /**
      * Get published
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getPublished()
     {
@@ -243,34 +236,11 @@ class News
     /**
      * Get pictureUrl
      *
-     * @return string 
+     * @return string
      */
     public function getPictureUrl()
     {
         return $this->pictureUrl;
-    }
-
-    /**
-     * Set video integration
-     *
-     * @param string $videoIntegration
-     * @return News
-     */
-    public function setVideoIntegration($videoIntegration)
-    {
-        $this->videoIntegration = $videoIntegration;
-
-        return $this;
-    }
-
-    /**
-     * Get video integration
-     *
-     * @return string
-     */
-    public function getVideoIntegration()
-    {
-        return $this->videoIntegration;
     }
 
     /**
@@ -282,7 +252,7 @@ class News
     public function setRank($rank)
     {
         $this->rank = $rank;
-    
+
         return $this;
     }
 
@@ -312,7 +282,7 @@ class News
     /**
      * Get picture file
      *
-     * @return Symfony\Component\HttpFoundation\File\UploadedFile 
+     * @return Symfony\Component\HttpFoundation\File\UploadedFile
      */
     public function getPictureFile()
     {

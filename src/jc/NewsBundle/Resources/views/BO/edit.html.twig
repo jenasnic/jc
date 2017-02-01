@@ -13,8 +13,8 @@
     <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.cleditor.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#jc_newsbundle_news_date").datepicker({ dateFormat: "dd/mm/yy" });
-            $("#jc_newsbundle_news_content").cleditor({height: 170});
+            $("#news_date").datepicker({ dateFormat: "dd/mm/yy" });
+            $("#news_content").cleditor({height: 170});
         });
     </script>
 
@@ -30,7 +30,7 @@
     <h1>Ajout d'une actualité</h1>
     {% endif %}
 
-    <form action="{{ path('jc_news_bo_edit', { 'id': newsToEdit.vars.value.id }) }}" method="post" {{ form_enctype(newsToEdit) }}>
+    {{ form_start(newsToEdit) }}
 
         <div class="field-set">
 
@@ -58,12 +58,6 @@
 
             <div class="field-set-separator"></div>
 
-            {{ form_widget(newsToEdit.published) }}
-            {{ form_label(newsToEdit.published, "Publication") }}
-            {{ form_errors(newsToEdit.published) }}
-
-            <div class="field-set-separator"></div>
-
             {{ form_label(newsToEdit.pictureFile, "Image") }}
             {% if (newsToEdit.vars.value.pictureUrl) %}
                 <span class="comment">L'image actuellement chargée est : {{ newsToEdit.vars.value.pictureUrl }}</span>
@@ -73,10 +67,9 @@
 
             <div class="field-set-separator"></div>
 
-            {{ form_label(newsToEdit.videoIntegration, "Intégration vidéo") }}
-            <span class="comment">Permet d'indiquer le flux pour intégrer une vidéo 'youtube' ou 'vimeo'...</span>
-            {{ form_widget(newsToEdit.videoIntegration) }}
-            {{ form_errors(newsToEdit.videoIntegration) }}
+            {{ form_widget(newsToEdit.published) }}
+            {{ form_label(newsToEdit.published, "Publication") }}
+            {{ form_errors(newsToEdit.published) }}
 
             {{ form_rest(newsToEdit) }}
 
@@ -86,7 +79,8 @@
 
         <input type="submit" value="Enregistrer" class="button" />
 
-    </form>
+    {#</form>#}
+    {{ form_end(newsToEdit) }}
 
     <div class="sep-20"></div>
 
