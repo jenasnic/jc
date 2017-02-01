@@ -10,6 +10,7 @@ use jc\UserBundle\Entity\User;
 use jc\UserBundle\Form\UserType;
 use jc\ToolBundle\Util\PasswordUtil;
 use jc\ToolBundle\Util\ValidateUtil;
+use jc\UserBundle\Entity\Role;
 
 class UserController extends Controller {
 
@@ -18,7 +19,7 @@ class UserController extends Controller {
      */
     public function listAction() {
 
-        $userList = $this->getDoctrine()->getManager()->getRepository('jcUserBundle:User')->findBy(array(), array('username' => 'asc'));
+        $userList = $this->getDoctrine()->getManager()->getRepository(User::class)->findBy(array(), array('username' => 'asc'));
         return $this->render('jcUserBundle:BO:list.html.twig', array('userList' => $userList));
     }
 
@@ -29,7 +30,7 @@ class UserController extends Controller {
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $user = ($id > 0) ? $entityManager->getRepository('jcUserBundle:User')->find($id) : new User();
+        $user = ($id > 0) ? $entityManager->getRepository(User::class)->find($id) : new User();
 
         // If user has submit form => save user
         if ($request->getMethod() == 'POST') {
@@ -39,7 +40,7 @@ class UserController extends Controller {
                 // Keep initial password for further use...
                 $initialPassword = $user->getPassword();
 
-                $form = $this->createForm(new UserType(), $user);
+                $form = $this->createForm(UserType::class, $user);
                 $form->handleRequest($request);
 
                 $generatePassword = $request->request->get('generate-password');
@@ -94,11 +95,11 @@ class UserController extends Controller {
 
             // Erase password information
             $user->setPassword('');
-            $form = $this->createForm(new UserType(), $user);
+            $form = $this->createForm(UserType::class, $user);
         }
 
             // Get role list to select user's role
-        $roleList = $this->getDoctrine()->getManager()->getRepository('jcUserBundle:Role')->findAll();
+        $roleList = $this->getDoctrine()->getManager()->getRepository(Role::class)->findAll();
 
         return $this->render('jcUserBundle:BO:edit.html.twig', array(
                 'userToEdit' => $form->createView(),
@@ -116,7 +117,7 @@ class UserController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $userToDelete = $entityManager->getRepository('jcUserBundle:User')->find($id);
+                $userToDelete = $entityManager->getRepository(User::class)->find($id);
 
                 // If user found => delete it
                 if ($userToDelete != null) {

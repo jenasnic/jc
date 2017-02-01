@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use jc\QuizzBundle\Entity\Quizz;
 
 class ResponseBOController extends Controller {
 
@@ -16,7 +17,7 @@ class ResponseBOController extends Controller {
      */
     public function listResponseAction(Request $request, $id) {
 
-        $quizz = $this->getDoctrine()->getManager()->getRepository('jcQuizzBundle:Quizz')->find($id);
+        $quizz = $this->getDoctrine()->getManager()->getRepository(Quizz::class)->find($id);
         return $this->render('jcQuizzBundle:BO:listResponse.html.twig', array('responseList' => $quizz->getResponses()));
     }
 
@@ -27,7 +28,7 @@ class ResponseBOController extends Controller {
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $response = ($responseId > 0) ? $entityManager->getRepository('jcQuizzBundle:QuizzResponse')->find($responseId) : new QuizzResponse();
+        $response = ($responseId > 0) ? $entityManager->getRepository(QuizzResponse::class)->find($responseId) : new QuizzResponse();
 
         // If user has submit form => save response
         if ($request->getMethod() == 'POST') {
@@ -42,7 +43,7 @@ class ResponseBOController extends Controller {
                     // For new response => set quizz
                     if ($responseId == 0) {
 
-                        $quizz = $entityManager->getRepository('jcQuizzBundle:Quizz')->find($id);
+                        $quizz = $entityManager->getRepository(Quizz::class)->find($id);
                         $response->setQuizz($quizz);
                     }
 
@@ -83,7 +84,7 @@ class ResponseBOController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $responseToDelete = $entityManager->getRepository('jcQuizzBundle:QuizzResponse')->find($id);
+                $responseToDelete = $entityManager->getRepository(QuizzResponse::class)->find($id);
 
                 // If quizz found => delete it
                 if ($responseToDelete != null) {

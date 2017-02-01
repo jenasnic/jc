@@ -92,7 +92,7 @@ class MenuBOController extends Controller {
 
             try {
 
-                $form = $this->createForm(new MenuType(), $menu);
+                $form = $this->createForm(MenuType::class, $menu);
                 $form->handleRequest($request);
 
                 if ($form->isValid()) {
@@ -119,7 +119,7 @@ class MenuBOController extends Controller {
             }
         }
         else
-            $form = $this->createForm(new MenuType(), $menu);
+            $form = $this->createForm(MenuType::class, $menu);
 
         return $this->render('jcMenuBundle:BO:edit.html.twig', array('menuToEdit' => $form->createView()));
     }

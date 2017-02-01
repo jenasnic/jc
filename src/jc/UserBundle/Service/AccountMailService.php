@@ -5,6 +5,7 @@ namespace jc\UserBundle\Service;
 use Doctrine\ORM\EntityManager;
 use jc\ToolBundle\Util\PasswordUtil;
 use Symfony\Component\Templating\EngineInterface;
+use jc\UserBundle\Entity\User;
 
 class AccountMailService {
 
@@ -43,7 +44,7 @@ class AccountMailService {
      */
     public function sendNewAccountInformation($userId, $newUser) {
 
-        $user = $this->entityManager->getRepository('jcUserBundle:User')->find($userId);
+        $user = $this->entityManager->getRepository(User::class)->find($userId);
 
         if ($user) {
 

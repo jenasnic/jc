@@ -17,7 +17,7 @@ class QuizzBOController extends Controller {
      */
     public function listQuizzAction(Request $request) {
 
-        $quizzList = $this->getDoctrine()->getManager()->getRepository('jcQuizzBundle:Quizz')->findBy(array(), array('name' => 'asc'));
+        $quizzList = $this->getDoctrine()->getManager()->getRepository(Quizz::class)->findBy(array(), array('name' => 'asc'));
         return $this->render('jcQuizzBundle:BO:listQuizz.html.twig', array('quizzList' => $quizzList));
     }
 
@@ -56,7 +56,7 @@ class QuizzBOController extends Controller {
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $quizz = $entityManager->getRepository('jcQuizzBundle:Quizz')->find($id);
+        $quizz = $entityManager->getRepository(Quizz::class)->find($id);
 
         // If user has submit form => save quizz
         if ($request->getMethod() == 'POST') {
@@ -105,7 +105,7 @@ class QuizzBOController extends Controller {
             try {
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $quizzToDelete = $entityManager->getRepository('jcQuizzBundle:Quizz')->find($id);
+                $quizzToDelete = $entityManager->getRepository(Quizz::class)->find($id);
 
                 // If quizz found => delete it
                 if ($quizzToDelete != null) {

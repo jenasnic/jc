@@ -10,6 +10,7 @@ use jc\ToolBundle\Util\ValidateUtil;
 use jc\ToolBundle\Util\PasswordUtil;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
+use jc\UserBundle\Entity\User;
 
 class AccountController extends Controller {
 
@@ -29,7 +30,7 @@ class AccountController extends Controller {
 
                 $entityManager = $this->getDoctrine()->getManager();
 
-                $form = $this->createForm(new AccountInfoType(), $accountInfo);
+                $form = $this->createForm(AccountInfoType::class, $accountInfo);
                 $form->handleRequest($request);
 
                 // If password changed => check password security + password confirmation
@@ -42,13 +43,13 @@ class AccountController extends Controller {
                 }
 
                 // Check mail unicity
-                if (!$entityManager->getRepository('jcUserBundle:User')->checkMailForUser($accountInfo->getMail(), $loggedUser->getId()))
+                if (!$entityManager->getRepository(User::class)->checkMailForUser($accountInfo->getMail(), $loggedUser->getId()))
                     $form->get('mail')->addError(new FormError("Ce mail est déjà utilisé"));
 
                 if ($form->isValid()) {
 
                     // Get User object from database => for update
-                    $user = $entityManager->getRepository('jcUserBundle:User')->find($loggedUser->getId());
+                    $user = $entityManager->getRepository(User::class)->find($loggedUser->getId());
 
                     // Populate form data in User object
                     $user->setFirstname($accountInfo->getFirstname());
@@ -78,7 +79,7 @@ class AccountController extends Controller {
             $accountInfo->setLastname($loggedUser->getLastname());
             $accountInfo->setMail($loggedUser->getMail());
 
-            $form = $this->createForm(new AccountInfoType(), $accountInfo);
+            $form = $this->createForm(AccountInfoType::class, $accountInfo);
         }
 
         return $this->render('jcUserBundle:FO:account.html.twig', array(
@@ -102,7 +103,7 @@ class AccountController extends Controller {
             }
 
             $entityManager = $this->getDoctrine()->getManager();
-            $userList = $entityManager->getRepository('jcUserBundle:User')->findBy(array(
+            $userList = $entityManager->getRepository(User::class)->findBy(array(
                     'mail' => $mailAddress
             ));
 
