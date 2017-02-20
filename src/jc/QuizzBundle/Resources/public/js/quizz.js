@@ -68,14 +68,19 @@ function addResponse(id, movie, positionX, positionY, pictureSize) {
         $('#quizz-popup').bPopup({autoClose: 1000});
         $('#response').val('');
 
-
-        // Add response to list + picture to locate movie
+        // Add response to list
         $('#response-list').prepend('<li id="quizz-movie-' + id + '">' + movie + '</li>');
-        $('#quizz').append('<div id="quizz-picture-' + id + '" class="quizz-picture quizz-picture-size-' + pictureSize + '" style="left:' + positionX + 'px;top:' + positionY + 'px;"></div>')
 
-        // Display/hide movie reference on picture when user select response
-        $('#quizz-movie-' + id).on('mouseover', function() {$('#quizz-picture-' + id).show();});
-        $('#quizz-movie-' + id).on('mouseout', function() {$('#quizz-picture-' + id).hide();});
+        // If quizz require to display response
+        if ($('#displayResponse').val() == 1) {
+
+            // Add picture to locate movie
+            $('#quizz').append('<div id="quizz-picture-' + id + '" class="quizz-picture quizz-picture-size-' + pictureSize + '" style="left:' + positionX + 'px;top:' + positionY + 'px;"></div>')
+
+            // Display/hide movie reference on picture when user select response
+            $('#quizz-movie-' + id).on('mouseover', function() {$('#quizz-picture-' + id).show();});
+            $('#quizz-movie-' + id).on('mouseout', function() {$('#quizz-picture-' + id).hide();});
+        }
     }
 }
 

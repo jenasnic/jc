@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class QuizzType extends AbstractType
 {
@@ -20,6 +21,7 @@ class QuizzType extends AbstractType
         $builder
             ->add('name', TextType::class, array('required' => false))
             ->add('pictureFile', FileType::class, array('required' => false))
+            ->add('displayResponse', CheckboxType::class, array('required' => false))
             ->add('pictureUrl', HiddenType::class, array('required' => false))
         ;
     }

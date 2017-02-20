@@ -28,7 +28,18 @@ class ResponseBOController extends Controller {
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $response = ($responseId > 0) ? $entityManager->getRepository(QuizzResponse::class)->find($responseId) : new QuizzResponse();
+        if ($responseId > 0)
+            $response = $entityManager->getRepository(QuizzResponse::class)->find($responseId);
+        else {
+
+            $response = new QuizzResponse();
+            $quizz = $entityManager->getRepository(Quizz::class)->find($id);
+            $response->setQuizz($quizz);
+            $response->setPositionX(0);
+            $response->setPositionY(0);
+        }
+
+        //$response = ($responseId > 0) ? $entityManager->getRepository(QuizzResponse::class)->find($responseId) : new QuizzResponse();
 
         // If user has submit form => save response
         if ($request->getMethod() == 'POST') {
@@ -39,13 +50,6 @@ class ResponseBOController extends Controller {
                 $form->handleRequest($request);
 
                 if ($form->isValid()) {
-
-                    // For new response => set quizz
-                    if ($responseId == 0) {
-
-                        $quizz = $entityManager->getRepository(Quizz::class)->find($id);
-                        $response->setQuizz($quizz);
-                    }
 
                     $entityManager->persist($response);
                     $entityManager->flush();
@@ -69,9 +73,7 @@ class ResponseBOController extends Controller {
         else
             $form = $this->createForm(QuizzResponseType::class, $response);
 
-        return $this->render('jcQuizzBundle:BO:editResponse.html.twig', array(
-                'responseToEdit' => $form->createView(),
-                'quizzId' => $id));
+        return $this->render('jcQuizzBundle:BO:editResponse.html.twig', array('responseToEdit' => $form->createView()));
     }
 
     /**

@@ -2,12 +2,10 @@
     Allows to edit response from quizz. This is used through Ajax.
     Required :
     - responseToEdit : FormView element based on QuizzRepsonseType object (i.e. response to edit).
-    - quizzId : identifier for parent quizz (useful in case of new response).
 #}
 
-
 <form id="quizz-response-form" method="post" {{ form_enctype(responseToEdit) }}
-        action="{{ path('jc_quizz_bo_response_edit', { 'id': quizzId, 'responseId': responseToEdit.vars.value.id }) }}">
+        action="{{ path('jc_quizz_bo_response_edit', { 'id': responseToEdit.vars.value.quizz.id, 'responseId': responseToEdit.vars.value.id }) }}">
 
     <div class="field-set">
 
@@ -18,26 +16,31 @@
         <div class="field-set-separator"></div>
 
         {{ form_label(responseToEdit.responses, "Valeurs") }}
+        <span class="comment">NOTE : Permet d'indiquer toutes les réponses acceptées séparées par des ';' (les accents ne sont pas pris en compte lors des comparaisons...).</span>
         {{ form_errors(responseToEdit.responses) }}
         {{ form_widget(responseToEdit.responses) }}
 
-        <div class="field-set-separator"></div>
+        <div class="{{ (responseToEdit.vars.value.quizz.displayResponse) ? '' : 'hide' }} %}">
 
-        {{ form_label(responseToEdit.positionX, "Position X") }}
-        {{ form_widget(responseToEdit.positionX, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
-        {{ form_errors(responseToEdit.positionX) }}
+            <div class="field-set-separator"></div>
 
-        <div class="field-set-separator"></div>
+            {{ form_label(responseToEdit.positionX, "Position X") }}
+            {{ form_widget(responseToEdit.positionX, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
+            {{ form_errors(responseToEdit.positionX) }}
 
-        {{ form_label(responseToEdit.positionY, "Position Y") }}
-        {{ form_widget(responseToEdit.positionY, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
-        {{ form_errors(responseToEdit.positionY) }}
+            <div class="field-set-separator"></div>
 
-        <div class="field-set-separator"></div>
+            {{ form_label(responseToEdit.positionY, "Position Y") }}
+            {{ form_widget(responseToEdit.positionY, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
+            {{ form_errors(responseToEdit.positionY) }}
 
-        {{ form_label(responseToEdit.size, "Taille") }}
-        {{ form_widget(responseToEdit.size, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
-        {{ form_errors(responseToEdit.size) }}
+            <div class="field-set-separator"></div>
+
+            {{ form_label(responseToEdit.size, "Taille") }}
+            {{ form_widget(responseToEdit.size, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+            {{ form_errors(responseToEdit.size) }}
+
+        </div>
 
         {{ form_rest(responseToEdit) }}
 

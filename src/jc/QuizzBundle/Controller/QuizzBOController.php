@@ -34,6 +34,7 @@ class QuizzBOController extends Controller {
             $entityManager = $this->getDoctrine()->getManager();
             $quizzToCreate = new Quizz();
             $quizzToCreate->setName($name);
+            $quizzToCreate->setDisplayResponse(false);
 
             $entityManager->persist($quizzToCreate);
             $entityManager->flush();

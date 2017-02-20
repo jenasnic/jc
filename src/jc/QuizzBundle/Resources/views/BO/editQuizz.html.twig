@@ -25,6 +25,14 @@
 
             <div class="field-set-separator"></div>
 
+            {{ form_widget(quizzToEdit.displayResponse) }}
+            {{ form_label(quizzToEdit.displayResponse, "Afficher les réponses") }}
+            {{ form_errors(quizzToEdit.displayResponse) }}
+            <span class="comment">Permet de visualiser sur l'image les éléments du quizz relatifs aux réponses trouvées.<br/>
+            Si cette option est activée, les réponses doivents définir les coordonées permettant de localiser les éléments associés.</span>
+
+            <div class="field-set-separator"></div>
+
             {{ form_label(quizzToEdit.pictureFile, "Image") }}
             {% if (quizzToEdit.vars.value.pictureUrl) %}
                 <span class="comment">L'image actuellement chargée est : {{ quizzToEdit.vars.value.pictureUrl }}</span>

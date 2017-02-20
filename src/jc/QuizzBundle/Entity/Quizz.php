@@ -30,6 +30,13 @@ class Quizz
     private $name;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="displayResponse", type="boolean")
+     */
+    private $displayResponse;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="pictureUrl", type="text")
@@ -53,7 +60,7 @@ class Quizz
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,11 +83,34 @@ class Quizz
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set displayResponse
+     *
+     * @param boolean $displayResponse
+     * @return Quizz
+     */
+    public function setDisplayResponse($displayResponse)
+    {
+        $this->displayResponse = $displayResponse;
+
+        return $this;
+    }
+
+    /**
+     * Get displayResponse
+     *
+     * @return boolean
+     */
+    public function getDisplayResponse()
+    {
+        return $this->displayResponse;
     }
 
     /**
@@ -99,23 +129,12 @@ class Quizz
     /**
      * Get pictureUrl
      *
-     * @return string 
+     * @return string
      */
     public function getPictureUrl()
     {
         return $this->pictureUrl;
     }
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Add response to quizz
