@@ -32,8 +32,6 @@ class ContactController extends Controller {
                 else
                     return $this->render('jcContactBundle::contactError.html.twig');
             }
-            else
-                var_dump($contactForm);
         }
 
         return $this->render('jcContactBundle::contactRequest.html.twig', array(

@@ -26,6 +26,7 @@
             <tr>
                 <th class="bo-table-id">ID</th>
                 <th class="bo-table-label">Nom</th>
+                <th class="bo-table-action">Vainqueurs</th>
                 <th class="bo-table-action">Modifier</th>
                 <th class="bo-table-action">Supprimer</th>
             </tr>
@@ -36,6 +37,11 @@
             <tr{% if loop.index is even %} class="odd"{% endif %}>
                 <td class="bo-table-id">{{ quizz.id }}</td>
                 <td class="bo-table-label">{{ quizz.name }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_quizz_bo_winner_list', { 'id': quizz.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/success.png') }}" width="16" height="16" border="0" alt="Vainqueurs" title="Vainqueurs" />
+                    </a>
+                </td>
                 <td class="bo-table-action">
                     <a href="{{ path('jc_quizz_bo_edit', { 'id': quizz.id }) }}" >
                         <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />

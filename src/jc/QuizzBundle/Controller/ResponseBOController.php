@@ -39,8 +39,6 @@ class ResponseBOController extends Controller {
             $response->setPositionY(0);
         }
 
-        //$response = ($responseId > 0) ? $entityManager->getRepository(QuizzResponse::class)->find($responseId) : new QuizzResponse();
-
         // If user has submit form => save response
         if ($request->getMethod() == 'POST') {
 

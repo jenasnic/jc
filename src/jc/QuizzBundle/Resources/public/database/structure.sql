@@ -27,3 +27,18 @@ CREATE TABLE `quizzResponse` (
   `size` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Structure de la table `winner`
+--
+
+DROP TABLE IF EXISTS `winner`;
+CREATE TABLE `winner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quizz_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `mail` varchar(255) DEFAULT NULL,
+  `comment` longtext DEFAULT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
