@@ -1,4 +1,8 @@
 
+/**
+ * JS script used in BO to edit a quizz => see view jcQuizzBundle:BO:editQuizz.html.twig
+ */
+
 $(document).ready(function() {
 
     // Define action when user add new response => display form as popup...

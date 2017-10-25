@@ -29,7 +29,7 @@ class WinnerRepository extends EntityRepository
             $query = $queryBuilder->getQuery();
             return $query->getResult();
         }
-        catch (Exception $ex) {
+        catch (\Exception $ex) {
             return null;
         }
     }
@@ -63,7 +63,7 @@ class WinnerRepository extends EntityRepository
 
             return true;
         }
-        catch (Exception $ex) {
+        catch (\Exception $ex) {
             return false;
         }
     }

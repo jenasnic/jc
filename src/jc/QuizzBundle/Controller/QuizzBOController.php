@@ -45,7 +45,7 @@ class QuizzBOController extends Controller {
 
             return new JsonResponse(array('success' => true, 'redirectUrl' => $redirectUrl, 'id' => $id));
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return new JsonResponse(array('success' => false, 'message' => 'Erreur lors de la création'));
         }
     }
@@ -86,7 +86,7 @@ class QuizzBOController extends Controller {
                 else
                     $request->getSession()->getFlashBag()->add('bo-warning-message', 'Certains champs ne sont pas remplis correctement');
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la sauvegarde');
             }
         }
@@ -123,7 +123,7 @@ class QuizzBOController extends Controller {
                     $request->getSession()->getFlashBag()->add('bo-log-message', 'Suppression OK');
                 }
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression');
             }
         }

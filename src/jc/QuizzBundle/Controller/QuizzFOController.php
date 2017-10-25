@@ -10,6 +10,7 @@ use jc\QuizzBundle\Entity\QuizzResponse;
 use jc\QuizzBundle\Entity\Quizz;
 use jc\QuizzBundle\Form\WinnerType;
 use jc\QuizzBundle\Entity\Winner;
+use Symfony\Component\HttpFoundation\Response;
 
 class QuizzFOController extends Controller {
 
@@ -54,8 +55,35 @@ class QuizzFOController extends Controller {
 
             return new JsonResponse(array('success' => false, 'message' => 'Réponse incorrecte'));
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
             return new JsonResponse(array('success' => false, 'message' => 'Erreur lors du traitement de la réponse'));
+        }
+    }
+
+    /**
+     * @Route("/quizz/responses/{id}", requirements={"id" = "\d+"}, name="jc_quizz_responses")
+     */
+    public function quizzResponses($id, Request $request) {
+
+        // If user not logged in => DO NOT DISPLAY RESPONSES
+        if(!$this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') )
+            return new JsonResponse(array('success' => false, 'message' => 'Impossible de récupérer les réponses : droits insuffisants'));
+
+        try {
+
+            $quizz = $this->getDoctrine()->getManager()->getRepository(Quizz::class)->find($id);
+            $responses = array();
+
+            foreach ($quizz->getResponses() as $response) {
+                $responses[] = array('title' => $response->getTitle(), 'id' => $response->getId(),
+                        'positionX' => $response->getPositionX(), 'positionY' => $response->getPositionY(), 'size' => $response->getSize()
+                );
+            }
+
+            return new JsonResponse(array('success' => true, 'responses' => $responses));
+        }
+        catch (\Exception $e) {
+            return new JsonResponse(array('success' => false, 'message' => 'Erreur lors de la récupération des réponses'));
         }
     }
 
@@ -101,12 +129,42 @@ class QuizzFOController extends Controller {
                 else
                     return new JsonResponse(array('success' => false, 'message' => 'Quizz inconnu'));
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 return new JsonResponse(array('success' => false, 'message' => 'Erreur lors de votre enregistrement'));
             }
         }
         else
             return new JsonResponse(array('success' => false, 'message' => 'Erreur lors de votre enregistrement'));
+    }
+
+    /**
+     * @Route("/quizz/trick", requirements={"id" = "\d+"}, name="jc_quizz_trick")
+     */
+    public function quizzTrick(Request $request) {
+
+        try {
+
+            $quizzId = $request->request->get('quizzId');
+            $positionX = $request->request->get('positionX');
+            $positionY = $request->request->get('positionY');
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $responseList = $entityManager->getRepository(QuizzResponse::class)->searchMatchingResponseWithCoordonate($positionX, $positionY, $quizzId);
+
+            if ($responseList) {
+
+                $responses = array();
+                foreach ($responseList as $response)
+                    $responses[] = array('title' => $response->getTrick());
+
+                return new JsonResponse(array('success' => true, 'trick' => $responses));
+            }
+            else
+                return new JsonResponse(array('success' => false, 'message' => 'Aucun indice pour la zone indiquée'));
+        }
+        catch (\Exception $e) {
+            return new JsonResponse(array('success' => false, 'message' => 'Erreur lors de la récupération des indices'));
+        }
     }
 
     private function checkQuizzResponses(Quizz $quizz, $responses) {

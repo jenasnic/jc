@@ -38,7 +38,7 @@ class WinnerBOController extends Controller {
                 $winnerList = $this->getDoctrine()->getManager()->getRepository(Winner::class)->removeWinnerForQuizzId($id);
                 $request->getSession()->getFlashBag()->add('bo-log-message', 'Suppression OK');
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 $request->getSession()->getFlashBag()->add('bo-error-message', 'Erreur lors de la suppression');
             }
         }

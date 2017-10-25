@@ -22,6 +22,7 @@ CREATE TABLE `quizzResponse` (
   `quizz_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `responses` longtext DEFAULT NULL,
+  `trick` longtext DEFAULT NULL,
   `positionX` int(11) NOT NULL,
   `positionY` int(11) NOT NULL,
   `size` int(11) NOT NULL,

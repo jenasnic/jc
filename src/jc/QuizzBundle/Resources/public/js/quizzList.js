@@ -1,4 +1,8 @@
 
+/**
+ * JS script used in BO to list quizz (and create/edit quizz) => see view jcQuizzBundle:BO:listQuizz.html.twig
+ */
+
 $(document).ready(function() {
 
     $('#create-quizz-button').on('click', function() {

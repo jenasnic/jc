@@ -11,5 +11,6 @@ To use functions in DQL, add them in config.yml > orm section :
                         day: jc\DatabaseBundle\SQLFunction\Date
                         hour: jc\DatabaseBundle\SQLFunction\Hour
                         month: jc\DatabaseBundle\SQLFunction\Month
+                        pow: jc\DatabaseBundle\SQLFunction\Pow
                         week: jc\DatabaseBundle\SQLFunction\Week
                         year: jc\DatabaseBundle\SQLFunction\Year

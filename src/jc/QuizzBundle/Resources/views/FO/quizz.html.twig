@@ -7,9 +7,11 @@
 {% extends "::master.html.twig" %}
 
 {% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/simple-scrollbar.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/quizz.css') }}" />
     <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.bpopup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.zoom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/simple-scrollbar.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('resources/scripts/quizz.js') }}"></script>
 {% endblock %}
 
@@ -17,19 +19,20 @@
 
     {% if quizz is defined %}
 
-        <div class="sep-20"></div>
+        <div class="sep-40"></div>
         <div id="quizz-answer">
-            <label for="response" class="f-i15">Saisissez une réponse : </label>
+            <label for="response" class="f-i15 w-160">Saisissez une réponse : </label>
             <input type="text" id="response" name="response" />
             <input type="hidden" id="quizzId" name="quizzId" value="{{ quizz.id }}" />
             <input type="hidden" id="quizzCount" name="quizzCount" value="{{ quizz.responses|length }}" />
+            <input type="hidden" id="displayResponse" name="displayResponse" value="{{ quizz.displayResponse ? '1' : '0' }}" />
             <input id="answer" name="answer" type="button" class="button" value="Envoyer" />
         </div>
         <div id="quizz-info">
-            <label class="f-n1aa5">Réponses trouvées : </label><span id="response-count">0</span> / <span>{{ quizz.responses|length }}</span>
+            <label class="f-n1aa5">Réponses trouvées : </label><span id="response-count" class="c-pink">0</span> / <span class="c-blue">{{ quizz.responses|length }}</span>
         </div>
         <div class="clear"></div>
-        <div class="sep-20"></div>
+        <div class="sep-30"></div>
 
         <div id="quizz">
             <img id="quizz-picture" src="{{ asset(quizz.pictureUrl) }}" alt="" />
@@ -42,22 +45,43 @@
         <div class="clear"></div>
         <div class="sep-20"></div>
 
+        {# Only logged user can display responses #}
+        {% if (app.user) %}
+            <input id="display-all-answer" type="button" class="button" value="Afficher toutes les réponses" />
+            <input id="process-trick" type="button" class="button" value="Demander un indice" />
+        {% endif %}
+
         <div id="winner-form" class="hide">
 
             <label for="name">Votre nom</label>
             <input type="text" id="name" name="name" />
+
             <div class="sep-10"></div>
+
             <label for="mail">Votre mail (optionnel)</label>
             <input type="text" id="mail" name="mail" />
+
             <div class="sep-20"></div>
-            <div>Vous avez des idées ou des suggestions ? N'hésitez pas à laisser un message ou un commentaire !</div>
+            <div class="sep-white"></div>
+            <div class="sep-10"></div>
+
+            <div class="f-i12">Vous avez des idées ou des suggestions ? N'hésitez pas à laisser un message ou un commentaire !</div>
+            <div class="sep-10"></div>
             <textarea id="comment" name="comment"></textarea>
+
             <div class="sep-20"></div>
-            <span class="button">Envoyer</span>
+
+            <div class="center">
+                <span class="button">Envoyer</span>
+            </div>
+
+            <div class="clear"></div>
+            <div class="sep-5"></div>
 
         </div>
 
         <div id="quizz-popup" class="popup hide"></div>
+        <div id="trick-popup" class="popup hide"></div>
 
     {% else %}
         <p>Aucun quizz à afficher</p>

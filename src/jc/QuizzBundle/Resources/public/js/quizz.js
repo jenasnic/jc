@@ -1,4 +1,10 @@
 
+/**
+ * Script to process quizz, i.e. find response... => used in view FO:quizz.html.twig
+ */
+
+var tricking = false;
+
 $(document).ready(function() {
 
     // Init picture for quizz (with zoom)
@@ -9,10 +15,23 @@ $(document).ready(function() {
         processAnswer();
     });
 
+    // Define action when user want to display all response
+    $('#display-all-answer').on('click', function() {
+        displayAllResponses();
+    });
+
+    // Define action when user requires trick
+    $('#process-trick').on('click', function() {
+        processTrick();
+    });
+
     $('#response').on('keypress', function(e) {
         if (e.keyCode == 13)
             processAnswer();
     });
+
+    var el = document.querySelector('#response-list');
+    SimpleScrollbar.initEl(el);
 
     $('#winner-form span.button').on('click', function() {
         submitWinnerForm();
@@ -43,38 +62,7 @@ function processAnswer() {
 
                 // In case of success => add response...
                 if (response.success) {
-
-                    // If response already found => display appropriate response
-                    if ($('#quizz-movie-' + response.id).length) {
-
-                        $('#quizz-popup').html('Déjà trouvé !!!');
-                        $('#quizz-popup').bPopup({autoClose: 1000});
-                    }
-                    // Else add response to list and check if quizz completed
-                    else {
-
-                        addResponse(response.id, response.title, response.positionX, response.positionY, response.size);
-
-                        var winningCount = $('#quizzCount').val();
-
-                        if ($('#response-list .ss-content li').length == winningCount) {
-
-                            $('#quizz-answer').hide();
-                            $('#quizz-info').hide();
-                            $('#quizz-popup').html('<h2>Félicitations !!!</h2>Vous avez trouvé les ' + winningCount + ' films.');
-                            $('#quizz-popup').bPopup({autoClose: 2000});
-
-                            // Display form to register
-                            $('#winner-form').show();
-                        }
-                        else {
-
-                            $('#response-count').html($('#response-list .ss-content li').length);
-                            $('#quizz-popup').html('Bravo !!!');
-                            $('#quizz-popup').bPopup({autoClose: 1000});
-                            $('#response').val('');
-                        }
-                    }
+                    processResponse(response);
                 }
                 else {
 
@@ -86,6 +74,45 @@ function processAnswer() {
                 alert("Impossible de vérifier la réponse");
             }
         });
+    }
+}
+
+/**
+ * Allows to process JSON response => check and add it if needed.
+ * @param response Response as JSON array with id, title, positionX, positionY and size.
+ */
+function processResponse(response) {
+
+    // If response already found => display appropriate response
+    if ($('#quizz-movie-' + response.id).length) {
+
+        $('#quizz-popup').html('Déjà trouvé !!!');
+        $('#quizz-popup').bPopup({autoClose: 1000});
+    }
+    // Else add response to list and check if quizz completed
+    else {
+
+        addResponse(response.id, response.title, response.positionX, response.positionY, response.size);
+
+        var winningCount = $('#quizzCount').val();
+
+        if ($('#response-list .ss-content li').length == winningCount) {
+
+            $('#quizz-answer').hide();
+            $('#quizz-info').hide();
+            $('#quizz-popup').html('<h2>Félicitations !!!</h2>Vous avez trouvé les ' + winningCount + ' films.');
+            $('#quizz-popup').bPopup({autoClose: 2000});
+
+            // Display form to register
+            $('#winner-form').show();
+        }
+        else {
+
+            $('#response-count').html($('#response-list .ss-content li').length);
+            $('#quizz-popup').html('Bravo !!!');
+            $('#quizz-popup').bPopup({autoClose: 1000});
+            $('#response').val('');
+        }
     }
 }
 
@@ -150,3 +177,108 @@ function submitWinnerForm() {
         }
     });
 }
+
+/**
+ * Allows to display all responses (for logged user only).
+ */
+function displayAllResponses() {
+
+    // Send AJAX request
+    var ajaxBaseUrl = global.basePath + '/quizz/responses/' + $('#quizzId').val();
+
+    $.ajax({
+        url: ajaxBaseUrl,
+        type: 'POST',
+        timeout: 10000,
+        success: function(response) {
+
+            if (response.success) {
+
+                var responseList = response.responses;
+
+                // Browse responses and display them if needed
+                for (var i=0; i<responseList.length; i++)
+                    processResponse(responseList[i]);
+            }
+            else
+                alert(response.message);
+        },
+        error: function(msg) {
+            alert("Impossible d'afficher les réponses");
+        }
+    });
+}
+
+function processTrick() {
+
+    // If user already ask a trick => cancel operation
+    if (tricking) {
+
+        // Restore cursor for picture and re-activate zoom
+        $('#quizz').unbind('click');
+        $('#quizz').css('cursor', 'zoom-in');
+        $('#quizz').zoom({on:'grab'});
+
+        $('#require-trick').val('Demander un indice');
+        tricking = false;
+
+        return false;
+    }
+
+    tricking = true;
+    $('#require-trick').val("Annuler l'indice");
+
+    // Remove zoom and change cursor for picture...
+    $('#quizz').trigger('zoom.destroy');
+    $('#quizz').css('cursor', 'help');
+
+    // Add action on quizz click
+    $('#quizz').on('click', function(e) {
+        requestTrick(e.offsetX, e.offsetY);
+    });
+}
+
+function requestTrick(positionX, positionY) {
+
+    // Send AJAX request
+    var ajaxBaseUrl = global.basePath + '/quizz/trick';
+    var quizzId = $('#quizzId').val();
+
+    dump(positionX + ' // ' + positionY + ' // ' + quizzId);
+
+    $.ajax({
+        url: ajaxBaseUrl,
+        type: 'POST',
+        timeout: 10000,
+        data: {quizzId: quizzId, positionX: positionX, positionY: positionY},
+        success: function(response) {
+
+            if (response.success) {
+
+                var responseList = response.trick;
+                dump(responseList);
+
+                var message = responseList.length + ' film(s) à trouver :<br/><br/><ul>'
+                // Browse responses and display them if needed
+                for (var i=0; i<responseList.length; i++)
+                    message += '<li>' + responseList[i].title + '</li>';
+
+                message += '</ul>';
+
+                $('#quizz-popup').html(message);
+                $('#quizz-popup').bPopup({
+                    onClose: function() {
+                        processTrick();
+                    }
+                });
+
+            }
+            else
+                alert(response.message);
+        },
+        error: function(msg) {
+            alert("Impossible d'afficher les indices");
+        }
+    });
+}
+

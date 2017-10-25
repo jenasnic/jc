@@ -36,6 +36,13 @@ class QuizzResponse
     private $responses;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="trick", type="text")
+     */
+    private $trick;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="positionX", type="integer")
@@ -68,7 +75,7 @@ class QuizzResponse
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -91,7 +98,7 @@ class QuizzResponse
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -114,11 +121,34 @@ class QuizzResponse
     /**
      * Get responses
      *
-     * @return string 
+     * @return string
      */
     public function getResponses()
     {
         return $this->responses;
+    }
+
+    /**
+     * Set trick
+     *
+     * @param string $trick
+     * @return QuizzResponse
+     */
+    public function setTrick($trick)
+    {
+        $this->trick = $trick;
+
+        return $this;
+    }
+
+    /**
+     * Get trick
+     *
+     * @return string
+     */
+    public function getTrick()
+    {
+        return $this->trick;
     }
 
     /**
@@ -137,7 +167,7 @@ class QuizzResponse
     /**
      * Get positionX
      *
-     * @return integer 
+     * @return integer
      */
     public function getPositionX()
     {
@@ -160,7 +190,7 @@ class QuizzResponse
     /**
      * Get positionY
      *
-     * @return integer 
+     * @return integer
      */
     public function getPositionY()
     {
@@ -183,7 +213,7 @@ class QuizzResponse
     /**
      * Get size
      *
-     * @return integer 
+     * @return integer
      */
     public function getSize()
     {

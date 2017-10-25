@@ -64,7 +64,7 @@ class ResponseBOController extends Controller {
                                     'quizzId' => $id))));
                 }
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 return new JsonResponse(array('action' => 'save', 'success' => false, 'response' => 'Erreur lors de la création de la réponse'));
             }
         }
@@ -95,7 +95,7 @@ class ResponseBOController extends Controller {
                     return new JsonResponse(1);
                 }
             }
-            catch (Exception $e) {
+            catch (\Exception $e) {
                 return new JsonResponse(0);
             }
         }
