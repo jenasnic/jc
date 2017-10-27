@@ -31,6 +31,14 @@
             <span class="comment">Permet de visualiser sur l'image les éléments du quizz relatifs aux réponses trouvées.<br/>
             Si cette option est activée, les réponses doivents définir les coordonées permettant de localiser les éléments associés.</span>
 
+            <div class="sep-10"></div>
+
+            {{ form_widget(quizzToEdit.displayTrick) }}
+            {{ form_label(quizzToEdit.displayTrick, "Autoriser les indices") }}
+            {{ form_errors(quizzToEdit.displayTrick) }}
+            <span class="comment">Permet de donner un indice sur les films à trouver.<br/>
+            Si cette option est activée, les réponses doivents définir les coordonées permettant de localiser les éléments associés.</span>
+
             <div class="field-set-separator"></div>
 
             {{ form_label(quizzToEdit.pictureFile, "Image") }}

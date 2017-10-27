@@ -21,7 +21,7 @@ $(document).ready(function() {
     });
 
     // Define action when user requires trick
-    $('#process-trick').on('click', function() {
+    $('#require-trick').on('click', function() {
         processTrick();
     });
 
@@ -162,7 +162,7 @@ function submitWinnerForm() {
     $.ajax({
         url: ajaxBaseUrl,
         type: 'POST',
-        data: {name: $('#name').val(), mail: $('#mail').val(), comment:$('#comment').val(), responses: responses},
+        data: {name: $('#name').val(), mail: $('#mail').val(), comment:$('#comment').val(), trickCount: $('#trick-count').html(), responses: responses},
         timeout: 10000,
         success: function(response) {
 
@@ -209,6 +209,9 @@ function displayAllResponses() {
     });
 }
 
+/**
+ * Allows user to ask a trick on picture to find a response.
+ */
 function processTrick() {
 
     // If user already ask a trick => cancel operation
@@ -219,6 +222,7 @@ function processTrick() {
         $('#quizz').css('cursor', 'zoom-in');
         $('#quizz').zoom({on:'grab'});
 
+        $('#require-trick').removeClass('activ');
         $('#require-trick').val('Demander un indice');
         tricking = false;
 
@@ -226,6 +230,7 @@ function processTrick() {
     }
 
     tricking = true;
+    $('#require-trick').addClass('activ');
     $('#require-trick').val("Annuler l'indice");
 
     // Remove zoom and change cursor for picture...
@@ -234,17 +239,37 @@ function processTrick() {
 
     // Add action on quizz click
     $('#quizz').on('click', function(e) {
-        requestTrick(e.offsetX, e.offsetY);
+
+        // WARNING : check if offset between quizz container and picture
+        var offsetQuizz = $('#quizz').offset();
+        var offsetPicture = $('#quizz-picture').offset();
+        var decalTop = offsetPicture.top - offsetQuizz.top;
+        var decalLeft = offsetPicture.left - offsetQuizz.left;
+
+        var positionX = e.offsetX;
+        var positionY = e.offsetY;
+
+        // If needed => adjust position to get trick...
+        if (decalLeft > 1)
+            positionX += decalLeft;
+        if (decalTop > 1)
+            positionY += decalTop;
+
+        requestTrick(positionX, positionY);
     });
 }
 
+/**
+ * Allows to launch AJAX call to find all responses matching specified area on quizz.
+ * @param positionX Coordonate X of position we want to have a trick.
+ * @param positionY Coordonate Y of position we want to have a trick.
+ * @returns
+ */
 function requestTrick(positionX, positionY) {
 
     // Send AJAX request
     var ajaxBaseUrl = global.basePath + '/quizz/trick';
     var quizzId = $('#quizzId').val();
-
-    dump(positionX + ' // ' + positionY + ' // ' + quizzId);
 
     $.ajax({
         url: ajaxBaseUrl,
@@ -255,10 +280,13 @@ function requestTrick(positionX, positionY) {
 
             if (response.success) {
 
-                var responseList = response.trick;
-                dump(responseList);
+                // Update trick count (to inform user + in winner form...)
+                var trickCount = $('#trick-count').html();
+                $('#trick-count').html(++trickCount);
 
-                var message = responseList.length + ' film(s) à trouver :<br/><br/><ul>'
+                var responseList = response.trick;
+
+                var message = responseList.length + ' film(s) à trouver ici :<br/><br/><ul>'
                 // Browse responses and display them if needed
                 for (var i=0; i<responseList.length; i++)
                     message += '<li>' + responseList[i].title + '</li>';
@@ -281,4 +309,3 @@ function requestTrick(positionX, positionY) {
         }
     });
 }
-

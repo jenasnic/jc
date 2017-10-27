@@ -22,6 +22,7 @@ class QuizzType extends AbstractType
             ->add('name', TextType::class, array('required' => false))
             ->add('pictureFile', FileType::class, array('required' => false))
             ->add('displayResponse', CheckboxType::class, array('required' => false))
+            ->add('displayTrick', CheckboxType::class, array('required' => false))
             ->add('pictureUrl', HiddenType::class, array('required' => false))
         ;
     }

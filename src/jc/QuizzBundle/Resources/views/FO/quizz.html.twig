@@ -29,7 +29,7 @@
             <input id="answer" name="answer" type="button" class="button" value="Envoyer" />
         </div>
         <div id="quizz-info">
-            <label class="f-n1aa5">Réponses trouvées : </label><span id="response-count" class="c-pink">0</span> / <span class="c-blue">{{ quizz.responses|length }}</span>
+            <label class="f-n15">Réponses trouvées : </label><span id="response-count" class="c-pink">0</span> / <span class="c-blue">{{ quizz.responses|length }}</span>
         </div>
         <div class="clear"></div>
         <div class="sep-30"></div>
@@ -47,8 +47,14 @@
 
         {# Only logged user can display responses #}
         {% if (app.user) %}
-            <input id="display-all-answer" type="button" class="button" value="Afficher toutes les réponses" />
-            <input id="process-trick" type="button" class="button" value="Demander un indice" />
+            <input id="display-all-answer" type="button" class="button right" value="Afficher toutes les réponses" />
+        {% endif %}
+
+        {% if (quizz.displayTrick) %}
+            <input id="require-trick" type="button" class="button" value="Demander un indice" />
+            <label class="f-n15 f-right margin-hor-10">Indices utilisés : </label><span id="trick-count" class="c-pink">0</span>
+            <span class="padding-hor-20"></span>
+            <div class="sep-20"></div>
         {% endif %}
 
         <div id="winner-form" class="hide">

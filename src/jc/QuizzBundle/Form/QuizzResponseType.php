@@ -20,6 +20,7 @@ class QuizzResponseType extends AbstractType
         $builder
             ->add('title', TextType::class, array('required' => false))
             ->add('responses', TextareaType::class, array('required' => false))
+            ->add('trick', TextareaType::class, array('required' => false))
             ->add('positionX', TextType::class, array('required' => false))
             ->add('positionY', TextType::class, array('required' => false))
             ->add('size', ChoiceType::class, array('choices' => array(1 => 'petit', 2 => 'moyen', 3 => 'grand')))

@@ -9,6 +9,7 @@ CREATE TABLE `quizz` (
   `name` varchar(255) NOT NULL,
   `pictureUrl` text DEFAULT NULL,
   `displayResponse` tinyint(1) NOT NULL,
+  `displayTrick` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -23,9 +24,9 @@ CREATE TABLE `quizzResponse` (
   `title` varchar(255) NOT NULL,
   `responses` longtext DEFAULT NULL,
   `trick` longtext DEFAULT NULL,
-  `positionX` int(11) NOT NULL,
-  `positionY` int(11) NOT NULL,
-  `size` int(11) NOT NULL,
+  `positionX` int(11) DEFAULT 0,
+  `positionY` int(11) DEFAULT 0,
+  `size` int(11) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,5 +42,6 @@ CREATE TABLE `winner` (
   `mail` varchar(255) DEFAULT NULL,
   `comment` longtext DEFAULT NULL,
   `date` datetime NOT NULL,
+  `trickCount` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

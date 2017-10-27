@@ -41,6 +41,7 @@
                         <img src="{{ asset('resources/images/admin/icons/view.png') }}" width="16" height="16" border="0" alt="Détail" title="Détail" />
                         <span class="winner-mail hide">{{ winner.mail }}</span>
                         <span class="winner-comment hide">{{ winner.comment|raw }}</span>
+                        <span class="winner-trick-count hide">{{ winner.trickCount }}</span>
                     </a>
                 </td>
             </tr>
@@ -56,6 +57,8 @@
         <strong>Mail : </strong><span class="winner-mail"></span>
         <div class="sep-10"></div>
         <strong>Commentaire : </strong><span class="winner-comment"></span>
+        <div class="sep-10"></div>
+        <strong>Indices utilisés : </strong><span class="winner-trick-count"></span>
     </div>
 
     <div class="sep-20"></div>

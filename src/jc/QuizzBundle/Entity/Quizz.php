@@ -37,6 +37,13 @@ class Quizz
     private $displayResponse;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="displayTrick", type="boolean")
+     */
+    private $displayTrick;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="pictureUrl", type="text")
@@ -111,6 +118,29 @@ class Quizz
     public function getDisplayResponse()
     {
         return $this->displayResponse;
+    }
+
+    /**
+     * Set displayTrick
+     *
+     * @param boolean $displayTrick
+     * @return Quizz
+     */
+    public function setDisplayTrick($displayTrick)
+    {
+        $this->displayTrick = $displayTrick;
+
+        return $this;
+    }
+
+    /**
+     * Get displayTrick
+     *
+     * @return boolean
+     */
+    public function getDisplayTrick()
+    {
+        return $this->displayTrick;
     }
 
     /**

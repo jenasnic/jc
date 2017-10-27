@@ -50,6 +50,13 @@ class Winner
     private $date;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="trickCount", type="integer")
+     */
+    private $trickCount;
+
+    /**
      * @var jc\QuizzBundle\Entity\Quizz
      *
      * @ORM\ManyToOne(targetEntity="jc\QuizzBundle\Entity\Quizz")
@@ -158,6 +165,29 @@ class Winner
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set trickCount
+     *
+     * @param integer $trickCount
+     * @return QuizzResponse
+     */
+    public function setTrickCount($trickCount)
+    {
+        $this->trickCount = $trickCount;
+
+        return $this;
+    }
+
+    /**
+     * Get trickCount
+     *
+     * @return integer
+     */
+    public function getTrickCount()
+    {
+        return $this->trickCount;
     }
 
     /**

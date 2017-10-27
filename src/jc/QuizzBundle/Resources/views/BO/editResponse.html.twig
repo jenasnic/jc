@@ -20,7 +20,13 @@
         {{ form_errors(responseToEdit.responses) }}
         {{ form_widget(responseToEdit.responses) }}
 
-        <div class="{{ (responseToEdit.vars.value.quizz.displayResponse) ? '' : 'hide' }} %}">
+        <div class="sep-10"></div>
+
+        {{ form_label(responseToEdit.trick, "Indice") }}
+        {{ form_errors(responseToEdit.trick) }}
+        {{ form_widget(responseToEdit.trick) }}
+
+        <div class="{{ (responseToEdit.vars.value.quizz.displayResponse or responseToEdit.vars.value.quizz.displayTrick) ? '' : 'hide' }} %}">
 
             <div class="field-set-separator"></div>
 
@@ -28,13 +34,13 @@
             {{ form_widget(responseToEdit.positionX, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
             {{ form_errors(responseToEdit.positionX) }}
 
-            <div class="field-set-separator"></div>
+            <div class="sep-10"></div>
 
             {{ form_label(responseToEdit.positionY, "Position Y") }}
             {{ form_widget(responseToEdit.positionY, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
             {{ form_errors(responseToEdit.positionY) }}
 
-            <div class="field-set-separator"></div>
+            <div class="sep-10"></div>
 
             {{ form_label(responseToEdit.size, "Taille") }}
             {{ form_widget(responseToEdit.size, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}

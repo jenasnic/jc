@@ -117,6 +117,7 @@ class QuizzFOController extends Controller {
                         $winner->setMail($request->request->get('mail'));
                         $comment = str_replace("\n", "<br/>", $request->request->get('comment'));
                         $winner->setComment($comment);
+                        $winner->setTrickCount($request->request->get('trickCount'));
 
                         $entityManager->persist($winner);
                         $entityManager->flush();
