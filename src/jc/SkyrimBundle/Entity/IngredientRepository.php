@@ -41,6 +41,7 @@ class IngredientRepository extends EntityRepository
             $queryBuilder = $queryBuilder->orWhere(':' . $varName . ' MEMBER OF i.effectList')->setParameter($varName, $effect);
         }
 
+        $queryBuilder = $queryBuilder->orderBy('i.nameFR', 'ASC');
         $query = $queryBuilder->getQuery();
         return $query->getResult();
     }

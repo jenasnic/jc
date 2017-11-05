@@ -25,9 +25,16 @@ class Ingredient
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="nameFR", type="string", length=255)
      */
-    private $name;
+    private $nameFR;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nameEN", type="string", length=255)
+     */
+    private $nameEN;
 
     /**
      * @var ArrayCollection $effectList
@@ -49,7 +56,7 @@ class Ingredient
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,26 +64,49 @@ class Ingredient
     }
 
     /**
-     * Set name
+     * Set nameFR
      *
-     * @param string $name
-     * @return Ingredient
+     * @param string $nameFR
+     * @return Effect
      */
-    public function setName($name)
+    public function setNameFR($nameFR)
     {
-        $this->name = $name;
+        $this->nameFR= $nameFR;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nameFR
      *
-     * @return string 
+     * @return string
      */
-    public function getName()
+    public function getNameFR()
     {
-        return $this->name;
+        return $this->nameFR;
+    }
+
+    /**
+     * Set nameEN
+     *
+     * @param string $name
+     * @return Effect
+     */
+    public function setNameEN($nameEN)
+    {
+        $this->nameEN= $nameEN;
+
+        return $this;
+    }
+
+    /**
+     * Get nameEN
+     *
+     * @return string
+     */
+    public function getNameEN()
+    {
+        return $this->nameEN;
     }
 
     /**

@@ -6,7 +6,8 @@
 DROP TABLE IF EXISTS `effect`;
 CREATE TABLE IF NOT EXISTS `effect` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(55) NOT NULL,
+  `nameFR` varchar(55) NOT NULL,
+  `nameEN` varchar(55) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -19,7 +20,8 @@ CREATE TABLE IF NOT EXISTS `effect` (
 DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE IF NOT EXISTS `ingredient` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(55) NOT NULL,
+  `nameFR` varchar(55) NOT NULL,
+  `nameEN` varchar(55) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

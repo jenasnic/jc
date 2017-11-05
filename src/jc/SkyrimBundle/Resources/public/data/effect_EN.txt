@@ -1,0 +1,55 @@
+cure disease
+damage health
+damage magicka
+damage magicka regen
+damage stamina
+damage stamina regen
+fear
+fortify alteration
+fortify barter
+fortify block
+fortify carry weight
+fortify conjuration
+fortify destruction
+fortify enchanting
+fortify health
+fortify heavy armor
+fortify illusion
+fortify light armor
+fortify lockpicking
+fortify magicka
+fortify marksman
+fortify one-handed
+fortify pickpocket
+fortify restoration
+fortify smithing
+fortify sneak
+fortify stamina
+fortify two-handed
+frenzy
+invisibility
+lingering damage health
+lingering damage magicka
+lingering damage stamina
+paralysis
+ravage health
+ravage magicka
+ravage stamina
+regenerate health
+regenerate magicka
+regenerate stamina
+resist fire
+resist frost
+resist magic
+resist poison
+resist shock
+restore health
+restore magicka
+restore stamina
+slow
+waterbreathing
+weakness to fire
+weakness to frost
+weakness to magic
+weakness to poison
+weakness to shock

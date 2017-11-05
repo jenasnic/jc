@@ -1,0 +1,91 @@
+Abécéen à Longue Nageoire;Vulnérabilité à la Glace;Renfort de Furtivité;Vulnérabilité au Poison;Renfort de Guérison
+Abeille;Restauration de Vigueur;Vigueur Endommagée;Récupération de Vigueur;Vulnérabilité à la Foudre
+Ail;Résistance au Poison;Renfort de Vigueur;Regain Magique;Régénération de Santé
+Aile de Fléchette Bleue;Résistance à la Foudre;Renfort de Vol à la Tire;Restauration de Santé;Peur
+Aile de Fléchette Orange;Restauration de Vigueur;Magie Endommagée;Renfort de Vol à la Tire;Pénalité de Santé Persistante
+Aile de Noctuelle;Pénalité de Magie;Renfort d'Armure Légère;Régénération de Santé;Invisibilité
+Aile de Papillon;Restauration de Santé;Renfort de Marchandage;Pénalité de Vigueur Persistante;Pénalité de Magie
+Aile de Papillon Bleu;Pénalité de Vigueur;Renfort de Conjuration;Dégâts Vigueur Récupération;Renfort d'Enchantement
+Amanite Tue-mouches;Résistance au Feu;Renfort d'Arme à Deux Mains;Frénésie;Récupération de Vigueur
+Bec de Faucon;Restauration de Vigueur;Résistance à la Glace;Renfort de Portage;Résistance à la Foudre
+Bernache nordique;Pénalité de Magie;Respiration Aquatique;Régénération de Santé;Renfort de Vol à la Tire
+Blé;Restauration de Santé;Renfort de Santé;Dégâts Vigueur Récupération;Pénalité Magie Persistante
+Carpe du Hist;Restauration de Vigueur;Renfort de Magie;Dégâts Vigueur Récupération;Respiration Aquatique
+Chair Humaine;Pénalité de Santé;Paralysie;Restauration de Magie;Renfort de Furtivité
+Champignon luisant;Résistance à la Foudre;Renfort de Destruction;Renfort de forgeage;Renfort de Santé
+Chapeau Blanc;Vulnérabilité à la Glace;Renfort d'Armure Lourde;Restauration de Magie;Magie Endommagée
+Chitine de Vasard;Restauration de Vigueur;Potion Médicinale;Résistance au Poison;Résistance au Feu
+Cloquerille;Pénalité de Vigueur;Frénésie;Restauration de Santé;Renfort de Forgeage
+Coeur de Daedra;Restauration de Santé;Dégâts Vigueur Récupération;Pénalité de Magie;Peur
+Coeur de Ronce;Restauration de Magie;Renfort de Parade;Paralysie;Renfort de Magie
+Coeur Humain;Pénalité de Santé;Pénalité de Magie;Dégâts Magie Récupération;Frénésie
+Cosse;Résistance au Poison;Magie Endommagée;Renfort d'Altération;Restauration de Magie
+Coton Sauvage;Résistance à la Magie;Renfort de Magie;Renfort de Parade;Renfort de Marchandage
+Couronne Sanglante;Vulnérabilité au Feu;Renfort de Parade;Vulnérabilité au Poison;Résistance à la Magie
+Dent de Smilodon;Restauration de Vigueur;Renfort d'Armure Lourde;Renfort de forgeage;Vulnérabilité au Poison
+Dent de Spectre de Glace;Vulnérabilité à la glace;Renfort d'Armure Lourde;Invisibilité;Vulnérabilité au Feu
+Défense de Mammouth en Poudre;Restauration de Vigueur;Renfort de Furtivité;Vulnérabilité au Feu;Peur
+Écaille de Poisson Carnassier;Résistance à la Glace;Pénalité de Santé Persistante;Renfort d'Armure Lourde;Renfort de Parade
+Ectoplasme;Restauration de Magie;Renfort de Destruction;Renfort de Magie;Pénalité de Santé
+Farine d'Os;Pénalité de Vigueur;Résistance au Feu;Renfort de Conjuration;Vigueur Endommagée
+Genièvre;Vulnérabilité au Feu;Renfort de Précision;Régénération de Santé;Dégâts Vigueur Récupération
+Givreboise;Résistance au Feu;Renfort d'Enchantement;Résistance à la Glace;Résistance à la Foudre
+Graisse de Troll;Résistance au Poison;Renfort d'Arme à Deux Mains;Frénésie;Pénalité de Santé
+Grande Ramure;Restauration de Vigueur;Renfort de Vigueur;Langueur;Dégâts Vigueur Récupération
+Grelot-de-la-mort;Pénalité de Santé;Vigueur Endommagée;Langueur;Vulnérabilité au Poison
+Griffe d'Ours;Restauration de Vigueur;Renfort de Santé;Renfort d'Arme à Une Main;Dégâts Magie Récupération
+Hivernelle;Résistance à la Glace;Renfort de Furtivité;Magie Endommagée;Dégâts Vigueur Récupération
+Huile Dwemer;Vulnérabilité à la Magie;Renfort d'Illusion;Regain Magique;Restauration de Magie
+Langue de Dragon;Résistance au Feu;Renfort de Marchandage;Renfort d'Illusion;Renfort d'Arme à Deux Mains
+Lavande;Résistance à la Magie;Renfort de Vigueur;Magie Endommagée;Renfort de Conjuration
+Lichen Géant;Vulnérabilité à la Foudre;Santé Endommagée;Vulnérabilité au Poison;Restauration de Magie
+Lys des Cimes Bleu;Restauration de Santé;Renfort de Conjuration;Renfort de Santé;Dégâts Magie Récupération
+Lys des Cimes Rouge;Restauration de Magie;Magie Endommagée;Renfort de Magie;Pénalité de Santé
+Lys des Cimes Violet;Restauration de Vigueur;Renfort de Furtivité;Pénalité de Magie;Résistance à la Glace
+Mora Topinella;Restauration de Magie;Pénalité de Santé Persistante;Récupération de Vigueur;Renfort d'Illusion
+Mousse Barbue;Pénalité de Magie;Renfort de Santé;Dégâts Magie Récupération;Renfort d'Arme à Une Main
+Mycène des Marais;Résistance à la Foudre;Pénalité de Magie;Paralysie;Restauration de Santé
+Nirnroot;Pénalité de Santé;Pénalité de Vigueur;Invisibilité;Résistance à la Magie
+Nirnroot Cramoisie;Pénalité de Santé;Pénalité de Vigueur;Invisibilité;Résistance à la Magie
+Obscurcine;Pénalité de Santé;Dégâts Magie Récupération;Pénalité de Vigueur Persistante;Renfort de Destruction
+Oeil de Smilodon;Restauration de Vigueur;Santé Endommagée;Pénalité de Magie;Restauration de Santé
+Oeuf d'Araignée;Pénalité de Vigueur;Dégâts Magie Récupération;Renfort de Crochetage;Renfort de Précision
+Oeuf de Chaurus;Vulnérabilité au Poison;Renfort de Vigueur;Pénalité de Magie;Invisibilité
+Oeuf de Fauvette;Restauration de Santé;Renfort d'Arme à Une Main;Pénalité de Vigueur;Vulnérabilité à la Magie
+Oeuf de Grive;Restauration de Vigueur;Renfort de Crochetage;Vulnérabilité au Poison;Résistance à la Foudre
+Oeuf de Poisson Carnassier;Résistance au Poison;Renfort de Vol à la Tire;Pénalité de Santé Persistante;Renfort de Vigueur
+Oeuf de Poule;Résistance à la Magie;Dégâts Magie Récupération;Respiration Aquatique;Pénalité de Vigueur Persistante
+Oreille d'Elfe;Restauration de Magie;Renfort de Précision;Vulnérabilité à la glace;Résistance au Feu
+Oreille de Falmer;Pénalité de Santé;Frénésie;Résistance au Poison;Renfort de Crochetage
+Orteil de Géant;Pénalité de Vigueur;Renfort de Santé;Renfort de Portage;Dégâts Vigueur Récupération
+Peau de Ragnard Carbonisé;Restauration de Vigueur;Potion Médicinale;Résistance au Poison;Restauration de Santé
+Perche Argentée;Restauration de Vigueur;Dégâts Vigueur Récupération;Santé Endommagée;Résistance à la Glace
+Perle;Restauration de Vigueur;Renfort de Parade;Restauration de Magie;Résistance à la Foudre
+Petite Perle;Restauration de Vigueur;Renfort d'Arme à Une Main;Renfort de Guérison;Résistance à la Glace
+Petite Ramure;Vulnérabilité au Poison;Renfort de Guérison;Pénalité de Vigueur Persistante;Pénalité de Santé
+Pholiote à Écaille;Vulnérabilité à la Magie;Renfort d'Illusion;Récupération de Vigueur;Renfort de Portage
+Pied-de-lutin;Pénalité de Santé;Pénalité de Santé Persistante;Paralysie;Restauration de Santé
+Plante Grimpante;Restauration de Magie;Dégâts Vigueur Récupération;Renfort de Portage;Vulnérabilité à la Magie
+Plume de Faucon;Potion Médicinale;Renfort d'Armure Légère;Renfort d'Arme à Une Main;Renfort de Furtivité
+Plume d'Harfreuse;Pénalité de Magie;Renfort de Conjuration;Frénésie;Vulnérabilité à la Foudre
+Poisson Combattant de Cyrodiil;Pénalité de Vigueur;Renfort de Guérison;Peur;Santé Endommagée
+Poisson de Rivière;Pénalité de Santé;Renfort d'Altération;Langueur;Renfort de Portage
+Poussière de Vampire;Invisibilité;Restauration de Magie;Régénération de Santé;Potion Médicinale
+Poussière Luisante;Pénalité de Magie;Dégâts Magie Récupération;Renfort de Destruction;Résistance à la Foudre
+Queue de Ragnard;Dégâts Vigueur Récupération;Santé Endommagée;Pénalité de Santé;Renfort d'Armure Légère
+Racine de Canis;Pénalité de Vigueur;Renfort d'Arme à Une Main;Renfort de Précision;Paralysie
+Racine Noueuse;Vulnérabilité à la Magie;Renfort d'Illusion;Regain Magique;Restauration de Magie
+Raisin Jazbay;Vulnérabilité à la Magie;Renfort de Magie;Regain Magique;Santé Endommagée
+Rayon de Miel;Restauration de Vigueur;Renfort de Parade;Renfort d'Armure Légère;Vigueur Endommagée
+Ruche Vide;Résistance au Poison;Renfort d'Armure Légère;Renfort de Furtivité;Renfort de Destruction
+Sels de Feu;Vulnérabilité à la glace;Résistance au Feu;Restauration de Magie;Regain Magique
+Sels de Givre;Vulnérabilité au Feu;Résistance à la Glace;Restauration de Magie;Renfort de Conjuration
+Sels du Néant;Vulnérabilité à la Foudre;Résistance à la Magie;Pénalité de Santé;Renfort de Magie
+Serre d'Harfreuse;Résistance à la Magie;Pénalité de Magie;Renfort d'Enchantement;Renfort de Marchandage
+Sève de Spriggan;Dégâts Magie Récupération;Renfort d'Enchantement;Renfort de forgeage;Renfort d'Altération
+Sucrelune;Vulnérabilité au Feu;Résistance à la Glace;Restauration de Magie;Regain Magique
+Tas de Sel;Vulnérabilité à la Magie;Renfort de Guérison;Langueur;Regain Magique
+Thorax de Flammouche;Restauration de Vigueur;Pénalité de Magie;Vulnérabilité à la Magie;Renfort de VIgueur
+Tige de Chardon;Résistance à la Glace;Vigueur Endommagée;Résistance au Poison;Renfort d'Armure Lourde
+Truffe de Namira;Pénalité de Magie;Renfort de Crochetage;Peur;Régénération de Santé
+Voiles Éthérés;Restauration de Vigueur;Renfort de Destruction;Renfort de Portage;Résistance à la Magie

@@ -20,7 +20,7 @@
         <span class="label">Choisissez un ingrédient</span>
         <ul id="alchemy-ingredient" class="alchemy-list">
         {% for ingredient in ingredientList %}
-            <li data-id="{{ ingredient.id }}">{{ ingredient.name }}</li>
+            <li data-id="{{ ingredient.id }}">{{ ingredient.nameFR }} ({{ ingredient.nameEN }})</li>
         {% endfor %}
         </ul>
     </div>
@@ -31,16 +31,14 @@
         <span class="label">Choisissez un effet</span>
         <ul id="alchemy-effect" class="alchemy-list">
         {% for effect in effectList %}
-            <li data-id="{{ effect.id }}">{{ effect.name }}</li>
+            <li data-id="{{ effect.id }}">{{ effect.nameFR }} ({{ effect.nameEN }})</li>
         {% endfor %}
         </ul>
     </div>
 
-    <div class="sep-20"></div>
-    <div class="sep-grey-1"></div>
-    <div class="sep-20"></div>
+    <div class="clear"></div>
 
-    <div id="alchemy-result">
+    <div id="alchemy-result" class="padding-20">
     </div>
  
 

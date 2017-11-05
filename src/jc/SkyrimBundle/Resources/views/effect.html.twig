@@ -5,7 +5,7 @@
     - ingredientList : list of ingredients with previous effect (as Ingredient).
 #}
 
-<span class="label">Ingrédients associés pour : <strong>{{ effect.name }}</strong></span>
+<span class="label">Ingrédients associés pour : <strong>{{ effect.nameFR }} ({{ effect.nameEN }})</strong></span>
 
 <table class="alchemy-result">
     <thead>
@@ -14,11 +14,11 @@
     <tbody>
     {% for ingredient in ingredientList %}
         <tr>
-            <td>{{ ingredient.name }}</td>
+            <td>{{ ingredient.nameFR }} ({{ ingredient.nameEN }})</td>
             <td>
                 <ul>
                 {% for effect in ingredient.effectList %}
-                    <li>{{ effect.name }}</li>
+                    <li>{{ effect.nameFR }} ({{ effect.nameEN }})</li>
                 {% endfor %}
                 </ul>
             </td>

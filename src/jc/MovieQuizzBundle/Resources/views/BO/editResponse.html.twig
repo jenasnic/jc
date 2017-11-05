@@ -1,0 +1,59 @@
+{#
+    Allows to edit response from quizz. This is used through Ajax.
+    Required :
+    - responseToEdit : FormView element based on QuizzRepsonseType object (i.e. response to edit).
+#}
+
+<form id="movie-quizz-response-form" method="post" {{ form_enctype(responseToEdit) }}
+        action="{{ path('jc_movie_quizz_bo_response_edit', { 'id': responseToEdit.vars.value.quizz.id, 'responseId': responseToEdit.vars.value.id }) }}">
+
+    <div class="field-set">
+
+        {{ form_label(responseToEdit.title, "Réponse") }}
+        {{ form_widget(responseToEdit.title, { 'attr': {'class': 'field-L'}, 'max_length' : '255' }) }}
+        {{ form_errors(responseToEdit.title) }}
+
+        <div class="field-set-separator"></div>
+
+        {{ form_label(responseToEdit.responses, "Valeurs") }}
+        <span class="comment">NOTE : Permet d'indiquer toutes les réponses acceptées séparées par des ';' (les accents ne sont pas pris en compte lors des comparaisons...).</span>
+        {{ form_errors(responseToEdit.responses) }}
+        {{ form_widget(responseToEdit.responses) }}
+
+        <div class="sep-10"></div>
+
+        {{ form_label(responseToEdit.trick, "Indice") }}
+        {{ form_errors(responseToEdit.trick) }}
+        {{ form_widget(responseToEdit.trick) }}
+
+        <div class="{{ (responseToEdit.vars.value.quizz.displayResponse or responseToEdit.vars.value.quizz.displayTrick) ? '' : 'hide' }} %}">
+
+            <div class="field-set-separator"></div>
+
+            {{ form_label(responseToEdit.positionX, "Position X") }}
+            {{ form_widget(responseToEdit.positionX, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
+            {{ form_errors(responseToEdit.positionX) }}
+
+            <div class="sep-10"></div>
+
+            {{ form_label(responseToEdit.positionY, "Position Y") }}
+            {{ form_widget(responseToEdit.positionY, { 'attr': {'class': 'field-S'}, 'max_length' : '4' }) }}
+            {{ form_errors(responseToEdit.positionY) }}
+
+            <div class="sep-10"></div>
+
+            {{ form_label(responseToEdit.size, "Taille") }}
+            {{ form_widget(responseToEdit.size, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+            {{ form_errors(responseToEdit.size) }}
+
+        </div>
+
+        {{ form_rest(responseToEdit) }}
+
+        <div class="sep-20"></div>
+
+        <input type="submit" value="Enregistrer" class="button" />
+
+    </div>
+
+</form>

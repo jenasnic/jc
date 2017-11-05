@@ -9,7 +9,7 @@
     display: block;
     max-height: 300px;
     overflow-y: scroll;
-    width: 300px;
+    width: 450px;
 }
 
 .alchemy-list li {
@@ -24,7 +24,7 @@
     background-color: #bbb;
     border: 1px solid #333;
     border-collapse: collapse;
-    width: 700px;
+    width: 800px;
 }
 
 .alchemy-result th, .alchemy-result tfoot td {

@@ -11,8 +11,8 @@ class AlchemyController extends Controller {
         $entityManager = $this->getDoctrine()->getManager();
 
         // Get all ingredients and all effects to display on home page for alchemy
-        $ingredientList = $entityManager->getRepository('jcSkyrimBundle:Ingredient')->findBy(array(), array('name' => 'ASC'));
-        $effectList = $entityManager->getRepository('jcSkyrimBundle:Effect')->findBy(array(), array('name' => 'ASC'));
+        $ingredientList = $entityManager->getRepository('jcSkyrimBundle:Ingredient')->findBy(array(), array('nameFR' => 'ASC'));
+        $effectList = $entityManager->getRepository('jcSkyrimBundle:Effect')->findBy(array(), array('nameFR' => 'ASC'));
 
         $ingredient = $entityManager->getRepository('jcSkyrimBundle:Ingredient')->find(1);
         $effect = $entityManager->getRepository('jcSkyrimBundle:Effect')->find(1);

@@ -1,0 +1,95 @@
+{#
+    Display quizz.
+    Required :
+    - quizz : quizz to display
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/lib/simple-scrollbar.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/css/movieQuizz.css') }}" />
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.bpopup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/jquery.zoom.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/lib/simple-scrollbar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('resources/scripts/movieQuizz.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    {% if quizz is defined %}
+
+        <div class="sep-40"></div>
+        <div id="movie-quizz-answer">
+            <label for="movie-quizz-response" class="f-i15 w-160">Saisissez une réponse : </label>
+            <input type="text" id="movie-quizz-response" name="movie-quizz-response" />
+            <input type="hidden" id="movie-quizz-id" name="movie-quizz-id" value="{{ quizz.id }}" />
+            <input type="hidden" id="movie-quizz-count" name="movie-quizz-count" value="{{ quizz.responses|length }}" />
+            <input type="hidden" id="movie-quizz-display-response" name="movie-quizz-display-response" value="{{ quizz.displayResponse ? '1' : '0' }}" />
+            <input id="answer" name="answer" type="button" class="button" value="Envoyer" />
+        </div>
+        <div id="movie-quizz-info">
+            <label class="f-n15">Réponses trouvées : </label><span id="response-count" class="c-pink">0</span> / <span class="c-blue">{{ quizz.responses|length }}</span>
+        </div>
+        <div class="clear"></div>
+        <div class="sep-30"></div>
+
+        <div id="movie-quizz">
+            <img id="movie-quizz-picture" src="{{ asset(quizz.pictureUrl) }}" alt="" />
+        </div>
+
+        <ul id="movie-quizz-response-list">
+            <div class="clear"></div>
+        </ul>
+
+        <div class="clear"></div>
+        <div class="sep-20"></div>
+
+        {# Only logged user can display responses #}
+        {% if (app.user) %}
+            <input id="display-all-answer" type="button" class="button right" value="Afficher toutes les réponses" />
+        {% endif %}
+
+        {% if (quizz.displayTrick) %}
+            <input id="movie-quizz-require-trick" name="movie-quizz-require-trick" type="button" class="button" value="Demander un indice" />
+            <label class="f-n15 f-right margin-hor-10">Indices utilisés : </label><span id="movie-quizz-trick-count" class="c-pink">0</span>
+            <span class="padding-hor-20"></span>
+            <div class="sep-20"></div>
+        {% endif %}
+
+        <div id="movie-quizz-winner-form" class="hide">
+
+            <label for="name">Votre nom</label>
+            <input type="text" id="name" name="name" />
+
+            <div class="sep-10"></div>
+
+            <label for="mail">Votre mail (optionnel)</label>
+            <input type="text" id="mail" name="mail" />
+
+            <div class="sep-20"></div>
+            <div class="sep-white"></div>
+            <div class="sep-10"></div>
+
+            <div class="f-i12">Vous avez des idées ou des suggestions ? N'hésitez pas à laisser un message ou un commentaire !</div>
+            <div class="sep-10"></div>
+            <textarea id="comment" name="comment"></textarea>
+
+            <div class="sep-20"></div>
+
+            <div class="center">
+                <span class="button">Envoyer</span>
+            </div>
+
+            <div class="clear"></div>
+            <div class="sep-5"></div>
+
+        </div>
+
+        <div id="movie-quizz-popup" class="popup hide"></div>
+
+    {% else %}
+        <p>Aucun quizz à afficher</p>
+    {% endif %}
+
+{% endblock %}

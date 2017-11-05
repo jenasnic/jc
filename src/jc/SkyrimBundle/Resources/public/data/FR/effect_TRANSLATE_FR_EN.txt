@@ -1,0 +1,55 @@
+dégâts magie récupération;damage magicka regen
+dégâts vigueur récupération;damage stamina regen
+frénésie;frenzy
+invisibilité;invisibility
+langueur;slow
+magie endommagée;ravage magicka
+paralysie;paralysis
+peur;fear
+potion médicinale;cure disease
+pénalité de magie;damage magicka
+pénalité de santé;damage health
+pénalité de santé persistante;lingering damage health
+pénalité de vigueur;damage stamina
+pénalité de vigueur persistante;lingering damage stamina
+pénalité magie persistante;lingering damage magicka
+regain magique;regenerate magicka
+renfort d'altération;fortify alteration
+renfort d'arme à deux mains;fortify two-handed
+renfort d'arme à une main;fortify one-handed
+renfort d'armure lourde;fortify heavy armor
+renfort d'armure légère;fortify light armor
+renfort d'enchantement;fortify enchanting
+renfort d'illusion;fortify illusion
+renfort de conjuration;fortify conjuration
+renfort de crochetage;fortify lockpicking
+renfort de destruction;fortify destruction
+renfort de forgeage;fortify smithing
+renfort de furtivité;fortify sneak
+renfort de guérison;fortify restoration
+renfort de magie;fortify magicka
+renfort de marchandage;fortify barter
+renfort de parade;fortify block
+renfort de portage;fortify carry weight
+renfort de précision;fortify marksman
+renfort de santé;fortify health
+renfort de vigueur;fortify stamina
+renfort de vol à la tire;fortify pickpocket
+respiration aquatique;waterbreathing
+restauration de magie;restore magicka
+restauration de santé;restore health
+restauration de vigueur;restore stamina
+récupération de vigueur;regenerate stamina
+régénération de santé;regenerate health
+résistance au feu;resist fire
+résistance au poison;resist poison
+résistance à la foudre;resist shock
+résistance à la glace;resist frost
+résistance à la magie;resist magic
+santé endommagée;ravage health
+vigueur endommagée;ravage stamina
+vulnérabilité au feu;weakness to fire
+vulnérabilité au poison;weakness to poison
+vulnérabilité à la foudre;weakness to shock
+vulnérabilité à la glace;weakness to frost
+vulnérabilité à la magie;weakness to magic

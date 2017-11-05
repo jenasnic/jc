@@ -1,7 +1,7 @@
 
 jc_contact:
-    resource: "@jcContactBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcContactBundle/Controller/"
+    type:     annotation
 
 jc_doodle:
     resource: "@jcDoodleBundle/Resources/config/routing.yml"
@@ -12,32 +12,32 @@ jc_ftp_slideshow:
     prefix:   /
 
 jc_home:
-    resource: "@jcHomeBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcHomeBundle/Controller/"
+    type:     annotation
 
 jc_menu:
-    resource: "@jcMenuBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcMenuBundle/Controller/"
+    type:     annotation
 
 jc_news:
-    resource: "@jcNewsBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcNewsBundle/Controller/"
+    type:     annotation
 
 jc_skin:
-    resource: "@jcSkinBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcSkinBundle/Controller/"
+    type:     annotation
 
 jc_skyrim:
     resource: "@jcSkyrimBundle/Resources/config/routing.yml"
     prefix:   /
 
 jc_slideshow:
-    resource: "@jcSlideshowBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcSlideshowBundle/Controller/"
+    type:     annotation
 
 jc_static_text:
-    resource: "@jcStaticTextBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcStaticTextBundle/Controller/"
+    type:     annotation
 
 jc_sudoku:
     resource: "@jcSudokuBundle/Resources/config/routing.yml"
@@ -47,19 +47,15 @@ jc_test:
     resource: "@jcTestBundle/Resources/config/routing.yml"
     prefix:   /
 
-jc_tool:
-    resource: "@jcToolBundle/Resources/config/routing.yml"
-    prefix:   /
-
 jc_training_session:
     resource: "@jcTrainingSessionBundle/Resources/config/routing.yml"
     prefix:   /
 
 jc_user:
-    resource: "@jcUserBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcUserBundle/Controller/"
+    type:     annotation
 
 jc_user_file:
-    resource: "@jcUserFileBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@jcUserFileBundle/Controller/"
+    type:     annotation
     

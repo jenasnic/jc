@@ -5,16 +5,16 @@
     - ingredientList : list of ingredients reacting with previous ingredient (as Ingredient).
 #}
 
-<span class="label">Effets connus pour : <strong>{{ ingredient.name }}</strong></span>
+<span class="label">Effets connus pour : <strong>{{ ingredient.nameFR }} ({{ ingredient.nameEN }})</strong></span>
 <ul class="padding-hor-20">
 {% for effect in ingredient.effectList %}
-    <li>{{ effect.name }}</li>
+    <li>{{ effect.nameFR }} ({{ effect.nameEN }})</li>
 {% endfor %}
 </ul>
 
 <div class="sep-20"></div>
 
-<span class="label">Ingrédients compatbiles pour : <strong>{{ ingredient.name }}</strong></span>
+<span class="label">Ingrédients compatbiles pour : <strong>{{ ingredient.nameFR }} ({{ ingredient.nameEN }})</strong></span>
 <table class="alchemy-result">
     <thead>
         <tr><th>Ingrédient</th><th>Effets</th></tr>
@@ -23,11 +23,11 @@
     {% for otherIngredient in ingredientList %}
         {% if (otherIngredient != ingredient) %}
         <tr>
-            <td>{{ otherIngredient.name }}</td>
+            <td>{{ otherIngredient.nameFR }} ({{ otherIngredient.nameEN }})</td>
             <td>
                 <ul>
                 {% for effect in otherIngredient.effectList %}
-                    <li {% if (containsEffect(ingredient, effect)) %}class="common-effect"{% endif %}>{{ effect.name }}</li>
+                    <li {% if (containsEffect(ingredient, effect)) %}class="common-effect"{% endif %}>{{ effect.nameFR }} ({{ effect.nameEN }})</li>
                 {% endfor %}
                 </ul>
             </td>

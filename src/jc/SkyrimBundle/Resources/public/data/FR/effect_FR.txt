@@ -1,0 +1,55 @@
+dégâts magie récupération
+dégâts vigueur récupération
+frénésie
+invisibilité
+langueur
+magie endommagée
+paralysie
+peur
+potion médicinale
+pénalité de magie
+pénalité de santé
+pénalité de santé persistante
+pénalité de vigueur
+pénalité de vigueur persistante
+pénalité magie persistante
+regain magique
+renfort d'altération
+renfort d'arme à deux mains
+renfort d'arme à une main
+renfort d'armure lourde
+renfort d'armure légère
+renfort d'enchantement
+renfort d'illusion
+renfort de conjuration
+renfort de crochetage
+renfort de destruction
+renfort de forgeage
+renfort de furtivité
+renfort de guérison
+renfort de magie
+renfort de marchandage
+renfort de parade
+renfort de portage
+renfort de précision
+renfort de santé
+renfort de vigueur
+renfort de vol à la tire
+respiration aquatique
+restauration de magie
+restauration de santé
+restauration de vigueur
+récupération de vigueur
+régénération de santé
+résistance au feu
+résistance au poison
+résistance à la foudre
+résistance à la glace
+résistance à la magie
+santé endommagée
+vigueur endommagée
+vulnérabilité au feu
+vulnérabilité au poison
+vulnérabilité à la foudre
+vulnérabilité à la glace
+vulnérabilité à la magie

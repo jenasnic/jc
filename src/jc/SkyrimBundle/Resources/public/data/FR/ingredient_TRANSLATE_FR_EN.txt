@@ -1,0 +1,91 @@
+Abécéen à Longue Nageoire;Abecean Longfin
+Abeille;Bee
+Ail;Garlic
+Aile de Fléchette Bleue;Blue Dartwing
+Aile de Fléchette Orange;Orange Dartwing
+Aile de Noctuelle;Luna Moth Wing
+Aile de Papillon;Butterfly Wing
+Aile de Papillon Bleu;Blue Butterfly Wing
+Amanite Tue-mouches;Fly Amanita
+Bec de Faucon;Hawk Beak
+Bernache nordique;Nordic Barnacle
+Blé;Wheat
+Carpe du Hist;Histcarp
+Chair Humaine;Human Flesh
+Champignon luisant;Glowing Mushroom
+Chapeau Blanc;White Cap
+Chitine de Vasard;Mudcrab Chitin
+Cloquerille;Blisterwort
+Coeur de Daedra;Daedra Heart
+Coeur de Ronce;Briar Heart
+Coeur Humain;Human Heart
+Cosse;Grass Pod
+Coton Sauvage;Tundra Cotton
+Couronne Sanglante;Bleeding Crown
+Dent de Smilodon;Sabre Cat Tooth
+Dent de Spectre de Glace;Ice Wraith Teeth
+Défense de Mammouth en Poudre;Powdered Mammoth Tusk
+Écaille de Poisson Carnassier;Slaughterfish Scales
+Ectoplasme;Ectoplasm
+Farine d'Os;Bone Meal
+Genièvre;Juniper Berries
+Givreboise;Snowberries
+Graisse de Troll;Troll Fat
+Grande Ramure;Large Antlers
+Grelot-de-la-mort;Deathbell
+Griffe d'Ours;Bear Claws
+Hivernelle;Frost Mirriam
+Huile Dwemer;Dwarven Oil
+Langue de Dragon;Dragon's Tongue
+Lavande;Lavender
+Lichen Géant;Giant Lichen
+Lys des Cimes Bleu;Blue Mountain Flower
+Lys des Cimes Rouge;Red Mountain Flower
+Lys des Cimes Violet;Purple Mountain Flower
+Mora Topinella;Mora Tapinella
+Mousse Barbue;Hanging Moss
+Mycène des Marais;Swamp Fungal Pod
+Nirnroot;Nirnroot
+Nirnroot Cramoisie;Crimson Nirnroot
+Obscurcine;Nightshade
+Oeil de Smilodon;Eye of Sabre Cat
+Oeuf d'Araignée;Spider Egg
+Oeuf de Chaurus;Chaurus Eggs
+Oeuf de Fauvette;Rock Warbler Egg
+Oeuf de Grive;Pine Thrush Egg
+Oeuf de Poisson Carnassier;Slaughterfish Egg
+Oeuf de Poule;Chicken's Egg
+Oreille d'Elfe;Elves Ear
+Oreille de Falmer;Falmer Ear
+Orteil de Géant;Giant's Toe
+Peau de Ragnard Carbonisé;Charred Skeever Hide
+Perche Argentée;Silverside Perch
+Perle;Pearl
+Petite Perle;Small Pearl
+Petite Ramure;Small Antlers
+Pholiote à Écaille;Scaly Pholiata
+Pied-de-lutin;Imp Stool
+Plante Grimpante;Creep Cluster
+Plume de Faucon;Hawk Feathers
+Plume d'Harfreuse;Hagraven Feathers
+Poisson Combattant de Cyrodiil;Cyrodilic Spadetail
+Poisson de Rivière;River Betty
+Poussière de Vampire;Vampire Dust
+Poussière Luisante;Glow Dust
+Queue de Ragnard;Skeever Tail
+Racine de Canis;Canis Root
+Racine Noueuse;Taproot
+Raisin Jazbay;Jazbay Grapes
+Rayon de Miel;Honeycomb
+Ruche Vide;Beehive Husk
+Sels de Feu;Fire Salts
+Sels de Givre;Frost Salts
+Sels du Néant;Void Salts
+Serre d'Harfreuse;Hagraven Claw
+Sève de Spriggan;Spriggan Sap
+Sucrelune;Moon Sugar
+Tas de Sel;Salt Pile
+Thorax de Flammouche;Torchbug Thorax
+Tige de Chardon;Thistle Branch
+Truffe de Namira;Niamira's Rot
+Voiles Éthérés;Wisp Wrappings
