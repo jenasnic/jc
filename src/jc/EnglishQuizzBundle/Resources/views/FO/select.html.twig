@@ -1,0 +1,28 @@
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+    <div class="center f-b20 padding-10">EN -> FR</div>
+
+    <div class="center padding-20">
+        <a href="{{ path('jc_english_quizz_start', {'type': 'word'}) }}" class="button">Lexical</a>
+        <a href="{{ path('jc_english_quizz_start', {'type': 'irregularVerb'}) }}" class="button">Irregular verbs</a>
+        <div class="sep-30"></div>
+        <a href="{{ path('jc_english_quizz_start', {'type': 'expression'}) }}" class="button">Set phrases</a>
+        <a href="{{ path('jc_english_quizz_start', {'type': 'all'}) }}" class="button">Mixed</a>
+    </div>
+
+    <div class="sep-20"></div>
+
+    <div class="center f-b20 padding-10">FR -> EN</div>
+
+    <div class="center padding-20">
+        <a href="{{ path('jc_english_quizz_start', {'type': 'word', 'lang' : 'FR'}) }}" class="button">Vocabulaire</a>
+        <a href="{{ path('jc_english_quizz_start', {'type': 'irregularVerb', 'lang' : 'FR'}) }}" class="button">Verbes irréguliers</a>
+        <div class="sep-30"></div>
+        <a href="{{ path('jc_english_quizz_start', {'type': 'expression', 'lang' : 'FR'}) }}" class="button">Expressions</a>
+        <a href="{{ path('jc_english_quizz_start', {'type': 'all', 'lang' : 'FR'}) }}" class="button">Mélange</a>
+    </div>
+
+{% endblock %}

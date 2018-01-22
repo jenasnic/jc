@@ -1,0 +1,21 @@
+{#
+    Allows to display quizz item for expression.
+    Required :
+    - item : Expression for quizz (as EnglishExpression).
+    - itemLeft : Remaining item count for quizz (for current quizz => not necessary expression remaining count...).
+#}
+
+<input id="item-left" name="item-left" type="hidden" value="{{ itemLeft }}">
+
+<div class="center f-n14">Find the set phrase</div>
+
+<div id="question-value" class="center f-b20">{{ item.textEN }}</div>
+
+<div id="answer-value" class="hide center f-i16">
+    {{ item.textFR }}
+    {% if (item.lesson > 0) %}
+    <div class="center f-i12">See lesson {{ item.lesson }} - page {{ item.page }}</div>
+    {% endif %}
+</div>
+
+<span class="hide">Left : {{ app.session.get('wordLeft') }} word(s) // {{ app.session.get('expressionLeft') }} expression(s) // {{ app.session.get('irregularVerbLeft') }} verb(s)</span>

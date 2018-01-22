@@ -1,0 +1,61 @@
+{#
+    Allows to edit expression.
+    Required :
+    - expressionToEdit : FormView element based on EnglishExpressionType object (i.e. EnglishExpression to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    {% if (expressionToEdit.vars.value.id) %}
+    <h1>Modification de l'expression</h1>
+    {% else %}
+    <h1>Ajout d'une expression</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_english_quizz_bo_expression_edit', { 'id': expressionToEdit.vars.value.id }) }}" method="post" {{ form_enctype(expressionToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(expressionToEdit.textEN, "Expression (anglais)") }}
+            {{ form_widget(expressionToEdit.textEN, { 'attr': {'class': 'field-XL'} }) }}
+            {{ form_errors(expressionToEdit.textEN) }}
+
+            <div class="sep-10"></div>
+
+            {{ form_label(expressionToEdit.textFR, "Traduction") }}
+            <span class="comment">Si plusieurs traductions, séparez les valeurs avec le caractère '/'</span>
+            {{ form_widget(expressionToEdit.textFR, { 'attr': {'class': 'field-XL'} }) }}
+            {{ form_errors(expressionToEdit.textFR) }}
+
+            <div class="field-set-separator"></div>
+
+            <div class="left w-100">
+                {{ form_label(expressionToEdit.lesson, "Leçon") }}
+                {{ form_widget(expressionToEdit.lesson, { 'attr': {'class': 'field-XS'}, 'max_length' : '2' }) }}
+                {{ form_errors(expressionToEdit.lesson) }}
+            </div>
+
+            <div class="left w-100">
+                {{ form_label(expressionToEdit.page, "Page") }}
+                {{ form_widget(expressionToEdit.page, { 'attr': {'class': 'field-XS'}, 'max_length' : '2' }) }}
+                {{ form_errors(expressionToEdit.page) }}
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="sep-10"></div>
+            <span class="comment">NOTE : Si pas de leçon et/ou de page => laisse la valeur à 0</span>
+
+            {{ form_rest(expressionToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" value="Enregistrer" class="button" />
+
+    </form>
+
+{% endblock %}

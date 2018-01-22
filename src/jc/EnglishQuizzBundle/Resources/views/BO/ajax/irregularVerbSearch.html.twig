@@ -1,0 +1,39 @@
+{#
+    Allows to display search result for expressions.
+    Required :
+    - irregularVerbList : list of irregular verb matching a search (as EnglishIrregularVerb).
+#}
+
+{# Display all irregular verbs found for page #}
+{% if (irregularVerbList|length > 0) %}
+    <table class="bo-table">
+        <thead>
+            <tr>
+                <th class="bo-table-label">Verbe</th>
+                <th class="bo-table-label">Traduction</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for irregularVerb in irregularVerbList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label">{{ irregularVerb.verbEN }}</td>
+                <td class="bo-table-label">{{ irregularVerb.verbFR }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_irregular_verb_edit', { 'id': irregularVerb.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_irregular_verb_delete', { 'id': irregularVerb.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="center f-b16">Aucun résultat trouvé</div>
+{% endif %}

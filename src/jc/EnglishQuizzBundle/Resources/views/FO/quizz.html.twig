@@ -1,0 +1,61 @@
+{#
+    Allows to display quizz (for words, expressions, irregular verbs...).
+    Required :
+    - type : String to indicate type of quizz (word, expression...).
+    - lang : Language to use (EN or FR).
+    Optional :
+    - lessonList : List of available lesson (only for quizz of type 'word' or 'expression').
+#}
+
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+    <script type="text/javascript" src="{{ asset('resources/scripts/quizz.js') }}?v=6"></script>
+{% endblock %}
+
+{% block body %}
+
+    <input id="quizz-type" name="quizz-type" type="hidden" value="{{ type }}" />
+    <input id="quizz-lang" name="quizz-lang" type="hidden" value="{{ lang }}" />
+
+    <div class="margin-10 center">
+        <a href="{{ path('jc_english_quizz_select') }}" class="button">Back</a>
+    </div>
+
+    <div id="score" class="margin-10 f-b16 center">
+        Votre score :
+        <span id="score-ok">0</span> / <span id="score-total">0</span>
+    </div>
+
+    {% if (type == 'all' or type == 'word' or type == 'expression') %}
+    <div class="margin-10 f-b14 center">
+        <select id="lesson" name="lesson">
+            <option value="0">All lessons</option>
+            {% for lesson in lessonList %}
+            <option value="{{ lesson }}">Lesson {{ lesson }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+
+    <div id="quizz-item" class="margin-10 center">
+    </div>
+
+    <div id="continue-step" class="hide margin-10 center">
+        <input type="button" id="continue" name="continue" class="button" value="Continue" disabled="disabled" />
+    </div>
+
+    <div id="question-step" class="hide margin-10 center">
+        <input type="button" id="question-ok" name="question-ok" class="button" value="Yes I know !" disabled="disabled" />
+        <input type="button" id="question-ko" name="question-ko" class="button" value="I give up !" disabled="disabled" />
+    </div>
+
+    <div id="answer-step" class="hide margin-10 center">
+        <input type="button" id="answer-ok" name="answer-ok" class="button" value="I'm right !" disabled="disabled" />
+        <input type="button" id="answer-ko" name="answer-ko" class="button" value="I'm wrong !" disabled="disabled" />
+    </div>
+
+    <div id="quizz-popup" class="popup hide"></div>
+
+{% endblock %}

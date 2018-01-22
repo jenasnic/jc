@@ -1,0 +1,78 @@
+{#
+    Allows to list all available irregular verbs. It allows to add/edit/delete irregular verb.
+    Required :
+    - irregularVerbPage : page listing irregular verbs (as PaginationInformation).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Liste des verbes irréguliers</h1>
+
+    <div class="sep-10"></div>
+    Nombre total de verbes : <strong>{{ irregularVerbPage.totalCount }}</strong>
+    <div class="sep-10"></div>
+
+    {% if (irregularVerbPage.pageCount > 1) %}
+        <div class="pagination">
+        {% for index in 1..irregularVerbPage.pageCount %}
+            {% if (index == irregularVerbPage.page) %}
+                <span>{{ index }}</span>
+            {% else %}
+                <a href="{{ path('jc_english_quizz_bo_irregular_verb_list') }}?page={{ index }}">{{ index }}</a>
+            {% endif %}
+        {% endfor %}
+        <div class="clear"></div>
+        </div>
+        <div class="sep-20"></div>
+    {% endif %}
+
+    {# Display all irregular verbs found for page #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-label">Verbe</th>
+                <th class="bo-table-label">Traduction</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for irregularVerb in irregularVerbPage.itemList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label">{{ irregularVerb.verbEN }}</td>
+                <td class="bo-table-label">{{ irregularVerb.verbFR }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_irregular_verb_edit', { 'id': irregularVerb.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_irregular_verb_delete', { 'id': irregularVerb.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    {% if (irregularVerbPage.pageCount > 1) %}
+        <div class="sep-20"></div>
+        <div class="pagination">
+        {% for index in 1..irregularVerbPage.pageCount %}
+            {% if (index == irregularVerbPage.page) %}
+                <span>{{ index }}</span>
+            {% else %}
+                <a href="{{ path('jc_english_quizz_bo_irregular_verb_list') }}?page={{ index }}">{{ index }}</a>
+            {% endif %}
+        {% endfor %}
+        <div class="clear"></div>
+        </div>
+    {% endif %}
+
+{% endblock %}

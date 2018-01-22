@@ -1,0 +1,20 @@
+{#
+    Allows to display quizz item for irregular verb.
+    Required :
+    - item : Irregular verb for quizz (as EnglishIrregularVerb).
+    - itemLeft : Remaining item count for quizz (for current quizz => not necessary irregular verb remaining count...).
+#}
+
+<input id="item-left" name="item-left" type="hidden" value="{{ itemLeft }}">
+
+<div class="center f-n14">Find the irregular verb</div>
+
+<div id="question-value" class="center f-b20">{{ item.verbEN }}</div>
+
+<div id="answer-value" class="hide center">
+    <div class="center f-n20">preterit : {{ item.preterit }}<br/>
+    past : {{ item.past }}</div>
+    <div class="center f-i16">{{ item.verbFR }}</div>
+</div>
+
+<span class="hide">Left : {{ app.session.get('wordLeft') }} word(s) // {{ app.session.get('expressionLeft') }} expression(s) // {{ app.session.get('irregularVerbLeft') }} verb(s)</span>

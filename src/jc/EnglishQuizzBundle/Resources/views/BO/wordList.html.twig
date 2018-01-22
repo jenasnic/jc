@@ -1,0 +1,78 @@
+{#
+    Allows to list all available words. It allows to add/edit/delete word.
+    Required :
+    - wordPage : page listing words (as PaginationInformation).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <h1>Liste des mots</h1>
+
+    <div class="sep-10"></div>
+    Nombre total de mots : <strong>{{ wordPage.totalCount }}</strong>
+    <div class="sep-10"></div>
+
+    {% if (wordPage.pageCount > 1) %}
+        <div class="pagination">
+        {% for index in 1..wordPage.pageCount %}
+            {% if (index == wordPage.page) %}
+                <span>{{ index }}</span>
+            {% else %}
+                <a href="{{ path('jc_english_quizz_bo_word_list') }}?page={{ index }}">{{ index }}</a>
+            {% endif %}
+        {% endfor %}
+        <div class="clear"></div>
+        </div>
+        <div class="sep-20"></div>
+    {% endif %}
+
+    {# Display all words found for page #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-label">Mot</th>
+                <th class="bo-table-label">Traduction</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for word in wordPage.itemList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label">{{ word.nameEN }}</td>
+                <td class="bo-table-label">{{ word.nameFR }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_word_edit', { 'id': word.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_word_delete', { 'id': word.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    {% if (wordPage.pageCount > 1) %}
+        <div class="sep-20"></div>
+        <div class="pagination">
+        {% for index in 1..wordPage.pageCount %}
+            {% if (index == wordPage.page) %}
+                <span>{{ index }}</span>
+            {% else %}
+                <a href="{{ path('jc_english_quizz_bo_word_list') }}?page={{ index }}">{{ index }}</a>
+            {% endif %}
+        {% endfor %}
+        <div class="clear"></div>
+        </div>
+    {% endif %}
+
+{% endblock %}

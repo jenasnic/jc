@@ -1,0 +1,17 @@
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    <div class="field-set">
+
+        Bienvenu dans la back office :<br/><br/>
+
+        <ul>
+            <li><a href="{{ path('jc_english_quizz_bo_word_list') }}">Gérer le vocabulaire</a></li>
+            <li><a href="{{ path('jc_english_quizz_bo_expression_list') }}">Gérer les expressions</a></li>
+            <li><a href="{{ path('jc_english_quizz_bo_irregular_verb_list') }}">Gérer les verbes irréguliers</a></li>
+        </ul>
+    </div>
+
+{% endblock %}

@@ -13,4 +13,11 @@ class HomeBOController extends Controller {
     public function adminAction() {
         return $this->render('jcHomeBundle:BO:admin.html.twig');
     }
+
+    /**
+     * @Route("/admin/", name="jc_home_bo_redirect")
+     */
+    public function adminRedirectAction() {
+        return $this->redirect($this->generateUrl('jc_home_bo'));
+    }
 }

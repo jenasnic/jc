@@ -1,0 +1,39 @@
+{#
+    Allows to display search result for expressions.
+    Required :
+    - expressionList : list of expression matching a search (as EnglishExpression).
+#}
+
+{# Display all expressions found for page #}
+{% if (expressionList|length > 0) %}
+    <table class="bo-table">
+        <thead>
+            <tr>
+                <th class="bo-table-label">Expression</th>
+                <th class="bo-table-label">Traduction</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expression in expressionList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label">{{ expression.textEN }}</td>
+                <td class="bo-table-label">{{ expression.textFR }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_expression_edit', { 'id': expression.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_expression_delete', { 'id': expression.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="center f-b16">Aucun résultat trouvé</div>
+{% endif %}

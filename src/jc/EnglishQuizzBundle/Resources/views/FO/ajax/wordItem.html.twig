@@ -1,0 +1,21 @@
+{#
+    Allows to display quizz item for word.
+    Required :
+    - item : Word for quizz (as EnglishWord).
+    - itemLeft : Remaining item count for quizz (for current quizz => not necessary word remaining count...).
+#}
+
+<input id="item-left" name="item-left" type="hidden" value="{{ itemLeft }}">
+
+<div class="center f-n14">Find the word</div>
+
+<div id="question-value" class="center f-b20">{{ item.nameEN }}</div>
+
+<div id="answer-value" class="hide center f-i16">
+    {{ item.nameFR }}
+    {% if (item.lesson > 0) %}
+    <div class="center f-i12">See lesson {{ item.lesson }} - page {{ item.page }}</div>
+    {% endif %}
+</div>
+
+<span class="hide">Left : {{ app.session.get('wordLeft') }} word(s) // {{ app.session.get('expressionLeft') }} expression(s) // {{ app.session.get('irregularVerbLeft') }} verb(s)</span>

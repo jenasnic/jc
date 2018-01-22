@@ -1,0 +1,57 @@
+{#
+    Allows to edit irregular verb.
+    Required :
+    - irregularVerbToEdit : FormView element based on EnglishIrregularVerbType object (i.e. EnglishIrregularVerb to edit).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block body %}
+
+    {% if (irregularVerbToEdit.vars.value.id) %}
+    <h1>Modification du verbe irrégulier</h1>
+    {% else %}
+    <h1>Ajout d'un verbe irrégulier</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_english_quizz_bo_irregular_verb_edit', { 'id': irregularVerbToEdit.vars.value.id }) }}" method="post" {{ form_enctype(irregularVerbToEdit) }}>
+
+        <div class="field-set">
+
+            <div class="left w-240">
+                {{ form_label(irregularVerbToEdit.verbEN, "Verbe") }}
+                {{ form_widget(irregularVerbToEdit.verbEN, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(irregularVerbToEdit.verbEN) }}
+            </div>
+
+            <div class="left w-240">
+                {{ form_label(irregularVerbToEdit.preterit, "Prétérit") }}
+                {{ form_widget(irregularVerbToEdit.preterit, { 'attr': {'class': 'field-M'} }) }}
+                {{ form_errors(irregularVerbToEdit.preterit) }}
+            </div>
+
+            <div class="left w-240">
+                {{ form_label(irregularVerbToEdit.past, "Participe passé") }}
+                {{ form_widget(irregularVerbToEdit.past, { 'attr': {'class': 'field-M'} }) }}
+                {{ form_errors(irregularVerbToEdit.past) }}
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="sep-10"></div>
+
+            {{ form_label(irregularVerbToEdit.verbFR, "Traduction") }}
+            {{ form_widget(irregularVerbToEdit.verbFR, { 'attr': {'class': 'field-XL'} }) }}
+            {{ form_errors(irregularVerbToEdit.verbFR) }}
+
+            {{ form_rest(irregularVerbToEdit) }}
+
+        </div>
+
+        <div class="sep-20"></div>
+
+        <input type="submit" value="Enregistrer" class="button" />
+
+    </form>
+
+{% endblock %}

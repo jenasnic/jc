@@ -1,0 +1,39 @@
+{#
+    Allows to display search result for word.
+    Required :
+    - wordList : list of word matching a search (as EnglishWord).
+#}
+
+{# Display all words found for page #}
+{% if (wordList|length > 0) %}
+    <table class="bo-table">
+        <thead>
+            <tr>
+                <th class="bo-table-label">Mot</th>
+                <th class="bo-table-label">Traduction</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for word in wordList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label">{{ word.nameEN }}</td>
+                <td class="bo-table-label">{{ word.nameFR }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_word_edit', { 'id': word.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_english_quizz_bo_word_delete', { 'id': word.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="center f-b16">Aucun résultat trouvé</div>
+{% endif %}

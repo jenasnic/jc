@@ -1,0 +1,54 @@
+{#
+    Allows to manage words. It allows to add word import word or search one to edit/delete.
+    Required :
+    - ajaxURL : String to indicate URL to call using Ajax when searching item (word, expression...).
+#}
+
+{% extends "::admin.html.twig" %}
+
+{% block header %}
+    <script type="text/javascript" src="{{ asset('resources/scripts/admin/quizz-search.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <h1>Gestion des mots</h1>
+
+    <div class="sep-20"></div>
+
+    <div class="field-set">
+
+        <div class="left">
+            <a class="button" href="{{ path('jc_english_quizz_bo_word_edit') }}">Ajouter un mot</a>
+        </div>
+
+        <form action="{{ path('jc_english_quizz_bo_word_import') }}" method="post" enctype="multipart/form-data" class="right">
+            <input id="file" name="file" type="file" />
+            <input type="submit" value="Importer" class="button"/>
+            <span class="comment">Format CSV : [mot anglais];[mots français séparés par un '/'];[numéro de la leçon];[numéro de page]<br/>
+            NOTE : le numéro de la leçon et la page sont optionnels</span>
+        </form>
+
+        <div class="clear"></div>
+
+        <div class="field-set-separator"></div>
+
+        <div id="form-search">
+            <input id="ajaxURL" name="ajaxURL" type="hidden" value="{{ ajaxURL }}" />
+            Recherche : <input type="text" id="value" name="value" />
+            <input type="radio" id="EN" name="lang" value="nameEN" checked="" /> <label for="EN">EN</label> <input type="radio" id="FR" name="lang" value="nameFR" /> <label for="FR">FR</label>
+            <span class="comment">NOTE : 3 lettres minimum</span>
+        </div>
+
+        <div class="field-set-separator"></div>
+
+        <a href="{{ path('jc_english_quizz_bo_word_list') }}" class="button">Voir tous les mots</a>
+
+    </div>
+
+    <div class="sep-20"></div>
+
+    <div id="search-content" class="hide"></div>
+    <div id="search-loading" class="center hide"><img src="{{ asset('/resources/images/admin/ajax-loader.gif') }}" alt="Loading" /></div>
+
+{% endblock %}
