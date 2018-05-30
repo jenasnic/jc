@@ -1,0 +1,4 @@
+services:
+#    jc_paris_oise.example:
+#        class: jc\ParisOiseBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

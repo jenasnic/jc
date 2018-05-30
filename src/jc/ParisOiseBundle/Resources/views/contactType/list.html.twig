@@ -1,0 +1,75 @@
+{#
+    Allows to list all available contactType. It allows to add/edit/delete contactType.
+    Required :
+    - contactTypeList : list of all contactTypes available (as ContactType).
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#contact-list").sortable({
+                update: function(event, ui) {
+                    $("#ordered-contact-list").val($('#contact-list').sortable('serialize'));
+                }
+            });
+            $("#contact-list").disableSelection();
+        });
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>Gestion des contacts</h1>
+
+    <div class="sep-20"></div>
+    <p class="f-i12">Permet de définir la liste des contacts associés à un chantier.</p>
+    <div class="sep-20"></div>
+
+    <a class="button" href="{{ path('jc_contact_type_edit') }}">Ajouter un contact</a>
+
+    <div class="sep-20"></div>
+
+    {# Display all contactTypes found #}
+    <table class="bo-table bo-sortable-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-label">Type de contact</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody id="contact-list">
+        {% for contactType in contactTypeList %}
+            <tr id="contact-list-{{ contactType.id }}">
+                <td class="bo-table-label">{{ contactType.label }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_contact_type_edit', { 'id': contactType.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_contact_type_delete', { 'id': contactType.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+    {# Form to save contact order #}
+    <form action="{{ path('jc_contact_type_list') }}" method="post">
+        <input id="ordered-contact-list" name="ordered-contact-list" type="hidden" value="" />
+        <input type="submit" value="Enregistrer" class="button" />
+    </form>
+
+{% endblock %}

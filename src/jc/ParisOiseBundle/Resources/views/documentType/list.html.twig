@@ -1,0 +1,77 @@
+{#
+    Allows to list all available documentType. It allows to add/edit/delete documentType.
+    Required :
+    - documentTypeList : list of all documentTypes available (as DocumentType).
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#document-list").sortable({
+                update: function(event, ui) {
+                    $("#ordered-document-list").val($('#document-list').sortable('serialize'));
+                }
+            });
+            $("#document-list").disableSelection();
+        });
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>Gestion des documents</h1>
+
+    <div class="sep-20"></div>
+    <p class="f-i12">Permet de définir la liste des documents de ventes nécessaires pour démarrer le chantier (documents à faire signer et à scanner).</p>
+    <div class="sep-20"></div>
+
+    <a class="button" href="{{ path('jc_document_type_edit') }}">Ajouter un document</a>
+
+    <div class="sep-20"></div>
+
+    {# Display all documentTypes found #}
+    <table class="bo-table bo-sortable-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-label">Type de document</th>
+                <th class="bo-table-label">Obligatoire</th>
+                <th class="bo-table-action">Modifier</th>
+                <th class="bo-table-action">Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody id="document-list">
+        {% for documentType in documentTypeList %}
+            <tr id="document-list-{{ documentType.id }}">
+                <td class="bo-table-label">{{ documentType.label }}</td>
+                <td class="bo-table-label center">{{ documentType.required ? 'oui' : 'non' }}</td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_document_type_edit', { 'id': documentType.id }) }}" >
+                        <img src="{{ asset('resources/images/admin/icons/edit.png') }}" width="16" height="16" border="0" alt="Modifier" title="Modifier" />
+                    </a>
+                </td>
+                <td class="bo-table-action">
+                    <a href="{{ path('jc_document_type_delete', { 'id': documentType.id }) }}" onclick="return confirm('Confirmer la suppression ?');" >
+                        <img src="{{ asset('resources/images/admin/icons/delete.png') }}" width="16" height="16" border="0" alt="Supprimer" title="Supprimer" />
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="sep-20"></div>
+
+    {# Form to save document order #}
+    <form action="{{ path('jc_document_type_list') }}" method="post">
+        <input id="ordered-document-list" name="ordered-document-list" type="hidden" value="" />
+        <input type="submit" value="Enregistrer" class="button" />
+    </form>
+
+{% endblock %}

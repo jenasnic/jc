@@ -1,0 +1,55 @@
+{#
+    Allows to list all document for a construction. It allows to manage construction's documents (add/remove, status...).
+    Required :
+    - construction : construction we list available documents (as Construction).
+    - documentList : list of all documents linked to construction (as Document).
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block body %}
+
+    <h1>Gestion des documents</h1>
+
+    <div class="sep-20"></div>
+
+    <div class="field-set">
+
+        <label>Référence du chantier : </label>{{ construction.reference }}
+        <div class="sep-5"></div>
+        <label>Client : </label>{{ construction.customerDisplayName }}
+
+    </div>
+
+    <div class="sep-20"></div>
+
+    {# Display all constructions found #}
+    <table class="bo-table">
+
+        <thead>
+            <tr>
+                <th class="bo-table-label">Document</th>
+                <th class="bo-table-label">JC3M</th>
+                <th class="bo-table-label">Artisan</th>
+                <th class="bo-table-label">Envoyé</th>
+                <th class="bo-table-label">Reçu</th>
+                <th class="bo-table-label">Banque</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for document in documentList %}
+            <tr{% if loop.index is even %} class="odd"{% endif %}>
+                <td class="bo-table-label center">{{ document.type.label }}</td>
+                <td class="bo-table-label center">{{ document.status == 0 ? 'X' : '' }}</td>
+                <td class="bo-table-label center">{{ document.status == 1 ? 'X' : '' }}</td>
+                <td class="bo-table-label center">{{ document.status == 2 ? 'X' : '' }}</td>
+                <td class="bo-table-label center">{{ document.status == 3 ? 'X' : '' }}</td>
+                <td class="bo-table-label center">{{ document.status == 4 ? 'X' : '' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}

@@ -1,0 +1,290 @@
+{#
+    Allows to edit construction.
+    Required :
+    - constructionToEdit : FormView element based on ConstructionType object (i.e. construction to edit).
+#}
+
+{% extends "::master.html.twig" %}
+
+{% block header %}
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.date').datepicker({ dateFormat: "dd/mm/yy" });
+        $('.field-set-container').customizeExpand({{constructionToEdit.vars.value.id ? false : true}});
+    });
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% if (constructionToEdit.vars.value.id) %}
+    <h1>Modification du chantier</h1>
+    {% else %}
+    <h1>Ajout d'un chantier</h1>
+    {% endif %}
+
+    <form action="{{ path('jc_construction_edit', { 'id': constructionToEdit.vars.value.id }) }}" method="post" {{ form_enctype(constructionToEdit) }}>
+
+        <div class="field-set">
+
+            {{ form_label(constructionToEdit.reference, "Référence du chantier") }}
+            {{ form_widget(constructionToEdit.reference, { 'attr': {'class': 'field-M'}, 'max_length' : '55' }) }}
+            {{ form_errors(constructionToEdit.reference) }}
+
+            {% if (constructionToEdit.vars.value.id) %}
+                <div class="sep-10"></div>
+                <label>Client : </label><span>{{ constructionToEdit.vars.value.customerDisplayName }}</span>
+            {% endif %}
+
+        </div>
+
+        <div class="sep-30"></div>
+
+        <div class="field-set">
+
+            <span class="field-set-title">Informations client</span>
+
+            <div class="field-set-container">
+
+                <h2>Monsieur</h2>
+
+                {{ form_label(constructionToEdit.lastname1, "Nom") }}
+                {{ form_widget(constructionToEdit.lastname1, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.lastname1) }}
+
+                {{ form_label(constructionToEdit.firstname1, "Prénom") }}
+                {{ form_widget(constructionToEdit.firstname1, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.firstname1) }}
+
+                {{ form_label(constructionToEdit.birthDate1, "Né le") }}
+                {{ form_widget(constructionToEdit.birthDate1, { 'attr': {'class': 'date margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.birthDate1) }}
+
+                {{ form_label(constructionToEdit.birthPlace1, "à") }}
+                {{ form_widget(constructionToEdit.birthPlace1, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.birthPlace1) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.nationality1, "Nationalité") }}
+                {{ form_widget(constructionToEdit.nationality1, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.nationality1) }}
+
+                {{ form_label(constructionToEdit.job1, "Profession") }}
+                {{ form_widget(constructionToEdit.job1, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.job1) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.phone1, "Téléphone") }}
+                {{ form_widget(constructionToEdit.phone1, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.phone1) }}
+
+                {{ form_label(constructionToEdit.mail1, "Mail") }}
+                {{ form_widget(constructionToEdit.mail1, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.mail1) }}
+
+                <div class="field-set-separator"></div>
+
+                <h2>Madame</h2>
+
+                {{ form_label(constructionToEdit.lastname2, "Nom") }}
+                {{ form_widget(constructionToEdit.lastname2, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.lastname2) }}
+
+                {{ form_label(constructionToEdit.firstname2, "Prénom") }}
+                {{ form_widget(constructionToEdit.firstname2, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.firstname2) }}
+
+                {{ form_label(constructionToEdit.birthDate2, "Née le") }}
+                {{ form_widget(constructionToEdit.birthDate2, { 'attr': {'class': 'date margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.birthDate2) }}
+
+                {{ form_label(constructionToEdit.birthPlace2, "à") }}
+                {{ form_widget(constructionToEdit.birthPlace2, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.birthPlace2) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.nationality2, "Nationalité") }}
+                {{ form_widget(constructionToEdit.nationality2, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.nationality2) }}
+
+                {{ form_label(constructionToEdit.job2, "Profession") }}
+                {{ form_widget(constructionToEdit.job2, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.job2) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.phone2, "Téléphone") }}
+                {{ form_widget(constructionToEdit.phone2, { 'attr': {'class': 'field-M margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.phone2) }}
+
+                {{ form_label(constructionToEdit.mail2, "Mail") }}
+                {{ form_widget(constructionToEdit.mail2, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.mail2) }}
+
+                <div class="field-set-separator"></div>
+
+                {{ form_label(constructionToEdit.customerUnion, "Statut marital") }}
+                <div class="sep-15"></div>
+                {{ form_widget(constructionToEdit.customerUnion) }}
+                {{ form_errors(constructionToEdit.customerUnion) }}
+
+            </div>
+
+        </div>
+
+        <div class="sep-30"></div>
+
+        <div class="field-set">
+
+            <span class="field-set-title">Adresse client</span>
+
+            <div class="field-set-container">
+
+                {{ form_label(constructionToEdit.customerStreet1, "Adresse 1") }}
+                {{ form_widget(constructionToEdit.customerStreet1, { 'attr': {'class': 'field-XL'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.customerStreet1) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.customerStreet2, "Adresse 2") }}
+                {{ form_widget(constructionToEdit.customerStreet2, { 'attr': {'class': 'field-XL'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.customerStreet2) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.customerZip, "Code postal") }}
+                {{ form_widget(constructionToEdit.customerZip, { 'attr': {'class': 'field-XS margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.customerZip) }}
+
+                {{ form_label(constructionToEdit.customerCity, "Ville") }}
+                {{ form_widget(constructionToEdit.customerCity, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.customerCity) }}
+
+            </div>
+
+        </div>
+
+        <div class="sep-30"></div>
+
+        <div class="field-set">
+
+            <span class="field-set-title">Adresse chantier</span>
+
+            <div class="field-set-container">
+
+                {{ form_label(constructionToEdit.constructionStreet1, "Adresse 1") }}
+                {{ form_widget(constructionToEdit.constructionStreet1, { 'attr': {'class': 'field-XL'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.constructionStreet1) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.constructionStreet2, "Adresse 2") }}
+                {{ form_widget(constructionToEdit.constructionStreet2, { 'attr': {'class': 'field-XL'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.constructionStreet2) }}
+
+                <div class="sep-10"></div>
+
+                {{ form_label(constructionToEdit.constructionZip, "Code postal") }}
+                {{ form_widget(constructionToEdit.constructionZip, { 'attr': {'class': 'field-XS margin-right-20'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.constructionZip) }}
+
+                {{ form_label(constructionToEdit.constructionCity, "Ville") }}
+                {{ form_widget(constructionToEdit.constructionCity, { 'attr': {'class': 'field-M'}, 'max_length' : '255' }) }}
+                {{ form_errors(constructionToEdit.constructionCity) }}
+
+            </div>
+
+        </div>
+
+        <div class="sep-30"></div>
+
+        <div class="field-set">
+
+            <span class="field-set-title">Informations complémentaires</span>
+
+            <div class="field-set-container">
+
+                <h2>Notaire</h2>
+
+                {{ form_label(constructionToEdit.depositDate1, "Date dépôt PC") }}
+                {{ form_widget(constructionToEdit.depositDate1, { 'attr': {'class': 'date margin-right-20'} }) }}
+                {{ form_errors(constructionToEdit.depositDate1) }}
+
+                {{ form_label(constructionToEdit.depositDate2, "Date dépôt prêt") }}
+                {{ form_widget(constructionToEdit.depositDate2, { 'attr': {'class': 'date margin-right-20'} }) }}
+                {{ form_errors(constructionToEdit.depositDate2) }}
+
+                {{ form_label(constructionToEdit.validateDate, "Date accord prêt") }}
+                {{ form_widget(constructionToEdit.validateDate, { 'attr': {'class': 'date margin-right-20'} }) }}
+                {{ form_errors(constructionToEdit.validateDate) }}
+
+                {{ form_label(constructionToEdit.signDate, "Date signature") }}
+                {{ form_widget(constructionToEdit.signDate, { 'attr': {'class': 'date margin-right-20'} }) }}
+                {{ form_errors(constructionToEdit.signDate) }}
+
+                <div class="field-set-separator"></div>
+
+                <h2>Informations diverses</h2>
+
+                {{ form_widget(constructionToEdit.note) }}
+                {{ form_errors(constructionToEdit.note) }}
+
+            </div>
+
+        </div>
+
+        <div class="sep-30"></div>
+
+        <div class="field-set">
+
+            <span class="field-set-title">Contacts</span>
+
+            <div class="field-set-container">
+
+                {% for contact in constructionToEdit.contacts %}
+
+                    <h2>{{ contact.vars.value.type.label }}</h2>
+
+                    {{ form_label(contact.firstname, "Nom") }}
+                    {{ form_widget(contact.firstname, { 'attr': {'class': 'field-M margin-right-20'} }) }}
+                    {{ form_errors(contact.firstname) }}
+                    {{ form_label(contact.lastname, "Prénom") }}
+                    {{ form_widget(contact.lastname, { 'attr': {'class': 'field-M'} }) }}
+                    {{ form_errors(contact.lastname) }}
+                    
+                    <div class="sep-10"></div>
+
+                    {{ form_label(contact.phone, "Téléphone") }}
+                    {{ form_widget(contact.phone, { 'attr': {'class': 'field-M margin-right-20'} }) }}
+                    {{ form_errors(contact.phone) }}
+                    {{ form_label(contact.mobile, "Portable") }}
+                    {{ form_widget(contact.mobile, { 'attr': {'class': 'field-M margin-right-20'} }) }}
+                    {{ form_errors(contact.mobile) }}
+                    {{ form_label(contact.mail, "Mail") }}
+                    {{ form_widget(contact.mail, { 'attr': {'class': 'field-M'} }) }}
+                    {{ form_errors(contact.mail) }}
+
+                    {% if (not loop.last) %}
+                        <div class="field-set-separator"></div>
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {{ form_rest(constructionToEdit) }}
+
+        <div class="sep-20"></div>
+
+        <input type="submit" value="Enregistrer" class="button" />
+
+    </form>
+
+{% endblock %}
